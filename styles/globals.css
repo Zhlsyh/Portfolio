@@ -1,0 +1,1256 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* Font display teknis untuk heading (h1 section) supaya ada kontras
+     hierarki jelas dari body text - dipasangkan dari Google Fonts di
+     pages/_document.tsx */
+  h1 {
+    font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+}
+
+:root {
+  --color-primary: #256CFF;
+  --color-secondary: #58E200;
+  --color-bg-dark: #11131b;
+  --color-surface-container: #1d1f28;
+}
+
+/* Color Classes */
+.bg-primary {
+  background-color: #256CFF;
+}
+
+.text-primary {
+  color: #256CFF;
+}
+
+.border-primary {
+  border-color: #256CFF;
+}
+
+.bg-secondary {
+  background-color: #58E200;
+}
+
+.text-secondary {
+  color: #58E200;
+}
+
+/* Light mode shadow for secondary text and icons */
+html:not(.dark) .text-secondary,
+html:not(.dark) [class*="text-secondary"],
+html:not(.dark) [class*="text-[#58E200]"],
+html:not(.dark) [class*="text-emerald"],
+html:not(.dark) [class*="text-green"],
+html:not(.dark) .material-symbols-outlined.text-secondary,
+html:not(.dark) .material-symbols-outlined[class*="text-secondary"],
+html:not(.dark) .material-symbols-outlined[class*="text-emerald"],
+html:not(.dark) .material-symbols-outlined[class*="text-green"],
+html:not(.dark) svg.text-secondary,
+html:not(.dark) svg[class*="text-secondary"] {
+  text-shadow: none;
+  filter: none;
+}
+
+.border-secondary {
+  border-color: #58E200;
+}
+
+/* Body Background */
+body {
+  background: linear-gradient(160deg, #e0f7fa 0%, #e0f2fe 42%, #f0f9ff 100%);
+  background-attachment: fixed;
+  color: #0f172a;
+}
+
+.dark body {
+  background: #11131b;
+  color: #e1e2ee;
+}
+
+/* =========================================================================
+   LIGHT MODE COLOR SYSTEM
+   Markup aslinya ditulis sebagai "dark-mode-first" (mayoritas text-white /
+   bg-white/X / border-white/X tanpa pasangan dark:), jadi light mode di
+   sini di-retrofit lewat override CSS terpusat berikut, alih-alih mengedit
+   ratusan class satu per satu di markup. Semua discope di bawah
+   "html:not(.dark)" supaya dark mode (yang sudah bagus) tidak tersentuh.
+   ========================================================================= */
+
+/* Teks: putih (dark mode) -> tinta gelap (light mode), opacity dipertahankan */
+html:not(.dark) .text-white { color: #0f172a; }
+html:not(.dark) .text-white\/90 { color: rgba(15, 23, 42, 0.9); }
+html:not(.dark) .text-white\/85 { color: rgba(15, 23, 42, 0.85); }
+html:not(.dark) .text-white\/80 { color: rgba(15, 23, 42, 0.8); }
+html:not(.dark) .text-white\/70 { color: rgba(15, 23, 42, 0.75); }
+html:not(.dark) .text-white\/60 { color: rgba(15, 23, 42, 0.68); }
+html:not(.dark) .text-white\/50 { color: rgba(15, 23, 42, 0.6); }
+html:not(.dark) .text-white\/40 { color: rgba(15, 23, 42, 0.5); }
+html:not(.dark) .hover\:text-white:hover { color: #0f172a; }
+html:not(.dark) .placeholder-white\/50::placeholder { color: rgba(15, 23, 42, 0.45); }
+
+/* Panel/badge translucent putih: opacity dinaikkan supaya tetap terlihat
+   sebagai "frosted glass" di atas background terang, bukan menghilang */
+html:not(.dark) .bg-white\/5 { background-color: rgba(255, 255, 255, 0.35); }
+html:not(.dark) .bg-white\/10 { background-color: rgba(255, 255, 255, 0.45); }
+html:not(.dark) .bg-white\/15 { background-color: rgba(255, 255, 255, 0.55); }
+html:not(.dark) .hover\:bg-white\/10:hover { background-color: rgba(255, 255, 255, 0.55); }
+html:not(.dark) .hover\:bg-white\/20:hover { background-color: rgba(255, 255, 255, 0.65); }
+html:not(.dark) .hover\:bg-white:hover { background-color: rgba(255, 255, 255, 0.9); }
+
+/* Border putih tipis -> border gelap tipis supaya tetap kelihatan di
+   background terang (putih di atas putih/pastel nyaris tak terlihat) */
+html:not(.dark) .border-white\/10 { border-color: rgba(15, 23, 42, 0.08); }
+html:not(.dark) .border-white\/15 { border-color: rgba(15, 23, 42, 0.12); }
+html:not(.dark) .border-white\/20 { border-color: rgba(15, 23, 42, 0.16); }
+html:not(.dark) .border-white\/25 { border-color: rgba(15, 23, 42, 0.2); }
+html:not(.dark) .border-white\/40 { border-color: rgba(15, 23, 42, 0.32); }
+
+/* Glass card/panel: butuh putih lebih pekat di light mode supaya kartu
+   terlihat "melayang" di atas gradient, bukan cuma warna gradient polos */
+html:not(.dark) .glass-card {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+html:not(.dark) .glass-panel {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.14);
+}
+
+/* Secondary Accent Color System for Light Mode (#0e7b97 for elements, text, & icons) */
+html:not(.dark) {
+  --color-secondary: #0e7b97;
+  scrollbar-color: #0e7b97 #e0f2fe !important;
+}
+
+html:not(.dark) ::selection {
+  background-color: #0e7b97 !important;
+  color: #ffffff !important;
+}
+
+/* Secondary Text & Hover Text in Light Mode */
+html:not(.dark) .text-secondary,
+html:not(.dark) [class*="text-secondary"],
+html:not(.dark) [class*="text-[#58E200]"],
+html:not(.dark) [class*="text-emerald"],
+html:not(.dark) [class*="text-green"],
+html:not(.dark) .hover\:text-secondary:hover,
+html:not(.dark) .group:hover .group-hover\:text-secondary {
+  color: #0e7b97 !important;
+}
+
+/* ALL Material Symbols & SVG Icons in Light Mode MUST BE #0e7b97 BY DEFAULT */
+html:not(.dark) .material-symbols-outlined,
+html:not(.dark) .material-symbols-outlined.text-secondary,
+html:not(.dark) .material-symbols-outlined[class*="text-secondary"],
+html:not(.dark) .material-symbols-outlined[class*="text-[#58E200]"],
+html:not(.dark) .material-symbols-outlined[class*="text-emerald"],
+html:not(.dark) .material-symbols-outlined[class*="text-green"],
+html:not(.dark) .nav-btn .material-symbols-outlined,
+html:not(.dark) .active-nav-link .material-symbols-outlined,
+html:not(.dark) .mobile-nav-btn .material-symbols-outlined,
+html:not(.dark) #theme-toggle .material-symbols-outlined,
+html:not(.dark) #theme-toggle-dark-icon,
+html:not(.dark) #theme-toggle-light-icon,
+html:not(.dark) #mobile-menu-toggle .material-symbols-outlined,
+html:not(.dark) .project-filter-btn .material-symbols-outlined,
+html:not(.dark) .photo-filter-btn .material-symbols-outlined,
+html:not(.dark) svg,
+html:not(.dark) svg.text-secondary,
+html:not(.dark) svg[class*="text-secondary"] {
+  color: #0e7b97 !important;
+  fill: #0e7b97 !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* EXCEPTION 1: Profile Photo Badge (#hero-frame) icon MUST BE WHITE */
+html:not(.dark) #hero-frame .bg-secondary {
+  background-color: #0e7b97 !important;
+  color: #ffffff !important;
+}
+
+html:not(.dark) #hero-frame .material-symbols-outlined {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+/* EXCEPTION 2: Photo overlays & photo modals icons (zoom_in, delete, close over photos) MUST BE WHITE */
+html:not(.dark) #modal-gallery-grid .material-symbols-outlined,
+html:not(.dark) #image-modal .material-symbols-outlined,
+html:not(.dark) #upload-preview-container .material-symbols-outlined {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+/* EXCEPTION 3: Floating action buttons & back-to-top button icons MUST BE WHITE */
+html:not(.dark) #back-to-top .material-symbols-outlined,
+html:not(.dark) .quick-contact-fab-toggle .material-symbols-outlined,
+html:not(.dark) .quick-contact-fab-item:hover .material-symbols-outlined {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+/* Section Header Badges in Light Mode: Soft translucent teal pill so #0e7b97 text & icon are 100% visible */
+html:not(.dark) section header .inline-flex.bg-secondary,
+html:not(.dark) section header [class*="bg-secondary"],
+html:not(.dark) section > div > header .inline-flex,
+html:not(.dark) header .inline-flex.bg-secondary,
+html:not(.dark) .inline-flex.items-center.bg-secondary {
+  background-color: rgba(14, 123, 151, 0.14) !important;
+  color: #0e7b97 !important;
+  border: 1.5px solid rgba(14, 123, 151, 0.35) !important;
+  box-shadow: 0 2px 10px rgba(14, 123, 151, 0.1) !important;
+}
+
+html:not(.dark) section header .inline-flex.bg-secondary .material-symbols-outlined,
+html:not(.dark) section header [class*="bg-secondary"] .material-symbols-outlined,
+html:not(.dark) section > div > header .inline-flex .material-symbols-outlined,
+html:not(.dark) header .inline-flex.bg-secondary .material-symbols-outlined,
+html:not(.dark) .inline-flex.items-center.bg-secondary .material-symbols-outlined {
+  color: #0e7b97 !important;
+  fill: #0e7b97 !important;
+}
+
+/* Dark card overlays in Light Mode (e.g. project card category tags) */
+html:not(.dark) .bg-slate-900\/90 {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  border-color: rgba(14, 123, 151, 0.3) !important;
+  color: #0e7b97 !important;
+}
+
+/* Theme toggle icon hover in Light Mode */
+html:not(.dark) #theme-toggle:hover .material-symbols-outlined {
+  color: #0e7b97 !important;
+}
+
+/* Elements with Secondary Background in Light Mode */
+html:not(.dark) .bg-secondary,
+html:not(.dark) [class*="bg-secondary"]:not([class*="bg-secondary/"]),
+html:not(.dark) .hover\:bg-secondary:hover,
+html:not(.dark) #back-to-top,
+html:not(.dark) .quick-contact-fab-toggle {
+  background-color: #0e7b97 !important;
+  color: #ffffff !important;
+}
+
+/* Filter buttons in Light Mode */
+html:not(.dark) .project-filter-btn.active-filter,
+html:not(.dark) .photo-filter-btn.active-filter {
+  background-color: rgba(14, 123, 151, 0.15) !important;
+  color: #0e7b97 !important;
+  border-color: #0e7b97 !important;
+}
+
+/* Opacity variants of secondary background in Light Mode */
+html:not(.dark) .bg-secondary\/5 { background-color: rgba(14, 123, 151, 0.05) !important; }
+html:not(.dark) .bg-secondary\/10 { background-color: rgba(14, 123, 151, 0.1) !important; }
+html:not(.dark) .bg-secondary\/15 { background-color: rgba(14, 123, 151, 0.15) !important; }
+html:not(.dark) .bg-secondary\/20 { background-color: rgba(14, 123, 151, 0.2) !important; }
+html:not(.dark) .bg-secondary\/30 { background-color: rgba(14, 123, 151, 0.3) !important; }
+html:not(.dark) .bg-secondary\/40 { background-color: rgba(14, 123, 151, 0.4) !important; }
+html:not(.dark) .bg-secondary\/50 { background-color: rgba(14, 123, 151, 0.5) !important; }
+
+html:not(.dark) .hover\:bg-secondary\/90:hover {
+  background-color: rgba(14, 123, 151, 0.9) !important;
+}
+
+/* Borders in Light Mode */
+html:not(.dark) .border-secondary,
+html:not(.dark) [class*="border-secondary"],
+html:not(.dark) .hover\:border-secondary:hover,
+html:not(.dark) .hover\:border-secondary\/40:hover,
+html:not(.dark) .hover\:border-secondary\/50:hover,
+html:not(.dark) .hover\:border-secondary\/60:hover {
+  border-color: #0e7b97 !important;
+}
+
+/* Navigation & Active Link Elements in Light Mode */
+html:not(.dark) .active-nav-link {
+  color: #0e7b97 !important;
+  background-color: rgba(14, 123, 151, 0.15) !important;
+  border: 1.5px solid rgba(14, 123, 151, 0.4) !important;
+  box-shadow: 0 4px 14px rgba(14, 123, 151, 0.18) !important;
+  border-radius: 0.5rem;
+}
+
+html:not(.dark) .nav-btn:not(.active-nav-link) {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .nav-btn:not(.active-nav-link):hover {
+  color: #0e7b97 !important;
+}
+
+html:not(.dark) .nav-btn:not(.active-nav-link)::after {
+  background: #0e7b97;
+}
+
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #e0f2fe !important;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background-color: #0e7b97 !important;
+  border-radius: 6px;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background-color: #09596e !important;
+}
+
+html:not(.dark) .scroll-progress-bar {
+  background: linear-gradient(90deg, #0e7b97, #256CFF) !important;
+}
+
+html:not(.dark) .heading-underline {
+  background: linear-gradient(90deg, #0e7b97, #256CFF) !important;
+}
+
+html:not(.dark) .section-index-badge,
+html:not(.dark) .stat-highlight {
+  color: #0e7b97 !important;
+}
+
+html:not(.dark) .hard-shadow-secondary {
+  box-shadow: 0 10px 25px -5px rgba(14, 123, 151, 0.35) !important;
+}
+
+html:not(.dark) .glow-indicator {
+  box-shadow: 0 0 16px rgba(14, 123, 151, 0.8) !important;
+}
+
+html:not(.dark) .cv-bounce-hover:hover {
+  border-color: rgba(14, 123, 151, 0.8) !important;
+}
+
+html:not(.dark) #cursor-spotlight {
+  background: radial-gradient(circle, rgba(14, 123, 151, 0.18) 0%, rgba(37, 108, 255, 0.12) 50%, transparent 72%);
+}
+
+html:not(.dark) #cursor-spotlight.cursor-hover {
+  background: radial-gradient(circle, rgba(14, 123, 151, 0.25) 0%, rgba(37, 108, 255, 0.15) 55%, transparent 75%);
+}
+
+html:not(.dark) .gallery-card::after,
+html:not(.dark) .project-card::after,
+html:not(.dark) .spotlight-card::after {
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(14, 123, 151, 0.16),
+    rgba(37, 108, 255, 0.05) 35%,
+    transparent 65%
+  );
+}
+
+html:not(.dark) .pcb-pattern-layer {
+  color: #0e7b97;
+  opacity: 0.07;
+}
+
+html:not(.dark) .quick-contact-fab-toggle {
+  background: #0e7b97 !important;
+  color: #ffffff !important;
+}
+
+html:not(.dark) .quick-contact-fab-item:hover {
+  background: rgba(14, 123, 151, 0.95) !important;
+  color: #ffffff !important;
+}
+
+/* Kinetic Glass Cards & Panels */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Light hit top-left highlight border effect */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+  pointer-events: none;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Hard Shadows & Neobrutalist / Glass Touches */
+.hard-shadow-primary {
+  box-shadow: 0 10px 25px -5px rgba(37, 108, 255, 0.4);
+}
+
+/* Interactive Cursor & Card Spotlight Tracking Effects */
+.gallery-card, .project-card, .spotlight-card {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Exclude hero-frame and glass-panel from overflow clip so badges and quote cards are not cut off */
+.gallery-card::after, .project-card::after, .spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(88, 226, 0, 0.12),
+    rgba(37, 108, 255, 0.05) 35%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gallery-card:hover::after, .project-card:hover::after, .spotlight-card:hover::after {
+  opacity: 1;
+}
+
+/* Interactive Floating Cursor Spotlight Aura (Desktop Only) */
+#cursor-spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  margin-top: -150px;
+  margin-left: -150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(88, 226, 0, 0.08) 0%, rgba(37, 108, 255, 0.04) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.08s ease-out, width 0.3s ease, height 0.3s ease, margin 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  will-change: transform;
+}
+
+#cursor-spotlight.cursor-active {
+  opacity: 1;
+}
+
+#cursor-spotlight.cursor-hover {
+  width: 380px;
+  height: 380px;
+  margin-top: -190px;
+  margin-left: -190px;
+  background: radial-gradient(circle, rgba(88, 226, 0, 0.14) 0%, rgba(37, 108, 255, 0.08) 55%, transparent 75%);
+}
+
+.hard-shadow-secondary {
+  box-shadow: 0 10px 25px -5px rgba(88, 226, 0, 0.3);
+}
+
+.btn-press:active {
+  transform: translateY(2px);
+}
+
+.glow-indicator {
+  box-shadow: 0 0 16px rgba(88, 226, 0, 0.8);
+}
+
+/* Active Nav Links */
+.active-nav-link {
+  position: relative;
+  color: #000000 !important;
+  background-color: #58E200 !important;
+  padding-left: 0.85rem !important;
+  padding-right: 0.85rem !important;
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
+  border-radius: 0.6rem !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 14px rgba(88, 226, 0, 0.4) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.active-nav-link .material-symbols-outlined {
+  color: #000000 !important;
+}
+
+.dark .active-nav-link {
+  color: #000000 !important;
+  background-color: #58E200 !important;
+}
+
+.dark .active-nav-link .material-symbols-outlined {
+  color: #000000 !important;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #11131b;
+}
+::-webkit-scrollbar-thumb {
+  background: #58E200;
+  border-radius: 4px;
+}
+
+/* Aurora Background Floating Animations */
+@keyframes aurora-float-1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(60px, -70px) scale(1.18) rotate(12deg);
+  }
+  66% {
+    transform: translate(-50px, 50px) scale(0.92) rotate(-10deg);
+  }
+}
+
+@keyframes aurora-float-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(-80px, 60px) scale(1.22) rotate(-18deg);
+  }
+}
+
+@keyframes aurora-float-3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(70px, 90px) scale(1.12);
+  }
+}
+
+.aurora-blob-1 {
+  animation: aurora-float-1 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+.aurora-blob-2 {
+  animation: aurora-float-2 22s ease-in-out infinite;
+  will-change: transform;
+}
+
+.aurora-blob-3 {
+  animation: aurora-float-3 25s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Subtle Bounce & Pulse Hover Animation for Unduh CV Buttons */
+@keyframes subtle-bounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  30% {
+    transform: translateY(-4px) scale(1.02);
+  }
+  60% {
+    transform: translateY(1px) scale(0.99);
+  }
+  80% {
+    transform: translateY(-2px) scale(1.01);
+  }
+}
+
+@keyframes subtle-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 10px 25px -5px rgba(88, 226, 0, 0.35);
+  }
+  50% {
+    box-shadow: 0 14px 35px 6px rgba(88, 226, 0, 0.65), 0 0 20px rgba(88, 226, 0, 0.4);
+  }
+}
+
+@keyframes icon-download-pulse {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+.cv-bounce-hover {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cv-bounce-hover:hover {
+  animation: subtle-bounce 1s ease-in-out infinite, subtle-pulse-glow 1.8s ease-in-out infinite;
+  border-color: rgba(88, 226, 0, 0.8) !important;
+}
+
+.cv-bounce-hover:hover .material-symbols-outlined {
+  animation: icon-download-pulse 0.8s ease-in-out infinite;
+}
+
+/* =========================================================================
+   ENHANCEMENT LAYER — animasi & interaktivitas tambahan
+   (dikendalikan dari lib/enhancements.ts)
+   ========================================================================= */
+
+/* 1. Scroll progress bar di top viewport */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #58E200, #256CFF);
+  z-index: 200;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* 2. Hero name — reveal per karakter saat halaman load */
+.hero-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(26px) rotate(6deg);
+  animation: hero-char-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes hero-char-in {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* 3. Badge industrial di hero-frame — float halus, ganti dari animate-pulse */
+@keyframes badge-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(4deg); }
+}
+
+.badge-float-anim {
+  animation: badge-float 3s ease-in-out infinite;
+}
+
+/* 4. Tag teknologi di project-card & gallery-card — stagger reveal saat card masuk viewport */
+.project-card .p-8 > .flex.flex-wrap.gap-2 > span,
+.gallery-card .flex.flex-wrap.gap-2 > span {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.project-card.tags-revealed .p-8 > .flex.flex-wrap.gap-2 > span,
+.gallery-card.tags-revealed .flex.flex-wrap.gap-2 > span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card .p-8 > .flex.flex-wrap.gap-2 > span:nth-child(1),
+.gallery-card .flex.flex-wrap.gap-2 > span:nth-child(1) { transition-delay: 0.05s; }
+.project-card .p-8 > .flex.flex-wrap.gap-2 > span:nth-child(2),
+.gallery-card .flex.flex-wrap.gap-2 > span:nth-child(2) { transition-delay: 0.15s; }
+.project-card .p-8 > .flex.flex-wrap.gap-2 > span:nth-child(3),
+.gallery-card .flex.flex-wrap.gap-2 > span:nth-child(3) { transition-delay: 0.25s; }
+.project-card .p-8 > .flex.flex-wrap.gap-2 > span:nth-child(4),
+.gallery-card .flex.flex-wrap.gap-2 > span:nth-child(4) { transition-delay: 0.35s; }
+.project-card .p-8 > .flex.flex-wrap.gap-2 > span:nth-child(n+5),
+.gallery-card .flex.flex-wrap.gap-2 > span:nth-child(n+5) { transition-delay: 0.45s; }
+
+/* 5. Modal — scale + fade in setiap kali dibuka (class "hidden" dilepas) */
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-scale-in {
+  from { opacity: 0; transform: scale(0.92) translateY(14px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+#project-modal:not(.hidden),
+#resume-modal:not(.hidden),
+#create-folder-modal:not(.hidden),
+#image-modal:not(.hidden) {
+  animation: modal-fade-in 0.25s ease;
+}
+
+#project-modal:not(.hidden) > div:first-of-type,
+#resume-modal:not(.hidden) > div:first-of-type,
+#create-folder-modal:not(.hidden) > div:first-of-type,
+#image-modal:not(.hidden) > div:first-of-type {
+  animation: modal-scale-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 6. Nav link — garis bawah tumbuh saat hover pada item yang belum aktif */
+.nav-btn:not(.active-nav-link) {
+  position: relative;
+}
+
+.nav-btn:not(.active-nav-link)::after {
+  content: '';
+  position: absolute;
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: 0.1rem;
+  height: 2px;
+  background: #58E200;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-btn:not(.active-nav-link):hover::after {
+  transform: scaleX(1);
+}
+
+/* 7. Theme toggle — putaran singkat setiap kali diklik */
+@keyframes theme-icon-spin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(0.7); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.theme-toggle-spin {
+  animation: theme-icon-spin 0.5s ease;
+}
+
+/* 8. Tombol Unduh CV — spinner singkat sebelum window print terbuka */
+@keyframes btn-spinner-rotate {
+  to { transform: rotate(360deg); }
+}
+
+.btn-loading-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  border-top-color: #0f172a;
+  border-radius: 50%;
+  animation: btn-spinner-rotate 0.6s linear infinite;
+  vertical-align: middle;
+}
+
+.dark .btn-loading-spinner {
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #ffffff;
+}
+
+/* 9. Toast — easing lebih "spring" supaya terasa memantul halus */
+#custom-toast {
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+/* 10. Efek ripple saat tombol .btn-press diklik */
+.ripple-span {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  transform: scale(0);
+  animation: ripple-anim 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple-anim {
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* 11. Skeleton shimmer untuk gambar yang belum selesai dimuat */
+.img-skeleton-wrap {
+  position: relative;
+}
+
+.img-skeleton-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.14) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.img-fade-target {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.img-fade-target.img-loaded {
+  opacity: 1;
+}
+
+/* 12. Judul section — garis bawah "menggambar" saat masuk viewport */
+.heading-underline {
+  display: block;
+  height: 4px;
+  width: 0;
+  margin-top: 0.85rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #58E200, #256CFF);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.heading-underline.underline-in-view {
+  width: 96px;
+}
+
+/* 13. Easter egg — confetti pixel jatuh */
+.pixel-confetti {
+  position: fixed;
+  top: -20px;
+  width: 10px;
+  height: 10px;
+  z-index: 300;
+  pointer-events: none;
+  animation: pixel-confetti-fall linear forwards;
+}
+
+@keyframes pixel-confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(540deg);
+    opacity: 0.9;
+  }
+}
+
+/* Menghormati preferensi pengguna yang mematikan animasi */
+@media (prefers-reduced-motion: reduce) {
+  .hero-char,
+  .badge-float-anim,
+  .aurora-blob-1,
+  .aurora-blob-2,
+  .aurora-blob-3,
+  .pixel-confetti {
+    animation: none !important;
+  }
+}
+
+/* =========================================================================
+   ROUND 2 — Perbaikan ikutan light mode + identitas visual elektronika +
+   layout & tipografi tambahan
+   ========================================================================= */
+
+/* --- Perbaikan ikutan light mode --- */
+
+/* Scrollbar: sebelumnya track hardcoded gelap, sekarang punya varian terang */
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #eef3ea;
+}
+
+html:not(.dark) {
+  scrollbar-color: #58E200 #eef3ea;
+}
+
+/* Cursor spotlight: opacity dinaikkan supaya tetap kerasa di background terang */
+html:not(.dark) #cursor-spotlight {
+  background: radial-gradient(circle, rgba(37, 108, 255, 0.16) 0%, rgba(88, 226, 0, 0.12) 50%, transparent 72%);
+}
+
+html:not(.dark) #cursor-spotlight.cursor-hover {
+  background: radial-gradient(circle, rgba(37, 108, 255, 0.22) 0%, rgba(88, 226, 0, 0.16) 55%, transparent 75%);
+}
+
+/* --- Identitas visual bertema elektronika (PCB circuit trace) --- */
+
+/* Pola garis sirkuit tipis + titik solder, dipasang sebagai layer dekoratif
+   di belakang konten pada beberapa section. Sengaja sangat subtle (opacity
+   rendah) supaya jadi tekstur, bukan elemen yang mengganggu keterbacaan. */
+.pcb-pattern-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image:
+    linear-gradient(90deg, currentColor 1px, transparent 1px),
+    linear-gradient(0deg, currentColor 1px, transparent 1px),
+    radial-gradient(currentColor 1.5px, transparent 1.5px);
+  background-size: 120px 120px, 120px 120px, 120px 120px;
+  background-position: 0 0, 0 0, 60px 60px;
+  color: #256CFF;
+}
+
+.dark .pcb-pattern-layer {
+  color: #58E200;
+  opacity: 0.06;
+}
+
+#experience, #skills, #certifications {
+  position: relative;
+}
+
+#experience > *, #skills > *, #certifications > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Timeline pengalaman kerja: garis putus-putus ala jalur PCB, bukan solid */
+.border-l-2.border-secondary\/40 {
+  border-left-style: dashed;
+}
+
+/* Nomor urut section ("01", "02", dst) yang di-inject via JS */
+.section-index-badge {
+  display: inline-block;
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: #58E200;
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+}
+
+.dark .section-index-badge {
+  color: #58E200;
+}
+
+/* --- Layout & hierarki visual --- */
+
+/* Stat penting (IPK) ditonjolkan dari kalimat sekitarnya */
+.stat-highlight {
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 700;
+  color: #58E200;
+  font-size: 1.05em;
+}
+
+/* Mini "dokumen" dekoratif di tombol unduh CV, kesan kertas terlipat */
+.cv-bounce-hover {
+  position: relative;
+}
+
+.cv-bounce-hover::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, transparent 50%, rgba(255, 255, 255, 0.5) 50%);
+  border-radius: 0 4px 0 0;
+  pointer-events: none;
+}
+
+/* Floating quick-contact bubble, di-inject via JS */
+.quick-contact-fab {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 6rem;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+
+.quick-contact-fab-toggle {
+  width: 52px;
+  height: 52px;
+  border-radius: 9999px;
+  background: #58E200;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.35);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.quick-contact-fab-toggle:hover {
+  transform: scale(1.08) rotate(8deg);
+}
+
+.quick-contact-fab-toggle .material-symbols-outlined {
+  font-size: 26px;
+  transition: transform 0.3s ease;
+}
+
+.quick-contact-fab.open .quick-contact-fab-toggle .material-symbols-outlined {
+  transform: rotate(135deg);
+}
+
+.quick-contact-fab-items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+}
+
+.quick-contact-fab.open .quick-contact-fab-items {
+  max-height: 220px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.quick-contact-fab-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(15, 23, 42, 0.92);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.5rem 0.9rem 0.5rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.quick-contact-fab-item:hover {
+  transform: translateX(-4px);
+  background: rgba(88, 226, 0, 0.95);
+  color: #0f172a;
+}
+
+.quick-contact-fab-item .material-symbols-outlined {
+  font-size: 18px;
+}
+
+@media (max-width: 640px) {
+  .quick-contact-fab {
+    right: 1rem;
+    bottom: 5.5rem;
+  }
+}
+
+/* =========================================================================
+   LIGHT MODE MODALS SYSTEM (#resume-modal, #project-detail-modal, etc.)
+   ========================================================================= */
+html:not(.dark) #resume-modal,
+html:not(.dark) #project-detail-modal,
+html:not(.dark) #create-folder-modal,
+html:not(.dark) #upload-photo-modal {
+  background-color: rgba(15, 23, 42, 0.45) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+html:not(.dark) #resume-modal > div,
+html:not(.dark) #project-detail-modal > div,
+html:not(.dark) #create-folder-modal > div,
+html:not(.dark) #upload-photo-modal > div {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid rgba(14, 123, 151, 0.25) !important;
+  box-shadow: 0 25px 60px -12px rgba(14, 123, 151, 0.25) !important;
+}
+
+/* Modals Header & Dividers */
+html:not(.dark) #resume-modal .border-b,
+html:not(.dark) #project-detail-modal .border-b,
+html:not(.dark) #create-folder-modal .border-b,
+html:not(.dark) #upload-photo-modal .border-b {
+  border-bottom-color: rgba(14, 123, 151, 0.18) !important;
+}
+
+/* --- Light Mode Styling for CV Choice Cards Container & Items --- */
+html:not(.dark) #resume-modal .bg-slate-950\/80 {
+  background-color: rgba(14, 123, 151, 0.06) !important;
+  border-color: rgba(14, 123, 151, 0.25) !important;
+}
+
+html:not(.dark) #resume-modal .bg-slate-900\/90 {
+  background-color: #ffffff !important;
+  border-color: rgba(14, 123, 151, 0.25) !important;
+  box-shadow: 0 4px 15px -2px rgba(14, 123, 151, 0.12) !important;
+}
+
+html:not(.dark) #resume-modal .bg-slate-900\/90:hover {
+  background-color: #0e7b97 !important;
+  border-color: #0e7b97 !important;
+}
+
+html:not(.dark) #resume-modal .bg-slate-900\/90:hover * {
+  color: #ffffff !important;
+}
+
+html:not(.dark) #resume-modal .bg-slate-900\/90:hover .bg-secondary\/20 {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+}
+
+/* Modals Headings & Paragraph Text */
+html:not(.dark) #resume-modal h1,
+html:not(.dark) #resume-modal h2,
+html:not(.dark) #resume-modal h3,
+html:not(.dark) #resume-modal h4,
+html:not(.dark) #project-detail-modal h1,
+html:not(.dark) #project-detail-modal h2,
+html:not(.dark) #project-detail-modal h3,
+html:not(.dark) #create-folder-modal h2,
+html:not(.dark) #upload-photo-modal h2 {
+  color: #0f172a !important;
+}
+
+html:not(.dark) #resume-modal p,
+html:not(.dark) #resume-modal li,
+html:not(.dark) #project-detail-modal p,
+html:not(.dark) #project-detail-modal li {
+  color: #334155 !important;
+}
+
+/* Modals Subtitles & Secondary Text */
+html:not(.dark) #resume-modal .text-white,
+html:not(.dark) #resume-modal .text-white\/90 {
+  color: #0f172a !important;
+}
+
+html:not(.dark) #resume-modal .text-white\/80,
+html:not(.dark) #resume-modal .text-white\/70,
+html:not(.dark) #resume-modal .text-white\/60 {
+  color: #475569 !important;
+}
+
+html:not(.dark) #resume-modal .text-secondary,
+html:not(.dark) #project-detail-modal .text-secondary,
+html:not(.dark) #create-folder-modal .text-secondary,
+html:not(.dark) #upload-photo-modal .text-secondary {
+  color: #0e7b97 !important;
+}
+
+html:not(.dark) #resume-modal .bg-secondary\/20 {
+  background-color: rgba(14, 123, 151, 0.12) !important;
+  color: #0e7b97 !important;
+}
+
+html:not(.dark) #resume-modal .border-white\/10,
+html:not(.dark) #resume-modal .border-white\/15,
+html:not(.dark) #resume-modal .border-white\/20 {
+  border-color: rgba(14, 123, 151, 0.2) !important;
+}
+
+/* Modals Inner Glass Panels */
+html:not(.dark) #resume-modal .bg-white\/5,
+html:not(.dark) #project-detail-modal .bg-white\/5,
+html:not(.dark) #create-folder-modal .bg-white\/5,
+html:not(.dark) #upload-photo-modal .bg-white\/5 {
+  background-color: rgba(14, 123, 151, 0.05) !important;
+  border-color: rgba(14, 123, 151, 0.18) !important;
+}
+
+html:not(.dark) #resume-modal .bg-white\/10,
+html:not(.dark) #project-detail-modal .bg-white\/10 {
+  background-color: rgba(14, 123, 151, 0.08) !important;
+  border-color: rgba(14, 123, 151, 0.22) !important;
+}
+
+/* Resume Modal Action Buttons in Light Mode */
+html:not(.dark) #download-pdf-btn {
+  background-color: #0e7b97 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(14, 123, 151, 0.3) !important;
+}
+
+html:not(.dark) #download-pdf-btn .material-symbols-outlined {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+html:not(.dark) #download-resume-file {
+  background-color: rgba(14, 123, 151, 0.1) !important;
+  color: #0e7b97 !important;
+  border-color: rgba(14, 123, 151, 0.3) !important;
+}
+
+html:not(.dark) #download-resume-file .material-symbols-outlined {
+  color: #0e7b97 !important;
+  fill: #0e7b97 !important;
+}
+
+html:not(.dark) #close-resume-modal,
+html:not(.dark) #close-project-modal-btn,
+html:not(.dark) #close-folder-modal-btn,
+html:not(.dark) #close-upload-modal-btn {
+  color: #0f172a !important;
+}
+
+html:not(.dark) #close-resume-modal:hover,
+html:not(.dark) #close-project-modal-btn:hover,
+html:not(.dark) #close-folder-modal-btn:hover,
+html:not(.dark) #close-upload-modal-btn:hover {
+  background-color: rgba(14, 123, 151, 0.12) !important;
+  color: #0e7b97 !important;
+}
+
+/* Resume timeline dots & borders */
+html:not(.dark) #resume-modal .border-secondary\/40 {
+  border-color: rgba(14, 123, 151, 0.4) !important;
+}
+
+html:not(.dark) #resume-modal .border-slate-900 {
+  border-color: #ffffff !important;
+}
+
+html:not(.dark) #resume-modal .bg-secondary.text-black {
+  background-color: #0e7b97 !important;
+  color: #ffffff !important;
+}
+
+/* Modal form controls in Light Mode */
+html:not(.dark) #create-folder-modal input,
+html:not(.dark) #create-folder-modal textarea,
+html:not(.dark) #create-folder-modal select,
+html:not(.dark) #upload-photo-modal input,
+html:not(.dark) #upload-photo-modal textarea,
+html:not(.dark) #upload-photo-modal select {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  border-color: rgba(14, 123, 151, 0.25) !important;
+}
+
+
