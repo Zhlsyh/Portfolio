@@ -245,3 +245,5 @@ jaringan terbatas), tolong cek manual setelah `npm run dev`:
 Kalau ada bagian yang berperilaku beda dari versi Vite, kasih tahu saya —
 biasanya itu soal timing (misal script pihak ketiga yang butuh delay ekstra
 di Next.js) dan biasanya cepat diperbaiki.
+#   P o r t f o l i o  
+ 
