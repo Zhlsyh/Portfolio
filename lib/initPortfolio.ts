@@ -25,7 +25,7 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     id: 'org-1',
     category: 'photography',
     title: 'Dokumentasi Kepanitiaan - Pengurus Kominfo KSM PSYCHOROBOTIC PNJ',
-    image: 'https://lh3.googleusercontent.com/d/1R0dPo_eToychuTPxsE6P_EcRGbSLLbmQ',
+    image: 'https://lh3.googleusercontent.com/d/1plTaT3xwKsPDfDs4d19fmbw6TzNmwKbH',
     tags: ['KSM PSYCHOROBOTIC PNJ', 'Dokumentasi Kepanitiaan', 'Kominfo', 'Organisasi'],
     description: 'Dokumentasi & rekam jejak sebagai Pengurus Departemen Kominfo KSM PSYCHOROBOTIC PNJ (Mar 2025 – Des 2025). Mengelola media komunikasi visual organisasi, merancang template feeds Instagram, poster kegiatan, serta dokumentasi karya & lomba robotika. Link Drive Dokumentasi: https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing',
     docLink: 'https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing',
