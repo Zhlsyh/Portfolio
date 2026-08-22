@@ -381,10 +381,16 @@ export const PORTFOLIO_BODY_HTML = `
 
                                 <!-- Action Buttons on Back -->
                                 <div class="space-y-1.5 pt-2 border-t border-white/15">
-                                    <button data-project-id="org-1" class="open-project-modal-btn w-full py-2.5 bg-secondary text-black font-extrabold text-xs uppercase tracking-wider rounded-xl hover:bg-emerald-400 transition-all shadow-lg flex items-center justify-center gap-1.5 btn-press">
-                                        <span class="material-symbols-outlined text-base">zoom_in</span>
-                                        <span>Perbesar & Buka Galeri (Zoom)</span>
-                                    </button>
+                                    <div class="flex gap-1.5">
+                                        <button data-project-id="org-1" class="open-project-modal-btn flex-1 py-2 bg-secondary text-black font-extrabold text-[11px] uppercase tracking-wider rounded-xl hover:bg-emerald-400 transition-all shadow-lg flex items-center justify-center gap-1 btn-press">
+                                            <span class="material-symbols-outlined text-sm">zoom_in</span>
+                                            <span>Perbesar</span>
+                                        </button>
+                                        <a href="https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing" target="_blank" rel="noopener noreferrer" class="px-2.5 py-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-extrabold text-[11px] rounded-xl flex items-center justify-center gap-1 transition-all" title="Buka Drive Dokumentasi Psychorobotic">
+                                            <span class="material-symbols-outlined text-sm">folder_open</span>
+                                            <span>Drive</span>
+                                        </a>
+                                    </div>
                                     <div class="text-center text-[10px] text-white/60 font-bold flex items-center justify-center gap-1">
                                         <span class="material-symbols-outlined text-xs">undo</span>
                                         <span>Klik kartu untuk putar balik</span>
@@ -729,10 +735,16 @@ export const PORTFOLIO_BODY_HTML = `
 
                                 <!-- Action Buttons on Back -->
                                 <div class="space-y-1.5 pt-2 border-t border-white/15">
-                                    <button data-project-id="org-4" class="open-project-modal-btn w-full py-2.5 bg-secondary text-black font-extrabold text-xs uppercase tracking-wider rounded-xl hover:bg-emerald-400 transition-all shadow-lg flex items-center justify-center gap-1.5 btn-press">
-                                        <span class="material-symbols-outlined text-base">zoom_in</span>
-                                        <span>Perbesar & Buka Galeri (Zoom)</span>
-                                    </button>
+                                    <div class="flex gap-1.5">
+                                        <button data-project-id="org-4" class="open-project-modal-btn flex-1 py-2 bg-secondary text-black font-extrabold text-[11px] uppercase tracking-wider rounded-xl hover:bg-emerald-400 transition-all shadow-lg flex items-center justify-center gap-1 btn-press">
+                                            <span class="material-symbols-outlined text-sm">zoom_in</span>
+                                            <span>Perbesar</span>
+                                        </button>
+                                        <a href="https://drive.google.com/drive/folders/16ANdl0vBs7JVwluv6RIOTcAb1tsw5KO4?usp=sharing" target="_blank" rel="noopener noreferrer" class="px-2.5 py-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-extrabold text-[11px] rounded-xl flex items-center justify-center gap-1 transition-all" title="Buka Drive Dokumentasi Fraction 2024">
+                                            <span class="material-symbols-outlined text-sm">folder_open</span>
+                                            <span>Drive</span>
+                                        </a>
+                                    </div>
                                     <div class="text-center text-[10px] text-white/60 font-bold flex items-center justify-center gap-1">
                                         <span class="material-symbols-outlined text-xs">undo</span>
                                         <span>Klik kartu untuk putar balik</span>
@@ -915,7 +927,10 @@ export const PORTFOLIO_BODY_HTML = `
             <div class="flex flex-wrap items-center justify-between gap-4 pt-4">
                 <div class="flex flex-wrap gap-2.5">
                     <button data-photo-filter="all" class="photo-filter-btn px-5 py-2 rounded-full font-bold text-xs uppercase tracking-wider transition-all bg-secondary text-black font-extrabold shadow-lg">
-                        Semua Gallery
+                        Semua Karya
+                    </button>
+                    <button data-photo-filter="design" class="photo-filter-btn px-5 py-2 rounded-full font-bold text-xs uppercase tracking-wider transition-all bg-white/10 text-white/80 hover:bg-white/20 hover:text-white border border-white/15">
+                        Portofolio Desain Grafis
                     </button>
                     <button data-photo-filter="graduation" class="photo-filter-btn px-5 py-2 rounded-full font-bold text-xs uppercase tracking-wider transition-all bg-white/10 text-white/80 hover:bg-white/20 hover:text-white border border-white/15">
                         Fotografi Kelulusan
@@ -927,7 +942,7 @@ export const PORTFOLIO_BODY_HTML = `
                         Desain Banner & Cetak
                     </button>
                     <button data-photo-filter="feeds" class="photo-filter-btn px-5 py-2 rounded-full font-bold text-xs uppercase tracking-wider transition-all bg-white/10 text-white/80 hover:bg-white/20 hover:text-white border border-white/15">
-                        Feeds & Instagram
+                        Feeds & Social Media
                     </button>
                 </div>
                 <div class="flex flex-wrap gap-2.5">
@@ -989,8 +1004,53 @@ export const PORTFOLIO_BODY_HTML = `
                 </div>
             </div>
 
-            <!-- Item 2: Media Kreatif E-TIME 2025 -->
-            <div class="gallery-card photo-cat-feeds photo-cat-banner glass-card rounded-2xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300 flex flex-col shadow-xl">
+            <!-- Item 2: Desain & Visual Fraction 2024 -->
+            <div class="gallery-card photo-cat-design photo-cat-banner photo-cat-feeds photo-cat-event glass-card rounded-2xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300 flex flex-col shadow-xl">
+                <div class="h-64 overflow-hidden relative cursor-pointer open-project-modal-btn" data-project-id="des-fraction">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80" alt="Desain & Visual Fraction 2024" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-black/20 to-transparent flex flex-col justify-between p-4">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-secondary text-black text-[10px] font-extrabold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
+                                Fraction 2024
+                            </span>
+                            <span id="card-badge-des-fraction" class="bg-slate-900/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-md flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm text-secondary">photo_library</span>
+                                <span>2 Foto</span>
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2 text-white/90 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 p-2 rounded-xl backdrop-blur-sm self-center">
+                            <span class="material-symbols-outlined text-secondary">collections</span>
+                            <span>Klik untuk Buka Galeri Desain</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-5 flex-grow flex flex-col justify-between gap-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-1.5 group-hover:text-secondary transition-colors">Desain & Visual Fraction 2024</h3>
+                        <p class="text-xs text-white/80 leading-relaxed">Perancangan aset desain grafis, feeds Instagram, poster, banner cetak, dan media visual Wisuda TE PNJ (Fraction 2024).</p>
+                    </div>
+
+                    <!-- Mini Preview Thumbnails Strip -->
+                    <div class="space-y-1.5">
+                        <div class="text-[10px] font-extrabold text-white/50 uppercase tracking-wider">Pratinjau Desain:</div>
+                        <div id="card-thumbnails-des-fraction" class="flex items-center gap-2 overflow-x-auto pb-1">
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <button data-project-id="des-fraction" class="open-project-modal-btn flex-1 py-2.5 bg-secondary text-black font-extrabold text-xs uppercase tracking-wider rounded-xl hover:bg-secondary/90 transition-all shadow-md flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-base">collections</span>
+                            <span>Lihat Galeri Desain</span>
+                        </button>
+                        <a href="https://drive.google.com/drive/folders/16ANdl0vBs7JVwluv6RIOTcAb1tsw5KO4?usp=sharing" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl font-extrabold text-xs flex items-center justify-center gap-1 transition-all" title="Buka Drive Portofolio Desain Fraction 2024">
+                            <span class="material-symbols-outlined text-base">folder_open</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3: Media Kreatif E-TIME 2025 -->
+            <div class="gallery-card photo-cat-design photo-cat-feeds photo-cat-banner glass-card rounded-2xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300 flex flex-col shadow-xl">
                 <div class="h-64 overflow-hidden relative cursor-pointer open-project-modal-btn" data-project-id="photo-2">
                     <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80" alt="Aset Media Kreatif E-TIME 2025" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-black/20 to-transparent flex flex-col justify-between p-4">
@@ -1029,8 +1089,8 @@ export const PORTFOLIO_BODY_HTML = `
                 </div>
             </div>
 
-            <!-- Item 3: Printed Banner Design -->
-            <div class="gallery-card photo-cat-banner glass-card rounded-2xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300 flex flex-col shadow-xl">
+            <!-- Item 4: Printed Banner Design -->
+            <div class="gallery-card photo-cat-design photo-cat-banner glass-card rounded-2xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300 flex flex-col shadow-xl">
                 <div class="h-64 overflow-hidden relative cursor-pointer open-project-modal-btn" data-project-id="des-1">
                     <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80" alt="Desain Banner Cetak" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-black/20 to-transparent flex flex-col justify-between p-4">
@@ -1069,8 +1129,8 @@ export const PORTFOLIO_BODY_HTML = `
                 </div>
             </div>
 
-            <!-- Item 4: Foto Personal Project (Hunting) -->
-            <div class="gallery-card photo-cat-event glass-card rounded-2xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300 flex flex-col shadow-xl">
+            <!-- Item 5: Foto Personal Project (Hunting) -->
+            <div class="gallery-card photo-cat-event photo-cat-photography glass-card rounded-2xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300 flex flex-col shadow-xl">
                 <div class="h-64 overflow-hidden relative cursor-pointer open-project-modal-btn" data-project-id="photo-3">
                     <img src="https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?auto=format&fit=crop&w=800&q=80" alt="Foto Personal Project Hunting" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-black/20 to-transparent flex flex-col justify-between p-4">
@@ -1109,8 +1169,8 @@ export const PORTFOLIO_BODY_HTML = `
                 </div>
             </div>
 
-            <!-- Item 5: Kominfo Psychorobotic -->
-            <div class="gallery-card photo-cat-feeds glass-card rounded-2xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300 flex flex-col shadow-xl">
+            <!-- Item 6: Kominfo Psychorobotic -->
+            <div class="gallery-card photo-cat-design photo-cat-feeds glass-card rounded-2xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300 flex flex-col shadow-xl">
                 <div class="h-64 overflow-hidden relative cursor-pointer open-project-modal-btn" data-project-id="des-4">
                     <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Kominfo Psychorobotic" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-black/20 to-transparent flex flex-col justify-between p-4">
@@ -1131,7 +1191,7 @@ export const PORTFOLIO_BODY_HTML = `
                 </div>
                 <div class="p-5 flex-grow flex flex-col justify-between gap-4">
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-1.5 group-hover:text-secondary transition-colors">Kominfo Psychorobotic</h3>
+                        <h3 class="text-xl font-bold text-white mb-1.5 group-hover:text-secondary transition-colors">Portofolio Desain & Visual Psychorobotic</h3>
                         <p class="text-xs text-white/80 leading-relaxed">Pengelolaan visual media sosial, publikasi informasi, dan infografis digital Divisi Kominfo KSM Psychorobotic PNJ.</p>
                     </div>
 
@@ -1142,10 +1202,15 @@ export const PORTFOLIO_BODY_HTML = `
                         </div>
                     </div>
 
-                    <button data-project-id="des-4" class="open-project-modal-btn w-full py-2.5 bg-secondary text-black font-extrabold text-xs uppercase tracking-wider rounded-xl hover:bg-secondary/90 transition-all shadow-md flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined text-base">collections</span>
-                        <span>Lihat Galeri Feeds Hasil</span>
-                    </button>
+                    <div class="flex gap-2">
+                        <button data-project-id="des-4" class="open-project-modal-btn flex-1 py-2.5 bg-secondary text-black font-extrabold text-xs uppercase tracking-wider rounded-xl hover:bg-secondary/90 transition-all shadow-md flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-base">collections</span>
+                            <span>Lihat Galeri Feeds</span>
+                        </button>
+                        <a href="https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl font-extrabold text-xs flex items-center justify-center gap-1 transition-all" title="Buka Drive Portofolio Desain Psychorobotic">
+                            <span class="material-symbols-outlined text-base">folder_open</span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -2217,6 +2282,7 @@ export const PORTFOLIO_BODY_HTML = `
                     <label for="upload-album-id" class="text-xs font-bold text-white uppercase tracking-wider block">Pilih Card / Album Portofolio Tujuan</label>
                     <select id="upload-album-id" required class="w-full px-4 py-2.5 bg-slate-800 border border-white/15 rounded-xl text-white text-sm focus:outline-none focus:border-secondary">
                         <option value="photo-1">📷 Card: Fotografi Kelulusan Akademik & Sidang</option>
+                        <option value="des-fraction">🎓 Card: Desain & Visual Fraction 2024 (Wisuda PNJ)</option>
                         <option value="photo-2">🎨 Card: Aset & Media Kreatif E-TIME 2025 PNJ</option>
                         <option value="des-1">🖼️ Card: Desain Banner Cetak Kelulusan Kustom</option>
                         <option value="photo-3">📸 Card: Foto Personal Project (Photo Hunting)</option>

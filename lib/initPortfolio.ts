@@ -24,15 +24,16 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
   'org-1': {
     id: 'org-1',
     category: 'photography',
-    title: 'Pengurus Departemen Kominfo - KSM PSYCHOROBOTIC PNJ',
+    title: 'Dokumentasi Kepanitiaan - Pengurus Kominfo KSM PSYCHOROBOTIC PNJ',
     image: '/photos/RobotPenjagaTanaman.jpeg',
-    tags: ['KSM PSYCHOROBOTIC PNJ', 'Kominfo', 'Media Visual', 'Dokumentasi'],
-    description: 'Dokumentasi & rekam jejak sebagai Pengurus Departemen Kominfo KSM PSYCHOROBOTIC PNJ (Mar 2025 – Des 2025). Mengelola media komunikasi visual organisasi, merancang template feeds Instagram, poster kegiatan, serta dokumentasi karya & lomba robotika.',
+    tags: ['KSM PSYCHOROBOTIC PNJ', 'Dokumentasi Kepanitiaan', 'Kominfo', 'Organisasi'],
+    description: 'Dokumentasi & rekam jejak sebagai Pengurus Departemen Kominfo KSM PSYCHOROBOTIC PNJ (Mar 2025 – Des 2025). Mengelola media komunikasi visual organisasi, merancang template feeds Instagram, poster kegiatan, serta dokumentasi karya & lomba robotika. Link Drive Dokumentasi: https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing',
+    docLink: 'https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing',
     specs: [
       { label: 'Organisasi', value: 'KSM PSYCHOROBOTIC PNJ' },
+      { label: 'Kategori', value: 'Dokumentasi Kepanitiaan & Organisasi' },
       { label: 'Jabatan', value: 'Pengurus Departemen Kominfo' },
-      { label: 'Periode Kerja', value: 'Maret 2025 – Desember 2025' },
-      { label: 'Tanggung Jawab', value: 'Branding Visual, Content Feeds, & Dokum Robotika' }
+      { label: 'Periode Kerja', value: 'Maret 2025 – Desember 2025' }
     ],
     gallery: [
       { id: 'org1-1', url: '/photos/RobotPenjagaTanaman.jpeg', title: 'Dokumentasi Karya Robot Penjaga Tanaman Psychorobotic' },
@@ -81,15 +82,16 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
   'org-4': {
     id: 'org-4',
     category: 'design',
-    title: 'Divisi PDD - Fraction 2024 (Wisuda Teknik Elektro PNJ)',
+    title: 'Dokumentasi Kepanitiaan - Divisi PDD Fraction 2024 (Wisuda TE PNJ)',
     image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80',
-    tags: ['Fraction 2024', 'Wisuda TE PNJ', 'Divisi PDD', 'Layout & Video'],
-    description: 'Dokumentasi kegiatan Divisi Publikasi, Dokumentasi & Desain Fraction 2024 (Ags 2024 – Okt 2024). Mengelola publikasi media sosial, dokumentasi foto & video wisuda jurusan Teknik Elektro PNJ, serta perancangan aset visual & layout dekorasi acara.',
+    tags: ['Fraction 2024', 'Dokumentasi Kepanitiaan', 'Wisuda TE PNJ', 'Divisi PDD'],
+    description: 'Dokumentasi kegiatan Divisi Publikasi, Dokumentasi & Desain Fraction 2024 (Ags 2024 – Okt 2024). Mengelola publikasi media sosial, dokumentasi foto & video wisuda jurusan Teknik Elektro PNJ, serta perancangan aset visual & layout dekorasi acara. Link Drive Dokumentasi: https://drive.google.com/drive/folders/16ANdl0vBs7JVwluv6RIOTcAb1tsw5KO4?usp=sharing',
+    docLink: 'https://drive.google.com/drive/folders/16ANdl0vBs7JVwluv6RIOTcAb1tsw5KO4?usp=sharing',
     specs: [
       { label: 'Acara', value: 'Fraction 2024 - Wisuda TE PNJ' },
+      { label: 'Kategori', value: 'Dokumentasi Kepanitiaan & Organisasi' },
       { label: 'Jabatan', value: 'Divisi PDD (Publikasi, Dokum & Desain)' },
-      { label: 'Periode', value: 'Agustus 2024 – Oktober 2024' },
-      { label: 'Aktivitas', value: 'Foto/Video Wisuda, Social Media & Banner Layout' }
+      { label: 'Periode', value: 'Agustus 2024 – Oktober 2024' }
     ],
     gallery: [
       { id: 'org4-1', url: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80', title: 'Dokumentasi Momen Wisuda Fraction 2024' },
@@ -351,18 +353,39 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
   'des-4': {
     id: 'des-4',
     category: 'design',
-    title: 'Kominfo Psychorobotic - Feeds & Konten Digital',
+    title: 'Portofolio Desain Grafis & Visual Psychorobotic',
     image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
-    tags: ['Kominfo', 'Psychorobotic PNJ', 'Feeds & Desain'],
-    description: 'Perancangan dan pengelolaan materi visual digital, infografis robotika, template postingan Instagram, serta publikasi informasi untuk Kominfo KST Psychorobotic PNJ.',
-    docLink: 'https://www.instagram.com/psychorobotic_pnj/',
+    tags: ['Psychorobotic PNJ', 'Kominfo', 'Desain Grafis', 'Feeds & Poster'],
+    description: 'Perancangan dan pengelolaan materi visual digital, infografis robotika, template postingan Instagram, serta publikasi informasi untuk Kominfo KST Psychorobotic PNJ. Link Google Drive Portofolio Desain: https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing',
+    docLink: 'https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing',
     specs: [
-      { label: 'Organisasi', value: 'KST Psychorobotic PNJ' },
-      { label: 'Divisi', value: 'Komunikasi & Informasi (Kominfo)' },
-      { label: 'Output Design', value: 'Feeds, Stories, Poster & Infografis' },
-      { label: 'Software', value: 'Canva, Photoshop, ibis Paint X' }
+      { label: 'Organisasi', value: 'KSM Psychorobotic PNJ' },
+      { label: 'Kategori Portofolio', value: 'Desain Grafis & Media Visual' },
+      { label: 'Penyimpanan Drive', value: 'Google Drive Portfolio Link' },
+      { label: 'Software Terpakai', value: 'Canva, Photoshop & ibis Paint X' }
     ],
-    gallery: []
+    gallery: [
+      { id: 'psy-des-1', url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80', title: 'Feeds Instagram & Content Design' }
+    ]
+  },
+  'des-fraction': {
+    id: 'des-fraction',
+    category: 'design',
+    title: 'Portofolio Desain & Visual Fraction 2024 (Wisuda TE PNJ)',
+    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80',
+    tags: ['Fraction 2024', 'Desain Grafis', 'Wisuda TE PNJ', 'Banner & Visual'],
+    description: 'Koleksi portofolio karya desain grafis, banner cetak, feeds sosial media, dan aset visual selebrasi wisuda Fraction 2024. Link Google Drive Portofolio Desain: https://drive.google.com/drive/folders/16ANdl0vBs7JVwluv6RIOTcAb1tsw5KO4?usp=sharing',
+    docLink: 'https://drive.google.com/drive/folders/16ANdl0vBs7JVwluv6RIOTcAb1tsw5KO4?usp=sharing',
+    specs: [
+      { label: 'Proyek Acara', value: 'Fraction 2024 - Wisuda TE PNJ' },
+      { label: 'Kategori Portofolio', value: 'Desain Grafis & Media Visual' },
+      { label: 'Penyimpanan Drive', value: 'Google Drive Portfolio Link' },
+      { label: 'Software Terpakai', value: 'Photoshop, Canva & Illustrator' }
+    ],
+    gallery: [
+      { id: 'frac-des-1', url: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80', title: 'Aset Visual Wisuda Fraction 2024' },
+      { id: 'frac-des-2', url: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80', title: 'Desain Banner Cetak & Layout' }
+    ]
   }
 };
 
@@ -762,6 +785,7 @@ function populateUploadAlbumDropdown() {
     </optgroup>
     <optgroup label="🖼️ Galeri Foto & Desain">
       <option value="photo-1">📷 Card: Fotografi Kelulusan Akademik & Sidang</option>
+      <option value="des-fraction">🎓 Card: Desain & Visual Fraction 2024 (Wisuda PNJ)</option>
       <option value="photo-2">🎨 Card: Aset & Media Kreatif E-TIME 2025 PNJ</option>
       <option value="des-1">🖼️ Card: Desain Banner Cetak Kelulusan Kustom</option>
       <option value="photo-3">📸 Card: Foto Personal Project (Photo Hunting)</option>
@@ -1396,7 +1420,7 @@ function setupPhotoGalleryUploadManager() {
   });
 
   // Initial render for all main page card thumbnail strips
-  const galleryCardIds = ['org-1', 'org-2', 'org-3', 'org-4', 'photo-1', 'photo-2', 'photo-3', 'photo-4', 'des-1', 'des-4'];
+  const galleryCardIds = ['org-1', 'org-2', 'org-3', 'org-4', 'photo-1', 'photo-2', 'photo-3', 'photo-4', 'des-1', 'des-4', 'des-fraction'];
   galleryCardIds.forEach((id) => renderCardMainPagePreviews(id));
 
   // Attach 3D Flip Card click listeners to UNO Organization cards
