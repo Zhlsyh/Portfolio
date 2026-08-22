@@ -65,9 +65,9 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     id: 'org-2',
     category: 'design',
     title: 'Divisi Media Kreatif - E-TIME 2025 PNJ (Nasional)',
-    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
+    image: 'https://lh3.googleusercontent.com/d/1ouemp7TUIyFgSiB_f37Uvo-2Xzrii5WU',
     tags: ['E-TIME 2025 PNJ', 'Media Kreatif', 'Poster Nasional', 'Aftermovie'],
-    description: 'Dokumentasi kegiatan Divisi Media Kreatif E-TIME 2025 PNJ (Mei 2025 – Jul 2025). Membuat aset visual lomba elektro tingkat nasional, poster publikasi, feeds, merchandise, e-certificate, serta produksi video aftermovie.',
+    description: 'Dokumentasi kegiatan Divisi Media Kreatif E-TIME 2025 PNJ (Mei 2025 – Jul 2025). Membuat aset visual lomba elektro tingkat nasional, poster publikasi, feeds, merchandise, e-certificate, serta produksi video aftermovie. Link Drive Dokumentasi: https://drive.google.com/drive/folders/1Ey0C8256-w9zl5obaREwBN4M5WdKO19V?usp=sharing',
     specs: [
       { label: 'Acara', value: 'E-TIME 2025 Politeknik Negeri Jakarta' },
       { label: 'Jabatan', value: 'Divisi Media Kreatif' },
@@ -75,8 +75,15 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
       { label: 'Deliverable', value: 'Aset Visual, Poster, Feed, Certificate & Video' }
     ],
     gallery: [
-      { id: 'org2-1', url: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80', title: 'Dokumentasi Aset Media Kreatif E-TIME 2025' },
-      { id: 'org2-2', url: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80', title: 'Desain Poster & Layout Lomba E-TIME' }
+      { id: 'etime-1', url: 'https://lh3.googleusercontent.com/d/1ouemp7TUIyFgSiB_f37Uvo-2Xzrii5WU', title: 'E-TIME 2025 (IMG_9983)' },
+      { id: 'etime-2', url: 'https://lh3.googleusercontent.com/d/1eu1u2Eb8qkzBX5bvn5xG00R2jcTVPcgB', title: 'E-TIME 2025 (2)' },
+      { id: 'etime-3', url: 'https://lh3.googleusercontent.com/d/19TS0zIBKyauUzifiJm0Y_AZlmz1B_epy', title: 'E-TIME 2025 (3)' },
+      { id: 'etime-4', url: 'https://lh3.googleusercontent.com/d/1W8s8UrXPvtbUVEabAhc0F7mBxU95HjKx', title: 'E-TIME 2025 (4)' },
+      { id: 'etime-5', url: 'https://lh3.googleusercontent.com/d/165jOZ9cJzBvRVH6xF1N_Fj6MpvAByy2i', title: 'E-TIME 2025 (5)' },
+      { id: 'etime-6', url: 'https://lh3.googleusercontent.com/d/1nLVwQqpicyqef8yS9NNs9Q0rGgfsQl_Q', title: 'E-TIME 2025 (6)' },
+      { id: 'etime-7', url: 'https://lh3.googleusercontent.com/d/1grv2jpd0um0DSUzhvcV8XJGv2f-LmSpy', title: 'E-TIME 2025 (7)' },
+      { id: 'etime-8', url: 'https://lh3.googleusercontent.com/d/1Cr3GxrtR3FuwDXsYVhvPS2aN29felH-M', title: 'E-TIME 2025 (8)' },
+      { id: 'etime-9', url: 'https://lh3.googleusercontent.com/d/1YjfSdfIFIEkMIm6gQz1fqFQygKMyfo3D', title: 'E-TIME 2025 (9)' }
     ]
   },
   'org-3': {
@@ -270,17 +277,27 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     id: 'photo-2',
     category: 'design',
     title: 'Aset & Media Kreatif E-TIME 2025 PNJ',
-    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
+    image: 'https://lh3.googleusercontent.com/d/1ouemp7TUIyFgSiB_f37Uvo-2Xzrii5WU',
     tags: ['E-TIME 2025', 'Media Kreatif', 'Aset Editing', 'Desain Visual'],
-    description: 'Perancangan dan editing aset visual digital, poster perlombaan nasional, feed sosial media, serta kebutuhan desain media kreatif E-TIME 2025 Politeknik Negeri Jakarta.',
-    docLink: 'https://drive.google.com/',
+    description: 'Perancangan dan editing aset visual digital, poster perlombaan nasional, feed sosial media, serta kebutuhan desain media kreatif E-TIME 2025 Politeknik Negeri Jakarta. Link Drive Dokumentasi: https://drive.google.com/drive/folders/1Ey0C8256-w9zl5obaREwBN4M5WdKO19V?usp=sharing',
+    docLink: 'https://drive.google.com/drive/folders/1Ey0C8256-w9zl5obaREwBN4M5WdKO19V?usp=sharing',
     specs: [
       { label: 'Acara', value: 'E-TIME 2025 PNJ' },
       { label: 'Peran', value: 'Divisi Media Kreatif' },
       { label: 'Cakupan Kerja', value: 'Editing Aset Visual, Poster & Content' },
       { label: 'Software', value: 'Photoshop, Illustrator, Canva, ibis Paint X' }
     ],
-    gallery: []
+    gallery: [
+      { id: 'etime-1', url: 'https://lh3.googleusercontent.com/d/1ouemp7TUIyFgSiB_f37Uvo-2Xzrii5WU', title: 'E-TIME 2025 (IMG_9983)' },
+      { id: 'etime-2', url: 'https://lh3.googleusercontent.com/d/1eu1u2Eb8qkzBX5bvn5xG00R2jcTVPcgB', title: 'E-TIME 2025 (2)' },
+      { id: 'etime-3', url: 'https://lh3.googleusercontent.com/d/19TS0zIBKyauUzifiJm0Y_AZlmz1B_epy', title: 'E-TIME 2025 (3)' },
+      { id: 'etime-4', url: 'https://lh3.googleusercontent.com/d/1W8s8UrXPvtbUVEabAhc0F7mBxU95HjKx', title: 'E-TIME 2025 (4)' },
+      { id: 'etime-5', url: 'https://lh3.googleusercontent.com/d/165jOZ9cJzBvRVH6xF1N_Fj6MpvAByy2i', title: 'E-TIME 2025 (5)' },
+      { id: 'etime-6', url: 'https://lh3.googleusercontent.com/d/1nLVwQqpicyqef8yS9NNs9Q0rGgfsQl_Q', title: 'E-TIME 2025 (6)' },
+      { id: 'etime-7', url: 'https://lh3.googleusercontent.com/d/1grv2jpd0um0DSUzhvcV8XJGv2f-LmSpy', title: 'E-TIME 2025 (7)' },
+      { id: 'etime-8', url: 'https://lh3.googleusercontent.com/d/1Cr3GxrtR3FuwDXsYVhvPS2aN29felH-M', title: 'E-TIME 2025 (8)' },
+      { id: 'etime-9', url: 'https://lh3.googleusercontent.com/d/1YjfSdfIFIEkMIm6gQz1fqFQygKMyfo3D', title: 'E-TIME 2025 (9)' }
+    ]
   },
   'photo-3': {
     id: 'photo-3',
