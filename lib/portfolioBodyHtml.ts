@@ -1007,7 +1007,7 @@ export const PORTFOLIO_BODY_HTML = `
             <!-- Item 2: Desain & Visual Fraction 2024 -->
             <div class="gallery-card photo-cat-design photo-cat-banner photo-cat-feeds photo-cat-event glass-card rounded-2xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300 flex flex-col shadow-xl">
                 <div class="h-64 overflow-hidden relative cursor-pointer open-project-modal-btn" data-project-id="des-fraction">
-                    <img src="https://lh3.googleusercontent.com/d/1DQPAwQGK8QUDrKYBA7ySDwO0BgO3wgsD" alt="Desain & Visual Fraction 2024" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <img src="https://lh3.googleusercontent.com/d/1Bsk0__0HmfW_Cuu5tIMJPMEFLEUQ0w0h" alt="Desain & Visual Fraction 2024" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-black/20 to-transparent flex flex-col justify-between p-4">
                         <div class="flex items-center justify-between">
                             <span class="bg-secondary text-black text-[10px] font-extrabold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
@@ -1015,7 +1015,7 @@ export const PORTFOLIO_BODY_HTML = `
                             </span>
                             <span id="card-badge-des-fraction" class="bg-slate-900/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-md flex items-center gap-1">
                                 <span class="material-symbols-outlined text-sm text-secondary">photo_library</span>
-                                <span>21 Foto</span>
+                                <span>19 Foto</span>
                             </span>
                         </div>
                         <div class="flex items-center gap-2 text-white/90 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 p-2 rounded-xl backdrop-blur-sm self-center">
@@ -1034,10 +1034,10 @@ export const PORTFOLIO_BODY_HTML = `
                     <div class="space-y-1.5">
                         <div class="text-[10px] font-extrabold text-white/50 uppercase tracking-wider">Pratinjau Desain:</div>
                         <div id="card-thumbnails-des-fraction" class="flex items-center gap-2 overflow-x-auto pb-1">
-                            <img src="https://lh3.googleusercontent.com/d/1DQPAwQGK8QUDrKYBA7ySDwO0BgO3wgsD" class="w-12 h-12 object-cover rounded-lg border border-white/20">
-                            <img src="https://lh3.googleusercontent.com/d/1OEOA4vqDAMLA8neBgS7mwAD5IsAA6jqA" class="w-12 h-12 object-cover rounded-lg border border-white/20">
                             <img src="https://lh3.googleusercontent.com/d/1Bsk0__0HmfW_Cuu5tIMJPMEFLEUQ0w0h" class="w-12 h-12 object-cover rounded-lg border border-white/20">
                             <img src="https://lh3.googleusercontent.com/d/1bpAzZNTG6hKj42paPb4sj41qRKK4ZcAX" class="w-12 h-12 object-cover rounded-lg border border-white/20">
+                            <img src="https://lh3.googleusercontent.com/d/1tccZs891qGc-bjLtGpxJStWUzbgwCBKn" class="w-12 h-12 object-cover rounded-lg border border-white/20">
+                            <img src="https://lh3.googleusercontent.com/d/1MLZmwJyVrF5j24ZOzERTEM4hjISuHK9C" class="w-12 h-12 object-cover rounded-lg border border-white/20">
                         </div>
                     </div>
                 </div>
@@ -1178,7 +1178,7 @@ export const PORTFOLIO_BODY_HTML = `
             <!-- Item 6: Kominfo Psychorobotic -->
             <div class="gallery-card photo-cat-design photo-cat-feeds glass-card rounded-2xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300 flex flex-col shadow-xl">
                 <div class="h-64 overflow-hidden relative cursor-pointer open-project-modal-btn" data-project-id="des-4">
-                    <img src="https://lh3.googleusercontent.com/d/17IDlaAGD7WDBgOy5wUDwxaRJtD1BQPvJ" alt="Kominfo Psychorobotic" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <img src="https://lh3.googleusercontent.com/d/1R0dPo_eToychuTPxsE6P_EcRGbSLLbmQ" alt="Kominfo Psychorobotic" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-black/20 to-transparent flex flex-col justify-between p-4">
                         <div class="flex items-center justify-between">
                             <span class="bg-secondary text-black text-[10px] font-extrabold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
@@ -1186,7 +1186,7 @@ export const PORTFOLIO_BODY_HTML = `
                             </span>
                             <span id="card-badge-des-4" class="bg-slate-900/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-md flex items-center gap-1">
                                 <span class="material-symbols-outlined text-sm text-secondary">photo_library</span>
-                                <span>33 Foto</span>
+                                <span>31 Foto</span>
                             </span>
                         </div>
                         <div class="flex items-center gap-2 text-white/90 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 p-2 rounded-xl backdrop-blur-sm self-center">
@@ -1205,10 +1205,10 @@ export const PORTFOLIO_BODY_HTML = `
                     <div class="space-y-1.5">
                         <div class="text-[10px] font-extrabold text-white/50 uppercase tracking-wider">Pratinjau Feeds Instagram:</div>
                         <div id="card-thumbnails-des-4" class="flex items-center gap-2 overflow-x-auto pb-1">
-                            <img src="https://lh3.googleusercontent.com/d/17IDlaAGD7WDBgOy5wUDwxaRJtD1BQPvJ" class="w-12 h-12 object-cover rounded-lg border border-white/20">
                             <img src="https://lh3.googleusercontent.com/d/1R0dPo_eToychuTPxsE6P_EcRGbSLLbmQ" class="w-12 h-12 object-cover rounded-lg border border-white/20">
                             <img src="https://lh3.googleusercontent.com/d/1uDVOKgflYKX2b6JUWmz8mtUIa-wMCoIt" class="w-12 h-12 object-cover rounded-lg border border-white/20">
                             <img src="https://lh3.googleusercontent.com/d/1oW9mF0yA8uGP7g-o8zBv3Kbg1cykSOwS" class="w-12 h-12 object-cover rounded-lg border border-white/20">
+                            <img src="https://lh3.googleusercontent.com/d/1wh6YDL4NcJgwywuHYGXyfHKEeJesNZcu" class="w-12 h-12 object-cover rounded-lg border border-white/20">
                         </div>
                     </div>
 
