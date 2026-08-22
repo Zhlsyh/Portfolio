@@ -963,7 +963,7 @@ export const PORTFOLIO_BODY_HTML = `
             <!-- Item 1: Graduation Photo -->
             <div class="gallery-card photo-cat-graduation glass-card rounded-2xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300 flex flex-col shadow-xl">
                 <div class="h-64 overflow-hidden relative cursor-pointer open-project-modal-btn" data-project-id="photo-1">
-                    <img src="/Photo and design project/graduation photo/1000187779.jpg.jpeg" alt="Fotografi Kelulusan Akademik" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <img src="https://lh3.googleusercontent.com/d/1c6klqm9QzQ3gJ-NAtOzd37U2gGVh1sIB" alt="Fotografi Kelulusan Akademik" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-black/20 to-transparent flex flex-col justify-between p-4">
                         <div class="flex items-center justify-between">
                             <span class="bg-secondary text-black text-[10px] font-extrabold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
@@ -971,7 +971,7 @@ export const PORTFOLIO_BODY_HTML = `
                             </span>
                             <span id="card-badge-photo-1" class="bg-slate-900/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-md flex items-center gap-1">
                                 <span class="material-symbols-outlined text-sm text-secondary">photo_library</span>
-                                <span>4 Foto Galeri</span>
+                                <span>17 Foto Galeri</span>
                             </span>
                         </div>
                         <div class="flex items-center gap-2 text-white/90 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 p-2 rounded-xl backdrop-blur-sm self-center">
@@ -982,7 +982,7 @@ export const PORTFOLIO_BODY_HTML = `
                 </div>
                 <div class="p-5 flex-grow flex flex-col justify-between gap-4">
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-1.5 group-hover:text-secondary transition-colors">Fotografi Kelulusan Akademik</h3>
+                        <h3 class="text-xl font-bold text-white mb-1.5 group-hover:text-secondary transition-colors">Fotografi Kelulusan Akademik & Sidang</h3>
                         <p class="text-xs text-white/80 leading-relaxed">Sesi fotografi momen selebrasi kelulusan & pasca-sidang di Jabodetabek dengan retouching Adobe Lightroom.</p>
                     </div>
 
@@ -990,10 +990,10 @@ export const PORTFOLIO_BODY_HTML = `
                     <div class="space-y-1.5">
                         <div class="text-[10px] font-extrabold text-white/50 uppercase tracking-wider">Pratinjau Foto Album:</div>
                         <div id="card-thumbnails-photo-1" class="flex items-center gap-2 overflow-x-auto pb-1">
-                            <img src="/Photo and design project/graduation photo/1000187779.jpg.jpeg" class="w-12 h-12 object-cover rounded-lg border border-white/20">
-                            <img src="/Photo and design project/graduation photo/1000199045.jpg.jpeg" class="w-12 h-12 object-cover rounded-lg border border-white/20">
-                            <img src="/Photo and design project/graduation photo/1000199300.jpg.jpeg" class="w-12 h-12 object-cover rounded-lg border border-white/20">
-                            <img src="/Photo and design project/graduation photo/1000199564.jpg.jpeg" class="w-12 h-12 object-cover rounded-lg border border-white/20">
+                            <img src="https://lh3.googleusercontent.com/d/1c6klqm9QzQ3gJ-NAtOzd37U2gGVh1sIB" class="w-12 h-12 object-cover rounded-lg border border-white/20">
+                            <img src="https://lh3.googleusercontent.com/d/1Lt9RjEnecibGu1f4x4lHBlIH7GDQGcgk" class="w-12 h-12 object-cover rounded-lg border border-white/20">
+                            <img src="https://lh3.googleusercontent.com/d/1LNnOzLENLQVFo1AMR007o97EKddWpZ9Y" class="w-12 h-12 object-cover rounded-lg border border-white/20">
+                            <img src="https://lh3.googleusercontent.com/d/16gSm9ntDO4XodFXB2InOjWoMC87QMltS" class="w-12 h-12 object-cover rounded-lg border border-white/20">
                         </div>
                     </div>
 
