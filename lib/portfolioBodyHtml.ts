@@ -807,8 +807,8 @@ export const PORTFOLIO_BODY_HTML = `
         <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Engineering Card: Numa Space (WebRTC Virtual Study Room) -->
             <div class="project-card glass-card flex flex-col rounded-xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300" data-category="iot ta control" data-search="numa space studymatch virtual study room webrtc socket.io react fullstack matchmaking http://numaspace.vercel.app/">
-                <div class="h-56 overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Numa Space Virtual Study Room" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                <div class="h-56 overflow-hidden relative bg-slate-950/80 flex items-center justify-center p-6">
+                    <img src="/logos/Numa.png" alt="Numa Space Virtual Study Room" class="w-full h-full object-contain group-hover:scale-105 transition-all duration-700">
                     <div class="absolute top-3 right-3 bg-slate-900/90 backdrop-blur-md text-secondary px-3 py-1 rounded-md text-xs font-extrabold border border-secondary/30">
                         Fullstack WebRTC
                     </div>
