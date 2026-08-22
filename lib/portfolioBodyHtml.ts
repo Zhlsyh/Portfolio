@@ -297,9 +297,6 @@ export const PORTFOLIO_BODY_HTML = `
                                         <span>01</span>
                                         <span class="material-symbols-outlined text-lg">smart_toy</span>
                                     </div>
-                                    <span class="text-[10px] font-extrabold uppercase tracking-widest bg-secondary/15 text-secondary px-2.5 py-0.5 rounded-full border border-secondary/30">
-                                        UNO CARD
-                                    </span>
                                 </div>
 
                                 <!-- Central Oval Badge with ONLY Logo Slot (Enlarged) -->
@@ -419,9 +416,6 @@ export const PORTFOLIO_BODY_HTML = `
                                         <span>02</span>
                                         <span class="material-symbols-outlined text-lg">electric_bolt</span>
                                     </div>
-                                    <span class="text-[10px] font-extrabold uppercase tracking-widest bg-secondary/15 text-secondary px-2.5 py-0.5 rounded-full border border-secondary/30">
-                                        UNO CARD
-                                    </span>
                                 </div>
 
                                 <!-- Central Oval Badge with ONLY Logo Slot (Enlarged) -->
@@ -541,9 +535,6 @@ export const PORTFOLIO_BODY_HTML = `
                                         <span>03</span>
                                         <span class="material-symbols-outlined text-lg">sports_soccer</span>
                                     </div>
-                                    <span class="text-[10px] font-extrabold uppercase tracking-widest bg-secondary/15 text-secondary px-2.5 py-0.5 rounded-full border border-secondary/30">
-                                        UNO CARD
-                                    </span>
                                 </div>
 
                                 <!-- Central Oval Badge with ONLY Logo Slot (Enlarged) -->
@@ -657,9 +648,6 @@ export const PORTFOLIO_BODY_HTML = `
                                         <span>04</span>
                                         <span class="material-symbols-outlined text-lg">school</span>
                                     </div>
-                                    <span class="text-[10px] font-extrabold uppercase tracking-widest bg-secondary/15 text-secondary px-2.5 py-0.5 rounded-full border border-secondary/30">
-                                        UNO CARD
-                                    </span>
                                 </div>
 
                                 <!-- Central Oval Badge with ONLY Logo Slot (Enlarged) -->
