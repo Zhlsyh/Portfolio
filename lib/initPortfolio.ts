@@ -136,6 +136,21 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
       { id: 'frac-19', url: 'https://lh3.googleusercontent.com/d/1CFdx1uK1oXpl91Ank-BejJ569w3HaY8Q', title: 'Fraction 2024 (19)' }
     ]
   },
+  'eng-numa': {
+    id: 'eng-numa',
+    category: 'engineering',
+    title: 'Numa Space - Virtual Study Room & Realtime Matchmaking',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
+    tags: ['WebRTC', 'Socket.IO', 'React & Vite', 'Vercel & Railway', 'Fullstack'],
+    description: 'Platform ruang belajar virtual (Virtual Study Room) dan matchmaking teman belajar secara realtime. Memungkinkan interaksi video/audio P2P via WebRTC, komunikasi chat Socket.IO, sistem kode akses private room, serta integrasi Pomodoro Timer untuk produktivitas. Live Web Application: http://numaspace.vercel.app/',
+    docLink: 'http://numaspace.vercel.app/',
+    specs: [
+      { label: 'Frontend App', value: 'React / Vite & Tailwind CSS (Vercel)' },
+      { label: 'Backend Server', value: 'Node.js & Socket.IO (Railway)' },
+      { label: 'Protokol Realtime', value: 'WebRTC P2P Video/Audio Chat' },
+      { label: 'Live Platform', value: 'numaspace.vercel.app' }
+    ]
+  },
   'eng-1': {
     id: 'eng-1',
     category: 'engineering',

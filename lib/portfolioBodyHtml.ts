@@ -805,6 +805,36 @@ export const PORTFOLIO_BODY_HTML = `
         </div>
 
         <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Engineering Card: Numa Space (WebRTC Virtual Study Room) -->
+            <div class="project-card glass-card flex flex-col rounded-xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300" data-category="iot ta control" data-search="numa space studymatch virtual study room webrtc socket.io react fullstack matchmaking http://numaspace.vercel.app/">
+                <div class="h-56 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Numa Space Virtual Study Room" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                    <div class="absolute top-3 right-3 bg-slate-900/90 backdrop-blur-md text-secondary px-3 py-1 rounded-md text-xs font-extrabold border border-secondary/30">
+                        Fullstack WebRTC
+                    </div>
+                    <a href="http://numaspace.vercel.app/" target="_blank" rel="noopener noreferrer" class="absolute bottom-3 left-3 bg-secondary/90 hover:bg-secondary text-black px-3 py-1.5 rounded-md text-xs font-extrabold flex items-center gap-1 shadow-lg transition-all" title="Buka Live Web App numaspace.vercel.app">
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        numaspace.vercel.app
+                    </a>
+                </div>
+                <div class="p-8 flex-grow flex flex-col gap-5">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white/10 text-white font-bold text-xs rounded-md border border-white/15 uppercase tracking-wider">WebRTC</span>
+                        <span class="px-3 py-1 bg-white/10 text-white font-bold text-xs rounded-md border border-white/15 uppercase tracking-wider">Socket.IO</span>
+                        <span class="px-3 py-1 bg-white/10 text-white font-bold text-xs rounded-md border border-white/15 uppercase tracking-wider">React</span>
+                    </div>
+                    <h3 class="text-2xl text-white font-bold">Numa Space - Virtual Study Room</h3>
+                    <p class="text-white/85 text-base leading-relaxed">Platform ruang belajar virtual & matchmaking realtime dengan fitur komunikasi video/audio P2P WebRTC, Socket.IO signaling, private room, serta Pomodoro Timer. Web Live App: <a href="http://numaspace.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline font-bold">numaspace.vercel.app</a></p>
+                    <div class="mt-auto pt-4 flex gap-2">
+                        <button data-project-id="eng-numa" class="open-project-modal-btn flex-1 py-4 bg-secondary text-black rounded-lg font-extrabold text-sm uppercase tracking-widest hover:bg-secondary/90 transition-all shadow-md">
+                            Detail Proyek
+                        </button>
+                        <a href="http://numaspace.vercel.app/" target="_blank" rel="noopener noreferrer" class="py-4 px-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-lg font-extrabold text-sm flex items-center justify-center gap-1 transition-all" title="Buka Web App numaspace.vercel.app">
+                            <span class="material-symbols-outlined text-lg">open_in_new</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
             <!-- Engineering Card 1: Tugas Akhir PNJ Motor DC Dual -->
             <div class="project-card glass-card flex flex-col rounded-xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300" data-category="esp32 control ta iot" data-search="trainer kit motor dc dual esp32 pid fuzzy logic digital twin 3d firebase tugas akhir pnj trainermotordc.web.app">
                 <div class="h-56 overflow-hidden relative">
