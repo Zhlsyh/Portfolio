@@ -271,60 +271,483 @@ export const PORTFOLIO_BODY_HTML = `
                 </div>
             </div>
 
-            <!-- Experience Item 3: Organisasi & Kepanitiaan Grid -->
-            <div class="pt-6">
-                <h2 class="text-2xl font-extrabold text-white mb-6 flex items-center gap-3">
-                    <span class="material-symbols-outlined text-secondary">groups</span>
-                    <span>Pengalaman Organisasi & Kepanitiaan</span>
-                </h2>
+            <!-- Experience Item 3: Organisasi & Kepanitiaan (Model Kartu UNO 3D Flip & Zoom) -->
+            <div class="pt-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-white flex items-center gap-3">
+                            <span class="material-symbols-outlined text-secondary text-3xl">style</span>
+                            <span>Pengalaman Organisasi & Kepanitiaan</span>
+                        </h2>
+                        <p class="text-xs md:text-sm text-white/70 font-medium mt-1">
+                            Model Kartu UNO Tema Portofolio – Klik kartu untuk animasi 3D Flip & Zoom dokumentasi kegiatan.
+                        </p>
+                    </div>
+                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="glass-panel p-6 border border-white/15 rounded-xl space-y-3 hover:border-secondary/50 transition-all">
-                        <div class="flex justify-between items-start">
-                            <span class="text-xs font-bold text-secondary uppercase">Mar 2025 – Des 2025</span>
-                            <span class="material-symbols-outlined text-white/40">developer_board</span>
+                    <!-- UNO CARD 1: KSM PSYCHOROBOTIC PNJ -->
+                    <div class="uno-flip-container group" data-project-id="org-1">
+                        <div class="uno-card-flipper">
+                            <!-- FRONT FACE -->
+                            <div class="uno-card-face uno-card-front-face">
+                                <!-- Top Corner (TL) -->
+                                <div class="flex justify-between items-center mb-1">
+                                    <div class="uno-corner text-xl font-black">
+                                        <span>01</span>
+                                        <span class="material-symbols-outlined text-lg">smart_toy</span>
+                                    </div>
+                                    <span class="text-[10px] font-extrabold uppercase tracking-widest bg-secondary/15 text-secondary px-2.5 py-0.5 rounded-full border border-secondary/30">
+                                        UNO CARD
+                                    </span>
+                                </div>
+
+                                <!-- Central Oval Badge with ONLY Logo Slot (Enlarged) -->
+                                <div class="uno-oval-themed my-2 py-3">
+                                    <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-secondary bg-slate-950 p-2 shadow-xl flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform">
+                                        <img src="/logos/organisasi/psychorobotic.png" alt="Logo KSM Psychorobotic PNJ" class="w-full h-full object-contain">
+                                    </div>
+                                </div>
+
+                                <!-- Card Front Info -->
+                                <div class="space-y-2.5 pt-1">
+                                    <div class="flex items-center justify-between text-[11px] md:text-xs font-extrabold bg-white/5 px-2.5 py-1.5 rounded-xl border border-white/10 text-white whitespace-nowrap overflow-hidden">
+                                        <span class="flex items-center gap-1 text-white/70">
+                                            <span class="material-symbols-outlined text-sm text-secondary">calendar_month</span>
+                                            <span>Periode:</span>
+                                        </span>
+                                        <span class="text-secondary font-black">Mar 2025 – Des 2025</span>
+                                    </div>
+                                    <div class="py-2 px-3 rounded-xl bg-secondary/10 border border-secondary/30 text-center text-xs font-bold text-secondary flex items-center justify-center gap-1.5 group-hover:bg-secondary/20 transition-all">
+                                        <span class="material-symbols-outlined text-sm">sync_alt</span>
+                                        <span>Klik untuk Flip (Rincian & Dokum)</span>
+                                    </div>
+
+                                    <!-- Kepanitiaan & Divisi di bawah tulisan flip -->
+                                    <div class="text-center pt-2.5 border-t border-white/10">
+                                        <h3 class="text-sm md:text-base uno-card-title leading-tight">Pengurus Kominfo</h3>
+                                        <p class="text-[11px] uno-card-subtitle uppercase tracking-wider mt-0.5">KSM PSYCHOROBOTIC PNJ</p>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Corner (BR Rotated 180deg) -->
+                                <div class="flex justify-end pt-2">
+                                    <div class="uno-corner uno-corner-br text-xl font-black">
+                                        <span>01</span>
+                                        <span class="material-symbols-outlined text-lg">smart_toy</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- BACK FACE -->
+                            <div class="uno-card-face uno-card-back-face">
+                                <!-- Top Corner (TL) -->
+                                <div class="flex justify-between items-center mb-1">
+                                    <div class="uno-corner text-xl font-black">
+                                        <span>01</span>
+                                        <span class="material-symbols-outlined text-lg">collections</span>
+                                    </div>
+                                    <span class="text-[10px] font-black uppercase tracking-widest bg-secondary text-black px-2.5 py-0.5 rounded-full">
+                                        DETAILS & DOKUM
+                                    </span>
+                                </div>
+
+                                <!-- Back Details Content -->
+                                <div class="space-y-2.5 my-auto py-1">
+                                    <div class="bg-white/5 border border-white/10 p-2.5 rounded-xl space-y-1">
+                                        <h4 class="text-xs font-extrabold flex items-center gap-1.5 border-b border-white/10 pb-1">
+                                            <span class="material-symbols-outlined text-secondary text-sm">badge</span>
+                                            <span>Tugas & Responsibilitas:</span>
+                                        </h4>
+                                        <p class="text-[11px] text-white/90 leading-relaxed font-medium">
+                                            Mengelola media komunikasi visual, merancang template feeds Instagram, poster kegiatan, serta dokumentasi karya robotika.
+                                        </p>
+                                    </div>
+
+                                    <!-- Documentation Thumbnails & Counter -->
+                                    <div class="bg-white/5 border border-white/10 p-2 rounded-xl space-y-1.5">
+                                        <div class="flex items-center justify-between text-[11px] font-extrabold text-white">
+                                            <span class="flex items-center gap-1">
+                                                <span class="material-symbols-outlined text-sm text-secondary">photo_library</span>
+                                                <span>Dokumentasi Kegiatan:</span>
+                                            </span>
+                                            <span id="card-badge-org-1" class="bg-secondary/20 text-secondary border border-secondary/40 px-2 py-0.5 rounded-md font-extrabold">2 Foto</span>
+                                        </div>
+                                        <div id="card-thumbnails-org-1" class="flex items-center gap-1.5 overflow-x-auto pb-0.5">
+                                            <!-- Dynamic Thumbnail Strip initialized via JS -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons on Back -->
+                                <div class="space-y-1.5 pt-2 border-t border-white/15">
+                                    <button data-project-id="org-1" class="open-project-modal-btn w-full py-2.5 bg-secondary text-black font-extrabold text-xs uppercase tracking-wider rounded-xl hover:bg-emerald-400 transition-all shadow-lg flex items-center justify-center gap-1.5 btn-press">
+                                        <span class="material-symbols-outlined text-base">zoom_in</span>
+                                        <span>Perbesar & Buka Galeri (Zoom)</span>
+                                    </button>
+                                    <div class="text-center text-[10px] text-white/60 font-bold flex items-center justify-center gap-1">
+                                        <span class="material-symbols-outlined text-xs">undo</span>
+                                        <span>Klik kartu untuk putar balik</span>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Corner (BR Rotated 180deg) -->
+                                <div class="flex justify-end pt-1">
+                                    <div class="uno-corner uno-corner-br text-xl font-black">
+                                        <span>01</span>
+                                        <span class="material-symbols-outlined text-lg">collections</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-white">Pengurus Departemen Kominfo</h3>
-                        <p class="text-xs text-secondary font-bold">KSM PSYCHOROBOTIC PNJ</p>
-                        <p class="text-xs text-white/80 leading-relaxed">
-                            Mengelola media komunikasi visual, merancang template feeds Instagram, poster kegiatan, serta dokumentasi karya robotika.
-                        </p>
                     </div>
 
-                    <div class="glass-panel p-6 border border-white/15 rounded-xl space-y-3 hover:border-secondary/50 transition-all">
-                        <div class="flex justify-between items-start">
-                            <span class="text-xs font-bold text-secondary uppercase">Mei 2025 – Jul 2025</span>
-                            <span class="material-symbols-outlined text-white/40">campaign</span>
+                    <!-- UNO CARD 2: E-TIME 2025 PNJ (NASIONAL) -->
+                    <div class="uno-flip-container group" data-project-id="org-2">
+                        <div class="uno-card-flipper">
+                            <!-- FRONT FACE -->
+                            <div class="uno-card-face uno-card-front-face">
+                                <!-- Top Corner (TL) -->
+                                <div class="flex justify-between items-center mb-1">
+                                    <div class="uno-corner text-xl font-black">
+                                        <span>02</span>
+                                        <span class="material-symbols-outlined text-lg">electric_bolt</span>
+                                    </div>
+                                    <span class="text-[10px] font-extrabold uppercase tracking-widest bg-secondary/15 text-secondary px-2.5 py-0.5 rounded-full border border-secondary/30">
+                                        UNO CARD
+                                    </span>
+                                </div>
+
+                                <!-- Central Oval Badge with ONLY Logo Slot (Enlarged) -->
+                                <div class="uno-oval-themed my-2 py-3">
+                                    <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-secondary bg-slate-950 p-2 shadow-xl flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform">
+                                        <img src="/logos/organisasi/etime.png" alt="Logo E-TIME 2025 PNJ" class="w-full h-full object-contain">
+                                    </div>
+                                </div>
+
+                                <!-- Card Front Info -->
+                                <div class="space-y-2.5 pt-1">
+                                    <div class="flex items-center justify-between text-[11px] md:text-xs font-extrabold bg-white/5 px-2.5 py-1.5 rounded-xl border border-white/10 text-white whitespace-nowrap overflow-hidden">
+                                        <span class="flex items-center gap-1 text-white/70">
+                                            <span class="material-symbols-outlined text-sm text-secondary">calendar_month</span>
+                                            <span>Periode:</span>
+                                        </span>
+                                        <span class="text-secondary font-black">Mei 2025 – Jul 2025</span>
+                                    </div>
+                                    <div class="py-2 px-3 rounded-xl bg-secondary/10 border border-secondary/30 text-center text-xs font-bold text-secondary flex items-center justify-center gap-1.5 group-hover:bg-secondary/20 transition-all">
+                                        <span class="material-symbols-outlined text-sm">sync_alt</span>
+                                        <span>Klik untuk Flip (Rincian & Dokum)</span>
+                                    </div>
+
+                                    <!-- Kepanitiaan & Divisi di bawah tulisan flip -->
+                                    <div class="text-center pt-2.5 border-t border-white/10">
+                                        <h3 class="text-sm md:text-base uno-card-title leading-tight">Divisi Media Kreatif</h3>
+                                        <p class="text-[11px] uno-card-subtitle uppercase tracking-wider mt-0.5">E-TIME 2025 PNJ (Nasional)</p>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Corner (BR Rotated 180deg) -->
+                                <div class="flex justify-end pt-2">
+                                    <div class="uno-corner uno-corner-br text-xl font-black">
+                                        <span>02</span>
+                                        <span class="material-symbols-outlined text-lg">electric_bolt</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- BACK FACE -->
+                            <div class="uno-card-face uno-card-back-face">
+                                <!-- Top Corner (TL) -->
+                                <div class="flex justify-between items-center mb-1">
+                                    <div class="uno-corner text-xl font-black">
+                                        <span>02</span>
+                                        <span class="material-symbols-outlined text-lg">collections</span>
+                                    </div>
+                                    <span class="text-[10px] font-black uppercase tracking-widest bg-secondary text-black px-2.5 py-0.5 rounded-full">
+                                        DETAILS & DOKUM
+                                    </span>
+                                </div>
+
+                                <!-- Back Details Content -->
+                                <div class="space-y-2.5 my-auto py-1">
+                                    <div class="bg-white/5 border border-white/10 p-2.5 rounded-xl space-y-1">
+                                        <h4 class="text-xs font-extrabold flex items-center gap-1.5 border-b border-white/10 pb-1">
+                                            <span class="material-symbols-outlined text-secondary text-sm">badge</span>
+                                            <span>Tugas & Responsibilitas:</span>
+                                        </h4>
+                                        <p class="text-[11px] text-white/90 leading-relaxed font-medium">
+                                            Membuat aset visual lomba elektro nasional (poster, feeds, merchandise, e-certificate) & produksi video aftermovie.
+                                        </p>
+                                    </div>
+
+                                    <!-- Documentation Thumbnails & Counter -->
+                                    <div class="bg-white/5 border border-white/10 p-2 rounded-xl space-y-1.5">
+                                        <div class="flex items-center justify-between text-[11px] font-extrabold text-white">
+                                            <span class="flex items-center gap-1">
+                                                <span class="material-symbols-outlined text-sm text-secondary">photo_library</span>
+                                                <span>Dokumentasi Kegiatan:</span>
+                                            </span>
+                                            <span id="card-badge-org-2" class="bg-secondary/20 text-secondary border border-secondary/40 px-2 py-0.5 rounded-md font-extrabold">2 Foto</span>
+                                        </div>
+                                        <div id="card-thumbnails-org-2" class="flex items-center gap-1.5 overflow-x-auto pb-0.5">
+                                            <!-- Dynamic Thumbnail Strip initialized via JS -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons on Back -->
+                                <div class="space-y-1.5 pt-2 border-t border-white/15">
+                                    <button data-project-id="org-2" class="open-project-modal-btn w-full py-2.5 bg-secondary text-black font-extrabold text-xs uppercase tracking-wider rounded-xl hover:bg-emerald-400 transition-all shadow-lg flex items-center justify-center gap-1.5 btn-press">
+                                        <span class="material-symbols-outlined text-base">zoom_in</span>
+                                        <span>Perbesar & Buka Galeri (Zoom)</span>
+                                    </button>
+                                    <div class="text-center text-[10px] text-white/60 font-bold flex items-center justify-center gap-1">
+                                        <span class="material-symbols-outlined text-xs">undo</span>
+                                        <span>Klik kartu untuk putar balik</span>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Corner (BR Rotated 180deg) -->
+                                <div class="flex justify-end pt-1">
+                                    <div class="uno-corner uno-corner-br text-xl font-black">
+                                        <span>02</span>
+                                        <span class="material-symbols-outlined text-lg">collections</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-white">Divisi Media Kreatif</h3>
-                        <p class="text-xs text-secondary font-bold">E-TIME 2025 PNJ (Nasional)</p>
-                        <p class="text-xs text-white/80 leading-relaxed">
-                            Membuat aset visual lomba elektro nasional (poster, feeds, merchandise, e-certificate) & produksi video aftermovie.
-                        </p>
                     </div>
 
-                    <div class="glass-panel p-6 border border-white/15 rounded-xl space-y-3 hover:border-secondary/50 transition-all">
-                        <div class="flex justify-between items-start">
-                            <span class="text-xs font-bold text-secondary uppercase">Apr 2024 – Ags 2024</span>
-                            <span class="material-symbols-outlined text-white/40">photo_camera</span>
+                    <!-- UNO CARD 3: OLAHRAGA ELEKTRO 2024 HME PNJ -->
+                    <div class="uno-flip-container group" data-project-id="org-3">
+                        <div class="uno-card-flipper">
+                            <!-- FRONT FACE -->
+                            <div class="uno-card-face uno-card-front-face">
+                                <!-- Top Corner (TL) -->
+                                <div class="flex justify-between items-center mb-1">
+                                    <div class="uno-corner text-xl font-black">
+                                        <span>03</span>
+                                        <span class="material-symbols-outlined text-lg">sports_soccer</span>
+                                    </div>
+                                    <span class="text-[10px] font-extrabold uppercase tracking-widest bg-secondary/15 text-secondary px-2.5 py-0.5 rounded-full border border-secondary/30">
+                                        UNO CARD
+                                    </span>
+                                </div>
+
+                                <!-- Central Oval Badge with ONLY Logo Slot (Enlarged) -->
+                                <div class="uno-oval-themed my-2 py-3">
+                                    <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-secondary bg-slate-950 p-2 shadow-xl flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform">
+                                        <img src="/logos/organisasi/oe.png" alt="Logo OE 2024 HME PNJ" class="w-full h-full object-contain">
+                                    </div>
+                                </div>
+
+                                <!-- Card Front Info -->
+                                <div class="space-y-2.5 pt-1">
+                                    <div class="flex items-center justify-between text-[11px] md:text-xs font-extrabold bg-white/5 px-2.5 py-1.5 rounded-xl border border-white/10 text-white whitespace-nowrap overflow-hidden">
+                                        <span class="flex items-center gap-1 text-white/70">
+                                            <span class="material-symbols-outlined text-sm text-secondary">calendar_month</span>
+                                            <span>Periode:</span>
+                                        </span>
+                                        <span class="text-secondary font-black">Apr 2024 – Ags 2024</span>
+                                    </div>
+                                    <div class="py-2 px-3 rounded-xl bg-secondary/10 border border-secondary/30 text-center text-xs font-bold text-secondary flex items-center justify-center gap-1.5 group-hover:bg-secondary/20 transition-all">
+                                        <span class="material-symbols-outlined text-sm">sync_alt</span>
+                                        <span>Klik untuk Flip (Rincian & Dokum)</span>
+                                    </div>
+
+                                    <!-- Kepanitiaan & Divisi di bawah tulisan flip -->
+                                    <div class="text-center pt-2.5 border-t border-white/10">
+                                        <h3 class="text-sm md:text-base uno-card-title leading-tight">Divisi Publikasi & Dokum</h3>
+                                        <p class="text-[11px] uno-card-subtitle uppercase tracking-wider mt-0.5">OE 2024 HME PNJ</p>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Corner (BR Rotated 180deg) -->
+                                <div class="flex justify-end pt-2">
+                                    <div class="uno-corner uno-corner-br text-xl font-black">
+                                        <span>03</span>
+                                        <span class="material-symbols-outlined text-lg">sports_soccer</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- BACK FACE -->
+                            <div class="uno-card-face uno-card-back-face">
+                                <!-- Top Corner (TL) -->
+                                <div class="flex justify-between items-center mb-1">
+                                    <div class="uno-corner text-xl font-black">
+                                        <span>03</span>
+                                        <span class="material-symbols-outlined text-lg">collections</span>
+                                    </div>
+                                    <span class="text-[10px] font-black uppercase tracking-widest bg-secondary text-black px-2.5 py-0.5 rounded-full">
+                                        DETAILS & DOKUM
+                                    </span>
+                                </div>
+
+                                <!-- Back Details Content -->
+                                <div class="space-y-2.5 my-auto py-1">
+                                    <div class="bg-white/5 border border-white/10 p-2.5 rounded-xl space-y-1">
+                                        <h4 class="text-xs font-extrabold flex items-center gap-1.5 border-b border-white/10 pb-1">
+                                            <span class="material-symbols-outlined text-secondary text-sm">badge</span>
+                                            <span>Tugas & Responsibilitas:</span>
+                                        </h4>
+                                        <p class="text-[11px] text-white/90 leading-relaxed font-medium">
+                                            Dokumentasi foto pertandingan, pengelolaan media sosial OE_PNJ, serta pengoperasian Photobooth Studio penutupan acara.
+                                        </p>
+                                    </div>
+
+                                    <!-- Documentation Thumbnails & Counter -->
+                                    <div class="bg-white/5 border border-white/10 p-2 rounded-xl space-y-1.5">
+                                        <div class="flex items-center justify-between text-[11px] font-extrabold text-white">
+                                            <span class="flex items-center gap-1">
+                                                <span class="material-symbols-outlined text-sm text-secondary">photo_library</span>
+                                                <span>Dokumentasi Kegiatan:</span>
+                                            </span>
+                                            <span id="card-badge-org-3" class="bg-secondary/20 text-secondary border border-secondary/40 px-2 py-0.5 rounded-md font-extrabold">4 Foto</span>
+                                        </div>
+                                        <div id="card-thumbnails-org-3" class="flex items-center gap-1.5 overflow-x-auto pb-0.5">
+                                            <!-- Dynamic Thumbnail Strip initialized via JS -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons on Back -->
+                                <div class="space-y-1.5 pt-2 border-t border-white/15">
+                                    <button data-project-id="org-3" class="open-project-modal-btn w-full py-2.5 bg-secondary text-black font-extrabold text-xs uppercase tracking-wider rounded-xl hover:bg-emerald-400 transition-all shadow-lg flex items-center justify-center gap-1.5 btn-press">
+                                        <span class="material-symbols-outlined text-base">zoom_in</span>
+                                        <span>Perbesar & Buka Galeri (Zoom)</span>
+                                    </button>
+                                    <div class="text-center text-[10px] text-white/60 font-bold flex items-center justify-center gap-1">
+                                        <span class="material-symbols-outlined text-xs">undo</span>
+                                        <span>Klik kartu untuk putar balik</span>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Corner (BR Rotated 180deg) -->
+                                <div class="flex justify-end pt-1">
+                                    <div class="uno-corner uno-corner-br text-xl font-black">
+                                        <span>03</span>
+                                        <span class="material-symbols-outlined text-lg">collections</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-white">Divisi Publikasi & Dokum</h3>
-                        <p class="text-xs text-secondary font-bold">Olahraga Elektro 2024 HME PNJ</p>
-                        <p class="text-xs text-white/80 leading-relaxed">
-                            Dokumentasi foto pertandingan, pengelolaan media sosial OE_PNJ, serta pengoperasian Photobooth Studio penutupan acara.
-                        </p>
                     </div>
 
-                    <div class="glass-panel p-6 border border-white/15 rounded-xl space-y-3 hover:border-secondary/50 transition-all">
-                        <div class="flex justify-between items-start">
-                            <span class="text-xs font-bold text-secondary uppercase">Ags 2024 – Okt 2024</span>
-                            <span class="material-symbols-outlined text-white/40">workspace_premium</span>
+                    <!-- UNO CARD 4: FRACTION 2024 (WISUDA TE PNJ) -->
+                    <div class="uno-flip-container group" data-project-id="org-4">
+                        <div class="uno-card-flipper">
+                            <!-- FRONT FACE -->
+                            <div class="uno-card-face uno-card-front-face">
+                                <!-- Top Corner (TL) -->
+                                <div class="flex justify-between items-center mb-1">
+                                    <div class="uno-corner text-xl font-black">
+                                        <span>04</span>
+                                        <span class="material-symbols-outlined text-lg">school</span>
+                                    </div>
+                                    <span class="text-[10px] font-extrabold uppercase tracking-widest bg-secondary/15 text-secondary px-2.5 py-0.5 rounded-full border border-secondary/30">
+                                        UNO CARD
+                                    </span>
+                                </div>
+
+                                <!-- Central Oval Badge with ONLY Logo Slot (Enlarged) -->
+                                <div class="uno-oval-themed my-2 py-3">
+                                    <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-secondary bg-slate-950 p-2 shadow-xl flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform">
+                                        <img src="/logos/organisasi/fraction.png" alt="Logo Fraction 2024 Wisuda PNJ" class="w-full h-full object-contain">
+                                    </div>
+                                </div>
+
+                                <!-- Card Front Info -->
+                                <div class="space-y-2.5 pt-1">
+                                    <div class="flex items-center justify-between text-[11px] md:text-xs font-extrabold bg-white/5 px-2.5 py-1.5 rounded-xl border border-white/10 text-white whitespace-nowrap overflow-hidden">
+                                        <span class="flex items-center gap-1 text-white/70">
+                                            <span class="material-symbols-outlined text-sm text-secondary">calendar_month</span>
+                                            <span>Periode:</span>
+                                        </span>
+                                        <span class="text-secondary font-black">Ags 2024 – Okt 2024</span>
+                                    </div>
+                                    <div class="py-2 px-3 rounded-xl bg-secondary/10 border border-secondary/30 text-center text-xs font-bold text-secondary flex items-center justify-center gap-1.5 group-hover:bg-secondary/20 transition-all">
+                                        <span class="material-symbols-outlined text-sm">sync_alt</span>
+                                        <span>Klik untuk Flip (Rincian & Dokum)</span>
+                                    </div>
+
+                                    <!-- Kepanitiaan & Divisi di bawah tulisan flip -->
+                                    <div class="text-center pt-2.5 border-t border-white/10">
+                                        <h3 class="text-sm md:text-base uno-card-title leading-tight">Divisi PDD</h3>
+                                        <p class="text-[11px] uno-card-subtitle uppercase tracking-wider mt-0.5">Fraction 2024 (Wisuda PNJ)</p>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Corner (BR Rotated 180deg) -->
+                                <div class="flex justify-end pt-2">
+                                    <div class="uno-corner uno-corner-br text-xl font-black">
+                                        <span>04</span>
+                                        <span class="material-symbols-outlined text-lg">school</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- BACK FACE -->
+                            <div class="uno-card-face uno-card-back-face">
+                                <!-- Top Corner (TL) -->
+                                <div class="flex justify-between items-center mb-1">
+                                    <div class="uno-corner text-xl font-black">
+                                        <span>04</span>
+                                        <span class="material-symbols-outlined text-lg">collections</span>
+                                    </div>
+                                    <span class="text-[10px] font-black uppercase tracking-widest bg-secondary text-black px-2.5 py-0.5 rounded-full">
+                                        DETAILS & DOKUM
+                                    </span>
+                                </div>
+
+                                <!-- Back Details Content -->
+                                <div class="space-y-2.5 my-auto py-1">
+                                    <div class="bg-white/5 border border-white/10 p-2.5 rounded-xl space-y-1">
+                                        <h4 class="text-xs font-extrabold flex items-center gap-1.5 border-b border-white/10 pb-1">
+                                            <span class="material-symbols-outlined text-secondary text-sm">badge</span>
+                                            <span>Tugas & Responsibilitas:</span>
+                                        </h4>
+                                        <p class="text-[11px] text-white/90 leading-relaxed font-medium">
+                                            Publikasi media sosial, dokumentasi foto & video wisuda jurusan, serta perancangan aset visual & desain layout acara.
+                                        </p>
+                                    </div>
+
+                                    <!-- Documentation Thumbnails & Counter -->
+                                    <div class="bg-white/5 border border-white/10 p-2 rounded-xl space-y-1.5">
+                                        <div class="flex items-center justify-between text-[11px] font-extrabold text-white">
+                                            <span class="flex items-center gap-1">
+                                                <span class="material-symbols-outlined text-sm text-secondary">photo_library</span>
+                                                <span>Dokumentasi Kegiatan:</span>
+                                            </span>
+                                            <span id="card-badge-org-4" class="bg-secondary/20 text-secondary border border-secondary/40 px-2 py-0.5 rounded-md font-extrabold">2 Foto</span>
+                                        </div>
+                                        <div id="card-thumbnails-org-4" class="flex items-center gap-1.5 overflow-x-auto pb-0.5">
+                                            <!-- Dynamic Thumbnail Strip initialized via JS -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons on Back -->
+                                <div class="space-y-1.5 pt-2 border-t border-white/15">
+                                    <button data-project-id="org-4" class="open-project-modal-btn w-full py-2.5 bg-secondary text-black font-extrabold text-xs uppercase tracking-wider rounded-xl hover:bg-emerald-400 transition-all shadow-lg flex items-center justify-center gap-1.5 btn-press">
+                                        <span class="material-symbols-outlined text-base">zoom_in</span>
+                                        <span>Perbesar & Buka Galeri (Zoom)</span>
+                                    </button>
+                                    <div class="text-center text-[10px] text-white/60 font-bold flex items-center justify-center gap-1">
+                                        <span class="material-symbols-outlined text-xs">undo</span>
+                                        <span>Klik kartu untuk putar balik</span>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Corner (BR Rotated 180deg) -->
+                                <div class="flex justify-end pt-1">
+                                    <div class="uno-corner uno-corner-br text-xl font-black">
+                                        <span>04</span>
+                                        <span class="material-symbols-outlined text-lg">collections</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-white">Divisi PDD (Publikasi, Dokum & Desain)</h3>
-                        <p class="text-xs text-secondary font-bold">Fraction 2024 – Wisuda Teknik Elektro PNJ</p>
-                        <p class="text-xs text-white/80 leading-relaxed">
-                            Publikasi media sosial, dokumentasi foto & video wisuda jurusan, serta perancangan aset visual & desain layout acara.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -1328,25 +1751,25 @@ export const PORTFOLIO_BODY_HTML = `
 
     <!-- MODAL 1: Project Details Modal -->
     <div id="project-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-        <div class="bg-slate-900 border border-white/20 rounded-2xl max-w-4xl w-full p-6 md:p-8 relative max-h-[90vh] overflow-y-auto text-white shadow-2xl space-y-6">
-            <button id="close-project-modal" class="absolute top-4 right-4 z-10 p-2 text-white/60 hover:text-white rounded-lg hover:bg-white/10 transition-all">
+        <div class="project-modal-card bg-slate-900 border border-white/20 rounded-2xl max-w-4xl w-full p-6 md:p-8 relative max-h-[90vh] overflow-y-auto text-white shadow-2xl space-y-6">
+            <button id="close-project-modal" class="modal-close-icon absolute top-4 right-4 z-10 p-2 text-white/60 hover:text-white rounded-lg hover:bg-white/10 transition-all">
                 <span class="material-symbols-outlined">close</span>
             </button>
 
-            <div class="h-72 rounded-2xl overflow-hidden border border-white/10 relative shadow-inner">
+            <div class="h-64 sm:h-72 rounded-2xl overflow-hidden border border-white/10 relative shadow-inner">
                 <img id="modal-project-img" src="" alt="Project Image" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
                 <div id="modal-project-tags" class="absolute bottom-4 left-4 flex flex-wrap gap-2"></div>
             </div>
 
-            <div>
-                <h2 id="modal-project-title" class="text-2xl md:text-3xl font-extrabold text-white"></h2>
-                <p id="modal-project-desc" class="text-white/80 leading-relaxed font-normal text-base mt-2"></p>
+            <div class="space-y-2">
+                <h2 id="modal-project-title" class="modal-heading text-2xl md:text-3xl font-extrabold text-white"></h2>
+                <p id="modal-project-desc" class="modal-body-text text-white/90 leading-relaxed font-medium text-sm md:text-base"></p>
             </div>
 
             <!-- Specs Grid -->
             <div id="modal-project-specs-container">
-                <h3 class="text-md font-bold mb-3 text-white flex items-center gap-2">
+                <h3 class="modal-heading text-md font-extrabold mb-3 text-white flex items-center gap-2">
                     <span class="material-symbols-outlined text-secondary">memory</span>
                     <span>Spesifikasi Teknis & Informasi</span>
                 </h3>
@@ -1354,11 +1777,11 @@ export const PORTFOLIO_BODY_HTML = `
             </div>
 
             <!-- GALERI FOTO DALAM CARD/ALBUM INI -->
-            <div id="modal-gallery-section" class="bg-white/5 p-5 rounded-2xl border border-white/10 space-y-4">
+            <div id="modal-gallery-section" class="modal-gallery-box bg-white/5 p-5 rounded-2xl border border-white/10 space-y-4">
                 <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-secondary text-2xl">collections</span>
-                        <h3 id="modal-gallery-title" class="text-lg font-bold text-white">Galeri Hasil Foto & Karya Visual</h3>
+                        <h3 id="modal-gallery-title" class="modal-heading text-lg font-extrabold text-white">Galeri Hasil Foto & Karya Visual</h3>
                         <span id="modal-gallery-count" class="px-2.5 py-0.5 bg-secondary text-black text-xs font-extrabold rounded-full">0 Foto</span>
                     </div>
                     <button id="modal-add-photo-btn" class="px-3.5 py-1.5 bg-secondary text-black text-xs font-extrabold rounded-lg hover:bg-secondary/90 transition-all shadow-md flex items-center gap-1.5">
@@ -1379,7 +1802,7 @@ export const PORTFOLIO_BODY_HTML = `
                     <span>Link Dokumentasi / Drive</span>
                     <span class="material-symbols-outlined text-[18px]">open_in_new</span>
                 </a>
-                <button id="modal-close-btn" class="px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl text-sm transition-colors">
+                <button id="modal-close-btn" class="modal-secondary-btn px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl text-sm transition-colors">
                     Tutup
                 </button>
             </div>

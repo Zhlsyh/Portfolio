@@ -21,6 +21,81 @@ interface ProjectData {
 }
 
 const PROJECTS_DATA: Record<string, ProjectData> = {
+  'org-1': {
+    id: 'org-1',
+    category: 'photography',
+    title: 'Pengurus Departemen Kominfo - KSM PSYCHOROBOTIC PNJ',
+    image: '/photos/RobotPenjagaTanaman.jpeg',
+    tags: ['KSM PSYCHOROBOTIC PNJ', 'Kominfo', 'Media Visual', 'Dokumentasi'],
+    description: 'Dokumentasi & rekam jejak sebagai Pengurus Departemen Kominfo KSM PSYCHOROBOTIC PNJ (Mar 2025 – Des 2025). Mengelola media komunikasi visual organisasi, merancang template feeds Instagram, poster kegiatan, serta dokumentasi karya & lomba robotika.',
+    specs: [
+      { label: 'Organisasi', value: 'KSM PSYCHOROBOTIC PNJ' },
+      { label: 'Jabatan', value: 'Pengurus Departemen Kominfo' },
+      { label: 'Periode Kerja', value: 'Maret 2025 – Desember 2025' },
+      { label: 'Tanggung Jawab', value: 'Branding Visual, Content Feeds, & Dokum Robotika' }
+    ],
+    gallery: [
+      { id: 'org1-1', url: '/photos/RobotPenjagaTanaman.jpeg', title: 'Dokumentasi Karya Robot Penjaga Tanaman Psychorobotic' },
+      { id: 'org1-2', url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80', title: 'Desain Feeds & Media Visual Kominfo' }
+    ]
+  },
+  'org-2': {
+    id: 'org-2',
+    category: 'design',
+    title: 'Divisi Media Kreatif - E-TIME 2025 PNJ (Nasional)',
+    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
+    tags: ['E-TIME 2025 PNJ', 'Media Kreatif', 'Poster Nasional', 'Aftermovie'],
+    description: 'Dokumentasi kegiatan Divisi Media Kreatif E-TIME 2025 PNJ (Mei 2025 – Jul 2025). Membuat aset visual lomba elektro tingkat nasional, poster publikasi, feeds, merchandise, e-certificate, serta produksi video aftermovie.',
+    specs: [
+      { label: 'Acara', value: 'E-TIME 2025 Politeknik Negeri Jakarta' },
+      { label: 'Jabatan', value: 'Divisi Media Kreatif' },
+      { label: 'Skala Acara', value: 'Perlombaan Nasional' },
+      { label: 'Deliverable', value: 'Aset Visual, Poster, Feed, Certificate & Video' }
+    ],
+    gallery: [
+      { id: 'org2-1', url: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80', title: 'Dokumentasi Aset Media Kreatif E-TIME 2025' },
+      { id: 'org2-2', url: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80', title: 'Desain Poster & Layout Lomba E-TIME' }
+    ]
+  },
+  'org-3': {
+    id: 'org-3',
+    category: 'photography',
+    title: 'Divisi Publikasi & Dokum - Olahraga Elektro 2024 HME PNJ',
+    image: 'https://lh3.googleusercontent.com/d/1rUCMYisoBsSywGcY0bcp_4vc1pMA_UIv',
+    tags: ['Olahraga Elektro 2024', 'Publikasi & Dokum', 'HME PNJ', 'Photobooth'],
+    description: 'Dokumentasi & liputan resmi Olahraga Elektro 2024 HME PNJ (Apr 2024 – Ags 2024). Meliputi liputan foto pertandingan, pengelolaan Instagram @OE_PNJ, serta mengoperasikan Studio Photobooth penutupan acara.',
+    docLink: 'https://drive.google.com/drive/folders/1_K4NnYPc7GIIF6zW7Eea02amxWheghou',
+    specs: [
+      { label: 'Kegiatan', value: 'Olahraga Elektro 2024 HME PNJ' },
+      { label: 'Jabatan', value: 'Divisi Publikasi & Dokumentasi' },
+      { label: 'Periode', value: 'April 2024 – Agustus 2024' },
+      { label: 'Cakupan Foto', value: 'Match Action, Supporter & Photobooth Studio' }
+    ],
+    gallery: [
+      { id: 'org3-1', url: 'https://lh3.googleusercontent.com/d/1rUCMYisoBsSywGcY0bcp_4vc1pMA_UIv', title: 'Dokumentasi Olahraga Elektro 2024 (1)' },
+      { id: 'org3-2', url: 'https://lh3.googleusercontent.com/d/1JGu60xF1d_JSKb-z_9ygwuD6q6q5NPFK', title: 'Dokumentasi Olahraga Elektro 2024 (2)' },
+      { id: 'org3-3', url: 'https://lh3.googleusercontent.com/d/1MV8FFHsFjq8hJbbVEZFOhQWe9XpZrM3n', title: 'Dokumentasi Olahraga Elektro 2024 (3)' },
+      { id: 'org3-4', url: 'https://lh3.googleusercontent.com/d/1ZbVcerWVUwW9DDAGn9Y9Nu9wwlp813-s', title: 'Dokumentasi Olahraga Elektro 2024 (4)' }
+    ]
+  },
+  'org-4': {
+    id: 'org-4',
+    category: 'design',
+    title: 'Divisi PDD - Fraction 2024 (Wisuda Teknik Elektro PNJ)',
+    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80',
+    tags: ['Fraction 2024', 'Wisuda TE PNJ', 'Divisi PDD', 'Layout & Video'],
+    description: 'Dokumentasi kegiatan Divisi Publikasi, Dokumentasi & Desain Fraction 2024 (Ags 2024 – Okt 2024). Mengelola publikasi media sosial, dokumentasi foto & video wisuda jurusan Teknik Elektro PNJ, serta perancangan aset visual & layout dekorasi acara.',
+    specs: [
+      { label: 'Acara', value: 'Fraction 2024 - Wisuda TE PNJ' },
+      { label: 'Jabatan', value: 'Divisi PDD (Publikasi, Dokum & Desain)' },
+      { label: 'Periode', value: 'Agustus 2024 – Oktober 2024' },
+      { label: 'Aktivitas', value: 'Foto/Video Wisuda, Social Media & Banner Layout' }
+    ],
+    gallery: [
+      { id: 'org4-1', url: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80', title: 'Dokumentasi Momen Wisuda Fraction 2024' },
+      { id: 'org4-2', url: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80', title: 'Perancangan Banner & Visual Layout Wisuda' }
+    ]
+  },
   'eng-1': {
     id: 'eng-1',
     category: 'engineering',
@@ -679,12 +754,20 @@ function populateUploadAlbumDropdown() {
 
   const currentVal = albumSelect.value;
   albumSelect.innerHTML = `
-    <option value="photo-1">📷 Card: Fotografi Kelulusan Akademik & Sidang</option>
-    <option value="photo-2">🎨 Card: Aset & Media Kreatif E-TIME 2025 PNJ</option>
-    <option value="des-1">🖼️ Card: Desain Banner Cetak Kelulusan Kustom</option>
-    <option value="photo-3">📸 Card: Foto Personal Project (Photo Hunting)</option>
-    <option value="des-4">📱 Card: Kominfo Psychorobotic - Feeds & Konten</option>
-    <option value="photo-4">⚽ Card: Dokumentasi Olahraga Elektro 2024 (OE PNJ)</option>
+    <optgroup label="🎴 Kartu Pengalaman Organisasi & Kepanitiaan">
+      <option value="org-1">🔴 UNO Card: Pengurus Kominfo - KSM PSYCHOROBOTIC PNJ</option>
+      <option value="org-2">🟡 UNO Card: Divisi Media Kreatif - E-TIME 2025 PNJ</option>
+      <option value="org-3">🟢 UNO Card: Divisi Publikasi & Dokum - Olahraga Elektro 2024</option>
+      <option value="org-4">⚫ UNO Card: Divisi PDD - Fraction 2024 Wisuda PNJ</option>
+    </optgroup>
+    <optgroup label="🖼️ Galeri Foto & Desain">
+      <option value="photo-1">📷 Card: Fotografi Kelulusan Akademik & Sidang</option>
+      <option value="photo-2">🎨 Card: Aset & Media Kreatif E-TIME 2025 PNJ</option>
+      <option value="des-1">🖼️ Card: Desain Banner Cetak Kelulusan Kustom</option>
+      <option value="photo-3">📸 Card: Foto Personal Project (Photo Hunting)</option>
+      <option value="des-4">📱 Card: Kominfo Psychorobotic - Feeds & Konten</option>
+      <option value="photo-4">⚽ Card: Dokumentasi Olahraga Elektro 2024 (OE PNJ)</option>
+    </optgroup>
   `;
 
   const customFolders = getCustomFolders();
@@ -1313,8 +1396,21 @@ function setupPhotoGalleryUploadManager() {
   });
 
   // Initial render for all main page card thumbnail strips
-  const galleryCardIds = ['photo-1', 'photo-2', 'photo-3', 'photo-4', 'des-1', 'des-4'];
+  const galleryCardIds = ['org-1', 'org-2', 'org-3', 'org-4', 'photo-1', 'photo-2', 'photo-3', 'photo-4', 'des-1', 'des-4'];
   galleryCardIds.forEach((id) => renderCardMainPagePreviews(id));
+
+  // Attach 3D Flip Card click listeners to UNO Organization cards
+  const flipContainers = document.querySelectorAll('.uno-flip-container');
+  flipContainers.forEach((container) => {
+    container.addEventListener('click', (e) => {
+      // Don't toggle flip if user clicked directly on the modal trigger button
+      const target = e.target as HTMLElement;
+      if (target.closest('.open-project-modal-btn')) {
+        return;
+      }
+      container.classList.toggle('is-flipped');
+    });
+  });
 }
 
 // Image Lightbox Modal logic
@@ -1424,9 +1520,9 @@ function setupModals() {
       modalSpecs.innerHTML = data.specs
         .map(
           (s) => `
-          <div class="bg-white/5 p-3 rounded-lg border border-white/10 flex flex-col justify-center">
-            <span class="text-xs text-white/60 uppercase font-bold tracking-wider">${s.label}</span>
-            <span class="text-sm text-white font-bold mt-0.5">${s.value}</span>
+          <div class="modal-spec-card p-3.5 rounded-xl border flex flex-col justify-center transition-colors">
+            <span class="modal-spec-label text-xs uppercase font-extrabold tracking-wider">${s.label}</span>
+            <span class="modal-spec-value text-sm font-bold mt-1">${s.value}</span>
           </div>
         `
         )
