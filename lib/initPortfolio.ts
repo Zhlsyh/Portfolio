@@ -25,7 +25,7 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     id: 'org-1',
     category: 'photography',
     title: 'Dokumentasi Kepanitiaan - Pengurus Kominfo KSM PSYCHOROBOTIC PNJ',
-    image: '/photos/RobotPenjagaTanaman.jpeg',
+    image: 'https://lh3.googleusercontent.com/d/17IDlaAGD7WDBgOy5wUDwxaRJtD1BQPvJ',
     tags: ['KSM PSYCHOROBOTIC PNJ', 'Dokumentasi Kepanitiaan', 'Kominfo', 'Organisasi'],
     description: 'Dokumentasi & rekam jejak sebagai Pengurus Departemen Kominfo KSM PSYCHOROBOTIC PNJ (Mar 2025 – Des 2025). Mengelola media komunikasi visual organisasi, merancang template feeds Instagram, poster kegiatan, serta dokumentasi karya & lomba robotika. Link Drive Dokumentasi: https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing',
     docLink: 'https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing',
@@ -36,8 +36,39 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
       { label: 'Periode Kerja', value: 'Maret 2025 – Desember 2025' }
     ],
     gallery: [
-      { id: 'org1-1', url: '/photos/RobotPenjagaTanaman.jpeg', title: 'Dokumentasi Karya Robot Penjaga Tanaman Psychorobotic' },
-      { id: 'org1-2', url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80', title: 'Desain Feeds & Media Visual Kominfo' }
+      { id: 'psy-1', url: 'https://lh3.googleusercontent.com/d/17IDlaAGD7WDBgOy5wUDwxaRJtD1BQPvJ', title: 'Psychorobotic (1)' },
+      { id: 'psy-2', url: 'https://lh3.googleusercontent.com/d/1R0dPo_eToychuTPxsE6P_EcRGbSLLbmQ', title: 'Psychorobotic (2)' },
+      { id: 'psy-3', url: 'https://lh3.googleusercontent.com/d/1uDVOKgflYKX2b6JUWmz8mtUIa-wMCoIt', title: 'Psychorobotic (3)' },
+      { id: 'psy-4', url: 'https://lh3.googleusercontent.com/d/1oW9mF0yA8uGP7g-o8zBv3Kbg1cykSOwS', title: 'Psychorobotic (4)' },
+      { id: 'psy-5', url: 'https://lh3.googleusercontent.com/d/1wh6YDL4NcJgwywuHYGXyfHKEeJesNZcu', title: 'Psychorobotic (5)' },
+      { id: 'psy-6', url: 'https://lh3.googleusercontent.com/d/1DzAOsnTXiVIqBkO3CzJDeDsk_VAGcBrS', title: 'Psychorobotic (6)' },
+      { id: 'psy-7', url: 'https://lh3.googleusercontent.com/d/1oL8KwlmxUcMJD5FDA0fHbWeh5o9NugTm', title: 'Psychorobotic (7)' },
+      { id: 'psy-8', url: 'https://lh3.googleusercontent.com/d/13lzl6sGEWtQe0J7ORlPlWoZv0mq5hHyk', title: 'Psychorobotic (8)' },
+      { id: 'psy-9', url: 'https://lh3.googleusercontent.com/d/1FdeJ-ZiD2neGesSaLrKqeZ-wQpGitkin', title: 'Psychorobotic (9)' },
+      { id: 'psy-10', url: 'https://lh3.googleusercontent.com/d/1RcREZ7y5p2llyLVn8F-7CZT8PD445t7T', title: 'Psychorobotic (10)' },
+      { id: 'psy-11', url: 'https://lh3.googleusercontent.com/d/1wd8R52u3oIa5ji1jK8HqgFp3VxCdaY14', title: 'Psychorobotic (11)' },
+      { id: 'psy-12', url: 'https://lh3.googleusercontent.com/d/1fBpoA6xOdVp9Z5ixYza_udAZ9OuAR61V', title: 'Psychorobotic (12)' },
+      { id: 'psy-13', url: 'https://lh3.googleusercontent.com/d/1plTaT3xwKsPDfDs4d19fmbw6TzNmwKbH', title: 'Psychorobotic (13)' },
+      { id: 'psy-14', url: 'https://lh3.googleusercontent.com/d/1lVfHRNn0RSjyAVC-2uH-gShs-ZXOY7JI', title: 'Psychorobotic (14)' },
+      { id: 'psy-15', url: 'https://lh3.googleusercontent.com/d/1nGthU9c_bss6mNDapgZ_Sh3k3nT8CnKa', title: 'Psychorobotic (15)' },
+      { id: 'psy-16', url: 'https://lh3.googleusercontent.com/d/1HTIaZzd2E3FlszFB15oYzcgC9TX-aRd5', title: 'Psychorobotic (16)' },
+      { id: 'psy-17', url: 'https://lh3.googleusercontent.com/d/1ZzvgIGp5cXNfcQVfyhJZrsfKh4YELN6n', title: 'Psychorobotic (17)' },
+      { id: 'psy-18', url: 'https://lh3.googleusercontent.com/d/1KGZ1X4bLgGFoOKJ-yG67BsQwGpM5Tx40', title: 'Psychorobotic (18)' },
+      { id: 'psy-19', url: 'https://lh3.googleusercontent.com/d/1FnwZmK_cQtUxOI5uebmv3l1FxcBkPtAV', title: 'Psychorobotic (19)' },
+      { id: 'psy-20', url: 'https://lh3.googleusercontent.com/d/1QzxnN599e8KHaMsLLZi3AYHQOIyoBgMk', title: 'Psychorobotic (20)' },
+      { id: 'psy-21', url: 'https://lh3.googleusercontent.com/d/1jv11-cPIO7f8pGEArBo1EnGkMNL4ZBDE', title: 'Psychorobotic (21)' },
+      { id: 'psy-22', url: 'https://lh3.googleusercontent.com/d/13AFl_Y2zGarfLSl1s528lsfTVJNbh_Mc', title: 'Psychorobotic (22)' },
+      { id: 'psy-23', url: 'https://lh3.googleusercontent.com/d/1MZu1vXu1pUDOHAIhXK3Bwm0cenwHj8cd', title: 'Psychorobotic (23)' },
+      { id: 'psy-24', url: 'https://lh3.googleusercontent.com/d/1Q132Mrd0uLdaws9rHOPdtXzEXSujUZAx', title: 'Psychorobotic (24)' },
+      { id: 'psy-25', url: 'https://lh3.googleusercontent.com/d/1bzzvR4TLrHFJ8h8BQvKJDcIIcPZej3_d', title: 'Psychorobotic (25)' },
+      { id: 'psy-26', url: 'https://lh3.googleusercontent.com/d/1SpuIE-CYxvsS6JRWG2mxDdqzWAe4Pgc5', title: 'Psychorobotic (26)' },
+      { id: 'psy-27', url: 'https://lh3.googleusercontent.com/d/1oy9onFrYlOM5CWhJz92-GJ9b9_z9guD_', title: 'Psychorobotic (27)' },
+      { id: 'psy-28', url: 'https://lh3.googleusercontent.com/d/16zcqULJpEEEhrN1ZcPENkAIAVWkQkrbH', title: 'Psychorobotic (28)' },
+      { id: 'psy-29', url: 'https://lh3.googleusercontent.com/d/1RoRvmCYv4GQ9dIF0sxqYhdDprAqm4fwT', title: 'Psychorobotic (29)' },
+      { id: 'psy-30', url: 'https://lh3.googleusercontent.com/d/1FoT36rSr2GuhRDRnr2DzoiFU9ymKICQ4', title: 'Psychorobotic (30)' },
+      { id: 'psy-31', url: 'https://lh3.googleusercontent.com/d/1CnB2IOWuSTaKyAPzPtdr19gdWsUT_mEQ', title: 'Psychorobotic (31)' },
+      { id: 'psy-32', url: 'https://lh3.googleusercontent.com/d/14OMA3TzNsvUTpkKutYxx-61ZLPyZh5cM', title: 'Psychorobotic (32)' },
+      { id: 'psy-33', url: 'https://lh3.googleusercontent.com/d/1iScZpTaSH0ZGjerOegJnDJR7za0R_yu0', title: 'Psychorobotic (33)' }
     ]
   },
   'org-2': {
@@ -83,7 +114,7 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     id: 'org-4',
     category: 'design',
     title: 'Dokumentasi Kepanitiaan - Divisi PDD Fraction 2024 (Wisuda TE PNJ)',
-    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80',
+    image: 'https://lh3.googleusercontent.com/d/1DQPAwQGK8QUDrKYBA7ySDwO0BgO3wgsD',
     tags: ['Fraction 2024', 'Dokumentasi Kepanitiaan', 'Wisuda TE PNJ', 'Divisi PDD'],
     description: 'Dokumentasi kegiatan Divisi Publikasi, Dokumentasi & Desain Fraction 2024 (Ags 2024 – Okt 2024). Mengelola publikasi media sosial, dokumentasi foto & video wisuda jurusan Teknik Elektro PNJ, serta perancangan aset visual & layout dekorasi acara. Link Drive Dokumentasi: https://drive.google.com/drive/folders/16ANdl0vBs7JVwluv6RIOTcAb1tsw5KO4?usp=sharing',
     docLink: 'https://drive.google.com/drive/folders/16ANdl0vBs7JVwluv6RIOTcAb1tsw5KO4?usp=sharing',
@@ -94,8 +125,27 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
       { label: 'Periode', value: 'Agustus 2024 – Oktober 2024' }
     ],
     gallery: [
-      { id: 'org4-1', url: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80', title: 'Dokumentasi Momen Wisuda Fraction 2024' },
-      { id: 'org4-2', url: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80', title: 'Perancangan Banner & Visual Layout Wisuda' }
+      { id: 'frac-1', url: 'https://lh3.googleusercontent.com/d/1DQPAwQGK8QUDrKYBA7ySDwO0BgO3wgsD', title: 'Fraction 2024 (1)' },
+      { id: 'frac-2', url: 'https://lh3.googleusercontent.com/d/1OEOA4vqDAMLA8neBgS7mwAD5IsAA6jqA', title: 'Fraction 2024 (2)' },
+      { id: 'frac-3', url: 'https://lh3.googleusercontent.com/d/1Bsk0__0HmfW_Cuu5tIMJPMEFLEUQ0w0h', title: 'Fraction 2024 (3)' },
+      { id: 'frac-4', url: 'https://lh3.googleusercontent.com/d/1bpAzZNTG6hKj42paPb4sj41qRKK4ZcAX', title: 'Fraction 2024 (4)' },
+      { id: 'frac-5', url: 'https://lh3.googleusercontent.com/d/1tccZs891qGc-bjLtGpxJStWUzbgwCBKn', title: 'Fraction 2024 (5)' },
+      { id: 'frac-6', url: 'https://lh3.googleusercontent.com/d/1MLZmwJyVrF5j24ZOzERTEM4hjISuHK9C', title: 'Fraction 2024 (6)' },
+      { id: 'frac-7', url: 'https://lh3.googleusercontent.com/d/1bqEOIPYpjWZKYuW082-RQ8AWJeCgNEyk', title: 'Fraction 2024 (7)' },
+      { id: 'frac-8', url: 'https://lh3.googleusercontent.com/d/1GzxUWfh64gf206mXSKNCSq12OYhFYYT2', title: 'Fraction 2024 (8)' },
+      { id: 'frac-9', url: 'https://lh3.googleusercontent.com/d/1tJ0AckNYZz6N8pI2CgdrIvi7JEKlSZOY', title: 'Fraction 2024 (9)' },
+      { id: 'frac-10', url: 'https://lh3.googleusercontent.com/d/1A7xKvAntvM2cf9kaC48EV6CUjfPkvGaM', title: 'Fraction 2024 (10)' },
+      { id: 'frac-11', url: 'https://lh3.googleusercontent.com/d/1oXgQWJNS0u0bzKGElBv3u4VRgK5iP6Vl', title: 'Fraction 2024 (11)' },
+      { id: 'frac-12', url: 'https://lh3.googleusercontent.com/d/1gSx7nPWWRZFiuP-TR1j029pHN6ueYKix', title: 'Fraction 2024 (12)' },
+      { id: 'frac-13', url: 'https://lh3.googleusercontent.com/d/1WnfnBIDSEp0G5K3B61tzO_AaeMchOqDm', title: 'Fraction 2024 (13)' },
+      { id: 'frac-14', url: 'https://lh3.googleusercontent.com/d/1TPuLORZic7EJ9TDeCdQeMdortV-rn5Z7', title: 'Fraction 2024 (14)' },
+      { id: 'frac-15', url: 'https://lh3.googleusercontent.com/d/1nEKb_pTsBrZwEzKE2mc554IFmh0Zot5T', title: 'Fraction 2024 (15)' },
+      { id: 'frac-16', url: 'https://lh3.googleusercontent.com/d/1bND4HJLFDSTqagqM9uM2SGQnUExfZhem', title: 'Fraction 2024 (16)' },
+      { id: 'frac-17', url: 'https://lh3.googleusercontent.com/d/1Bu49Es0Cg2MNbaDRnItR6yKvLK273WCm', title: 'Fraction 2024 (17)' },
+      { id: 'frac-18', url: 'https://lh3.googleusercontent.com/d/1PeJx2EpXtvjw3m7_2HEuP-n6fECbXvA9', title: 'Fraction 2024 (18)' },
+      { id: 'frac-19', url: 'https://lh3.googleusercontent.com/d/1nhi-jyervZxsoJGsPGKSmp5ornY7hL1P', title: 'Fraction 2024 (19)' },
+      { id: 'frac-20', url: 'https://lh3.googleusercontent.com/d/1TRNtdf8cata1lVOuWRTy2UwI7l9Ofiy_', title: 'Fraction 2024 (20)' },
+      { id: 'frac-21', url: 'https://lh3.googleusercontent.com/d/1CFdx1uK1oXpl91Ank-BejJ569w3HaY8Q', title: 'Fraction 2024 (21)' }
     ]
   },
   'eng-1': {
@@ -354,7 +404,7 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     id: 'des-4',
     category: 'design',
     title: 'Portofolio Desain Grafis & Visual Psychorobotic',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+    image: 'https://lh3.googleusercontent.com/d/17IDlaAGD7WDBgOy5wUDwxaRJtD1BQPvJ',
     tags: ['Psychorobotic PNJ', 'Kominfo', 'Desain Grafis', 'Feeds & Poster'],
     description: 'Perancangan dan pengelolaan materi visual digital, infografis robotika, template postingan Instagram, serta publikasi informasi untuk Kominfo KST Psychorobotic PNJ. Link Google Drive Portofolio Desain: https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing',
     docLink: 'https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing',
@@ -365,16 +415,48 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
       { label: 'Software Terpakai', value: 'Canva, Photoshop & ibis Paint X' }
     ],
     gallery: [
-      { id: 'psy-des-1', url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80', title: 'Feeds Instagram & Content Design' }
+      { id: 'psy-des-1', url: 'https://lh3.googleusercontent.com/d/17IDlaAGD7WDBgOy5wUDwxaRJtD1BQPvJ', title: 'Psychorobotic (1)' },
+      { id: 'psy-des-2', url: 'https://lh3.googleusercontent.com/d/1R0dPo_eToychuTPxsE6P_EcRGbSLLbmQ', title: 'Psychorobotic (2)' },
+      { id: 'psy-des-3', url: 'https://lh3.googleusercontent.com/d/1uDVOKgflYKX2b6JUWmz8mtUIa-wMCoIt', title: 'Psychorobotic (3)' },
+      { id: 'psy-des-4', url: 'https://lh3.googleusercontent.com/d/1oW9mF0yA8uGP7g-o8zBv3Kbg1cykSOwS', title: 'Psychorobotic (4)' },
+      { id: 'psy-des-5', url: 'https://lh3.googleusercontent.com/d/1wh6YDL4NcJgwywuHYGXyfHKEeJesNZcu', title: 'Psychorobotic (5)' },
+      { id: 'psy-des-6', url: 'https://lh3.googleusercontent.com/d/1DzAOsnTXiVIqBkO3CzJDeDsk_VAGcBrS', title: 'Psychorobotic (6)' },
+      { id: 'psy-des-7', url: 'https://lh3.googleusercontent.com/d/1oL8KwlmxUcMJD5FDA0fHbWeh5o9NugTm', title: 'Psychorobotic (7)' },
+      { id: 'psy-des-8', url: 'https://lh3.googleusercontent.com/d/13lzl6sGEWtQe0J7ORlPlWoZv0mq5hHyk', title: 'Psychorobotic (8)' },
+      { id: 'psy-des-9', url: 'https://lh3.googleusercontent.com/d/1FdeJ-ZiD2neGesSaLrKqeZ-wQpGitkin', title: 'Psychorobotic (9)' },
+      { id: 'psy-des-10', url: 'https://lh3.googleusercontent.com/d/1RcREZ7y5p2llyLVn8F-7CZT8PD445t7T', title: 'Psychorobotic (10)' },
+      { id: 'psy-des-11', url: 'https://lh3.googleusercontent.com/d/1wd8R52u3oIa5ji1jK8HqgFp3VxCdaY14', title: 'Psychorobotic (11)' },
+      { id: 'psy-des-12', url: 'https://lh3.googleusercontent.com/d/1fBpoA6xOdVp9Z5ixYza_udAZ9OuAR61V', title: 'Psychorobotic (12)' },
+      { id: 'psy-des-13', url: 'https://lh3.googleusercontent.com/d/1plTaT3xwKsPDfDs4d19fmbw6TzNmwKbH', title: 'Psychorobotic (13)' },
+      { id: 'psy-des-14', url: 'https://lh3.googleusercontent.com/d/1lVfHRNn0RSjyAVC-2uH-gShs-ZXOY7JI', title: 'Psychorobotic (14)' },
+      { id: 'psy-des-15', url: 'https://lh3.googleusercontent.com/d/1nGthU9c_bss6mNDapgZ_Sh3k3nT8CnKa', title: 'Psychorobotic (15)' },
+      { id: 'psy-des-16', url: 'https://lh3.googleusercontent.com/d/1HTIaZzd2E3FlszFB15oYzcgC9TX-aRd5', title: 'Psychorobotic (16)' },
+      { id: 'psy-des-17', url: 'https://lh3.googleusercontent.com/d/1ZzvgIGp5cXNfcQVfyhJZrsfKh4YELN6n', title: 'Psychorobotic (17)' },
+      { id: 'psy-des-18', url: 'https://lh3.googleusercontent.com/d/1KGZ1X4bLgGFoOKJ-yG67BsQwGpM5Tx40', title: 'Psychorobotic (18)' },
+      { id: 'psy-des-19', url: 'https://lh3.googleusercontent.com/d/1FnwZmK_cQtUxOI5uebmv3l1FxcBkPtAV', title: 'Psychorobotic (19)' },
+      { id: 'psy-des-20', url: 'https://lh3.googleusercontent.com/d/1QzxnN599e8KHaMsLLZi3AYHQOIyoBgMk', title: 'Psychorobotic (20)' },
+      { id: 'psy-des-21', url: 'https://lh3.googleusercontent.com/d/1jv11-cPIO7f8pGEArBo1EnGkMNL4ZBDE', title: 'Psychorobotic (21)' },
+      { id: 'psy-des-22', url: 'https://lh3.googleusercontent.com/d/13AFl_Y2zGarfLSl1s528lsfTVJNbh_Mc', title: 'Psychorobotic (22)' },
+      { id: 'psy-des-23', url: 'https://lh3.googleusercontent.com/d/1MZu1vXu1pUDOHAIhXK3Bwm0cenwHj8cd', title: 'Psychorobotic (23)' },
+      { id: 'psy-des-24', url: 'https://lh3.googleusercontent.com/d/1Q132Mrd0uLdaws9rHOPdtXzEXSujUZAx', title: 'Psychorobotic (24)' },
+      { id: 'psy-des-25', url: 'https://lh3.googleusercontent.com/d/1bzzvR4TLrHFJ8h8BQvKJDcIIcPZej3_d', title: 'Psychorobotic (25)' },
+      { id: 'psy-des-26', url: 'https://lh3.googleusercontent.com/d/1SpuIE-CYxvsS6JRWG2mxDdqzWAe4Pgc5', title: 'Psychorobotic (26)' },
+      { id: 'psy-des-27', url: 'https://lh3.googleusercontent.com/d/1oy9onFrYlOM5CWhJz92-GJ9b9_z9guD_', title: 'Psychorobotic (27)' },
+      { id: 'psy-des-28', url: 'https://lh3.googleusercontent.com/d/16zcqULJpEEEhrN1ZcPENkAIAVWkQkrbH', title: 'Psychorobotic (28)' },
+      { id: 'psy-des-29', url: 'https://lh3.googleusercontent.com/d/1RoRvmCYv4GQ9dIF0sxqYhdDprAqm4fwT', title: 'Psychorobotic (29)' },
+      { id: 'psy-des-30', url: 'https://lh3.googleusercontent.com/d/1FoT36rSr2GuhRDRnr2DzoiFU9ymKICQ4', title: 'Psychorobotic (30)' },
+      { id: 'psy-des-31', url: 'https://lh3.googleusercontent.com/d/1CnB2IOWuSTaKyAPzPtdr19gdWsUT_mEQ', title: 'Psychorobotic (31)' },
+      { id: 'psy-des-32', url: 'https://lh3.googleusercontent.com/d/14OMA3TzNsvUTpkKutYxx-61ZLPyZh5cM', title: 'Psychorobotic (32)' },
+      { id: 'psy-des-33', url: 'https://lh3.googleusercontent.com/d/1iScZpTaSH0ZGjerOegJnDJR7za0R_yu0', title: 'Psychorobotic (33)' }
     ]
   },
   'des-fraction': {
     id: 'des-fraction',
     category: 'design',
-    title: 'Portofolio Desain & Visual Fraction 2024 (Wisuda TE PNJ)',
-    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80',
-    tags: ['Fraction 2024', 'Desain Grafis', 'Wisuda TE PNJ', 'Banner & Visual'],
-    description: 'Koleksi portofolio karya desain grafis, banner cetak, feeds sosial media, dan aset visual selebrasi wisuda Fraction 2024. Link Google Drive Portofolio Desain: https://drive.google.com/drive/folders/16ANdl0vBs7JVwluv6RIOTcAb1tsw5KO4?usp=sharing',
+    title: 'Fraction 2024 (Wisuda TE PNJ)',
+    image: 'https://lh3.googleusercontent.com/d/1DQPAwQGK8QUDrKYBA7ySDwO0BgO3wgsD',
+    tags: ['Fraction 2024', 'Desain Grafis', 'Wisuda TE PNJ'],
+    description: 'Portofolio karya desain grafis, dan dokumentasi Fraction 2024. Link Google Drive Portofolio Desain: https://drive.google.com/drive/folders/16ANdl0vBs7JVwluv6RIOTcAb1tsw5KO4?usp=sharing',
     docLink: 'https://drive.google.com/drive/folders/16ANdl0vBs7JVwluv6RIOTcAb1tsw5KO4?usp=sharing',
     specs: [
       { label: 'Proyek Acara', value: 'Fraction 2024 - Wisuda TE PNJ' },
@@ -383,8 +465,27 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
       { label: 'Software Terpakai', value: 'Photoshop, Canva & Illustrator' }
     ],
     gallery: [
-      { id: 'frac-des-1', url: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80', title: 'Aset Visual Wisuda Fraction 2024' },
-      { id: 'frac-des-2', url: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80', title: 'Desain Banner Cetak & Layout' }
+      { id: 'frac-des-1', url: 'https://lh3.googleusercontent.com/d/1DQPAwQGK8QUDrKYBA7ySDwO0BgO3wgsD', title: 'Fraction 2024 (1)' },
+      { id: 'frac-des-2', url: 'https://lh3.googleusercontent.com/d/1OEOA4vqDAMLA8neBgS7mwAD5IsAA6jqA', title: 'Fraction 2024 (2)' },
+      { id: 'frac-des-3', url: 'https://lh3.googleusercontent.com/d/1Bsk0__0HmfW_Cuu5tIMJPMEFLEUQ0w0h', title: 'Fraction 2024 (3)' },
+      { id: 'frac-des-4', url: 'https://lh3.googleusercontent.com/d/1bpAzZNTG6hKj42paPb4sj41qRKK4ZcAX', title: 'Fraction 2024 (4)' },
+      { id: 'frac-des-5', url: 'https://lh3.googleusercontent.com/d/1tccZs891qGc-bjLtGpxJStWUzbgwCBKn', title: 'Fraction 2024 (5)' },
+      { id: 'frac-des-6', url: 'https://lh3.googleusercontent.com/d/1MLZmwJyVrF5j24ZOzERTEM4hjISuHK9C', title: 'Fraction 2024 (6)' },
+      { id: 'frac-des-7', url: 'https://lh3.googleusercontent.com/d/1bqEOIPYpjWZKYuW082-RQ8AWJeCgNEyk', title: 'Fraction 2024 (7)' },
+      { id: 'frac-des-8', url: 'https://lh3.googleusercontent.com/d/1GzxUWfh64gf206mXSKNCSq12OYhFYYT2', title: 'Fraction 2024 (8)' },
+      { id: 'frac-des-9', url: 'https://lh3.googleusercontent.com/d/1tJ0AckNYZz6N8pI2CgdrIvi7JEKlSZOY', title: 'Fraction 2024 (9)' },
+      { id: 'frac-des-10', url: 'https://lh3.googleusercontent.com/d/1A7xKvAntvM2cf9kaC48EV6CUjfPkvGaM', title: 'Fraction 2024 (10)' },
+      { id: 'frac-des-11', url: 'https://lh3.googleusercontent.com/d/1oXgQWJNS0u0bzKGElBv3u4VRgK5iP6Vl', title: 'Fraction 2024 (11)' },
+      { id: 'frac-des-12', url: 'https://lh3.googleusercontent.com/d/1gSx7nPWWRZFiuP-TR1j029pHN6ueYKix', title: 'Fraction 2024 (12)' },
+      { id: 'frac-des-13', url: 'https://lh3.googleusercontent.com/d/1WnfnBIDSEp0G5K3B61tzO_AaeMchOqDm', title: 'Fraction 2024 (13)' },
+      { id: 'frac-14', url: 'https://lh3.googleusercontent.com/d/1TPuLORZic7EJ9TDeCdQeMdortV-rn5Z7', title: 'Fraction 2024 (14)' },
+      { id: 'frac-15', url: 'https://lh3.googleusercontent.com/d/1nEKb_pTsBrZwEzKE2mc554IFmh0Zot5T', title: 'Fraction 2024 (15)' },
+      { id: 'frac-16', url: 'https://lh3.googleusercontent.com/d/1bND4HJLFDSTqagqM9uM2SGQnUExfZhem', title: 'Fraction 2024 (16)' },
+      { id: 'frac-17', url: 'https://lh3.googleusercontent.com/d/1Bu49Es0Cg2MNbaDRnItR6yKvLK273WCm', title: 'Fraction 2024 (17)' },
+      { id: 'frac-18', url: 'https://lh3.googleusercontent.com/d/1PeJx2EpXtvjw3m7_2HEuP-n6fECbXvA9', title: 'Fraction 2024 (18)' },
+      { id: 'frac-19', url: 'https://lh3.googleusercontent.com/d/1nhi-jyervZxsoJGsPGKSmp5ornY7hL1P', title: 'Fraction 2024 (19)' },
+      { id: 'frac-20', url: 'https://lh3.googleusercontent.com/d/1TRNtdf8cata1lVOuWRTy2UwI7l9Ofiy_', title: 'Fraction 2024 (20)' },
+      { id: 'frac-21', url: 'https://lh3.googleusercontent.com/d/1CFdx1uK1oXpl91Ank-BejJ569w3HaY8Q', title: 'Fraction 2024 (21)' }
     ]
   }
 };
@@ -680,7 +781,7 @@ function setupPhotoFilters() {
       allGalleryCards.forEach((card) => {
         const isUserUpload = card.classList.contains('user-upload-card');
         const cat = card.getAttribute('data-photo-cat');
-        
+
         let matches = false;
         if (filter === 'all') {
           matches = true;
@@ -1128,14 +1229,13 @@ function renderModalGalleryGrid(albumId: string) {
         <span class="material-symbols-outlined text-secondary text-2xl">zoom_in</span>
         <span class="text-[10px] font-bold text-white line-clamp-1 leading-tight">${photo.title || 'Perbesar Foto'}</span>
       </div>
-      ${
-        photo.isUploaded
-          ? `
+      ${photo.isUploaded
+        ? `
         <button type="button" data-delete-photo-id="${photo.id}" data-album-id="${albumId}" class="delete-album-photo-btn absolute top-1.5 right-1.5 bg-red-600/90 text-white p-1 rounded-full hover:bg-red-700 transition-all text-xs font-bold shadow-lg z-20" title="Hapus foto ini dari album">
           <span class="material-symbols-outlined text-xs">close</span>
         </button>
       `
-          : ''
+        : ''
       }
     `;
 
@@ -2017,7 +2117,7 @@ function setupContactForm() {
         url: window.location.href,
       }).then(() => {
         showToast('Berhasil Bagikan', 'Tautan portofolio berhasil dibagikan.', 'share');
-      }).catch(() => {});
+      }).catch(() => { });
     } else {
       navigator.clipboard.writeText(window.location.href).then(() => {
         showToast('Tautan Tersalin', 'URL Portofolio tersalin ke clipboard!', 'content_copy');
