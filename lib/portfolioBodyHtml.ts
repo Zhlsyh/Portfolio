@@ -280,7 +280,7 @@ export const PORTFOLIO_BODY_HTML = `
                             <span>Pengalaman Organisasi & Kepanitiaan</span>
                         </h2>
                         <p class="text-xs md:text-sm text-white/70 font-medium mt-1">
-                            Model Kartu UNO Tema Portofolio – Klik kartu untuk animasi 3D Flip & Zoom dokumentasi kegiatan.
+                            Klik kartu untuk animasi 3D Flip & Zoom dokumentasi kegiatan.
                         </p>
                     </div>
                 </div>
@@ -1168,7 +1168,7 @@ export const PORTFOLIO_BODY_HTML = `
             <!-- Item 5: Foto Personal Project (Hunting) -->
             <div class="gallery-card photo-cat-event photo-cat-photography glass-card rounded-2xl overflow-hidden group border border-white/15 hover:border-secondary/60 transition-all duration-300 flex flex-col shadow-xl">
                 <div class="h-64 overflow-hidden relative cursor-pointer open-project-modal-btn" data-project-id="photo-3">
-                    <img src="https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?auto=format&fit=crop&w=800&q=80" alt="Foto Personal Project Hunting" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <img src="https://lh3.googleusercontent.com/d/1DFz1tFy7qs8rEpCjQ7-7rRwoB1IPTuxs" alt="Foto Personal Project Hunting" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-black/20 to-transparent flex flex-col justify-between p-4">
                         <div class="flex items-center justify-between">
                             <span class="bg-secondary text-black text-[10px] font-extrabold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
@@ -1176,7 +1176,7 @@ export const PORTFOLIO_BODY_HTML = `
                             </span>
                             <span id="card-badge-photo-3" class="bg-slate-900/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-md flex items-center gap-1">
                                 <span class="material-symbols-outlined text-sm text-secondary">photo_library</span>
-                                <span>0 Foto</span>
+                                <span>48 Foto</span>
                             </span>
                         </div>
                         <div class="flex items-center gap-2 text-white/90 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 p-2 rounded-xl backdrop-blur-sm self-center">
@@ -1188,13 +1188,17 @@ export const PORTFOLIO_BODY_HTML = `
                 <div class="p-5 flex-grow flex flex-col justify-between gap-4">
                     <div>
                         <h3 class="text-xl font-bold text-white mb-1.5 group-hover:text-secondary transition-colors">Foto Personal Project</h3>
-                        <p class="text-xs text-white/80 leading-relaxed">Koleksi dokumentasi fotografi personal hasil tangkapan saat photo hunting, mengeksplorasi sudut pandang visual unik dan esensi momen.</p>
+                        <p class="text-xs text-white/80 leading-relaxed">Koleksi 48 karya fotografi personal hasil tangkapan saat photo hunting, mengeksplorasi sudut pandang visual unik dan esensi momen.</p>
                     </div>
 
                     <!-- Mini Preview Thumbnails Strip -->
                     <div class="space-y-1.5">
                         <div class="text-[10px] font-extrabold text-white/50 uppercase tracking-wider">Pratinjau Foto Hunting:</div>
                         <div id="card-thumbnails-photo-3" class="flex items-center gap-2 overflow-x-auto pb-1">
+                            <img src="https://lh3.googleusercontent.com/d/1DFz1tFy7qs8rEpCjQ7-7rRwoB1IPTuxs" alt="Thumb 1" class="w-12 h-12 object-cover rounded-lg border border-white/20 flex-shrink-0">
+                            <img src="https://lh3.googleusercontent.com/d/1zwhqdpQMg6O-_zGumYiM8ba8pWIrRCmk" alt="Thumb 2" class="w-12 h-12 object-cover rounded-lg border border-white/20 flex-shrink-0">
+                            <img src="https://lh3.googleusercontent.com/d/1h4j6hirBBxOGG4CfGWXO-IeRCqHfH3W_" alt="Thumb 3" class="w-12 h-12 object-cover rounded-lg border border-white/20 flex-shrink-0">
+                            <img src="https://lh3.googleusercontent.com/d/1WG210WM6-aMtGTg9se86CU0DWr_6O3iq" alt="Thumb 4" class="w-12 h-12 object-cover rounded-lg border border-white/20 flex-shrink-0">
                         </div>
                     </div>
 
