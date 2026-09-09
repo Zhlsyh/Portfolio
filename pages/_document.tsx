@@ -20,8 +20,17 @@ export default function Document() {
           rel="stylesheet"
         />
         <link
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
+        <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
           rel="stylesheet"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark');}else{document.documentElement.classList.add('dark');}}catch(e){}})();`,
+          }}
         />
       </Head>
       <body className="font-sans overflow-x-hidden antialiased min-h-screen selection:bg-secondary selection:text-black transition-colors duration-300 relative">
