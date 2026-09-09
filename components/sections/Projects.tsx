@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useMemo, useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
 import SectionHeader from '@/components/SectionHeader';
-import PolaroidGallery from '@/components/PolaroidGallery';
 import type { ProjectData } from '@/data/projects';
 
 const TABS = [
@@ -19,7 +18,6 @@ interface ProjectsProps {
 export default function Projects({ onOpenProject }: ProjectsProps) {
   const { projects } = useSiteData();
   const [tab, setTab] = useState<TabKey>('engineering');
-  const [creativeView, setCreativeView] = useState<'polaroid' | 'grid'>('polaroid');
 
   const allProjects = useMemo(
     () => Object.values(projects).filter((p) => !p.id.startsWith('org-')),
@@ -39,66 +37,29 @@ export default function Projects({ onOpenProject }: ProjectsProps) {
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
         <SectionHeader index="03" title="Arsip Karya" subtitle="Proyek engineering & karya kreatif terpilih" />
 
-        <div className="flex flex-wrap items-center gap-3">
-          {/* Toggle Tampilan Meja Polaroid vs Grid untuk Tab Kreatif */}
-          {tab === 'creative' && (
-            <div
-              className="flex gap-1 p-1 rounded-full text-xs font-bold"
-              style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
+        {/* Tab kategori — dipertahankan dari struktur versi lama (Proyek Teknik vs Desain & Fotografi) */}
+        <div className="flex gap-2 p-1 rounded-full" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
+          {TABS.map((t) => (
+            <button
+              key={t.key}
+              type="button"
+              data-cursor="Pilih"
+              onClick={() => setTab(t.key)}
+              className="relative px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wide flex items-center gap-1.5 transition-colors"
+              style={{ color: tab === t.key ? 'var(--accent-contrast)' : 'var(--text-dim)' }}
             >
-              <button
-                type="button"
-                data-cursor="Polaroid"
-                onClick={() => setCreativeView('polaroid')}
-                className="px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors"
-                style={{
-                  background: creativeView === 'polaroid' ? 'var(--accent)' : 'transparent',
-                  color: creativeView === 'polaroid' ? 'var(--accent-contrast)' : 'var(--text-dim)',
-                }}
-              >
-                <span className="material-symbols-outlined text-sm">filter</span>
-                Meja Polaroid
-              </button>
-              <button
-                type="button"
-                data-cursor="Grid"
-                onClick={() => setCreativeView('grid')}
-                className="px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors"
-                style={{
-                  background: creativeView === 'grid' ? 'var(--accent)' : 'transparent',
-                  color: creativeView === 'grid' ? 'var(--accent-contrast)' : 'var(--text-dim)',
-                }}
-              >
-                <span className="material-symbols-outlined text-sm">grid_view</span>
-                Grid
-              </button>
-            </div>
-          )}
-
-          {/* Tab kategori utama */}
-          <div className="flex gap-2 p-1 rounded-full" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
-            {TABS.map((t) => (
-              <button
-                key={t.key}
-                type="button"
-                data-cursor="Pilih"
-                onClick={() => setTab(t.key)}
-                className="relative px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wide flex items-center gap-1.5 transition-colors"
-                style={{ color: tab === t.key ? 'var(--accent-contrast)' : 'var(--text-dim)' }}
-              >
-                {tab === t.key && (
-                  <motion.span
-                    layoutId="project-tab-pill"
-                    className="absolute inset-0 rounded-full -z-10"
-                    style={{ background: 'var(--accent)' }}
-                    transition={{ type: 'spring', damping: 24, stiffness: 260 }}
-                  />
-                )}
-                <span className="material-symbols-outlined text-base">{t.icon}</span>
-                {t.label}
-              </button>
-            ))}
-          </div>
+              {tab === t.key && (
+                <motion.span
+                  layoutId="project-tab-pill"
+                  className="absolute inset-0 rounded-full -z-10"
+                  style={{ background: 'var(--accent)' }}
+                  transition={{ type: 'spring', damping: 24, stiffness: 260 }}
+                />
+              )}
+              <span className="material-symbols-outlined text-base">{t.icon}</span>
+              {t.label}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -109,30 +70,18 @@ export default function Projects({ onOpenProject }: ProjectsProps) {
       </p>
 
       <AnimatePresence mode="wait">
-        {tab === 'creative' && creativeView === 'polaroid' ? (
-          <motion.div
-            key="polaroid-view"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.4 }}
-          >
-            <PolaroidGallery projects={creative} onOpenProject={onOpenProject} />
-          </motion.div>
-        ) : (
-          <motion.div
-            key={`${tab}-${creativeView}`}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7"
-          >
-            {active.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} onOpen={() => onOpenProject(project.id)} />
-            ))}
-          </motion.div>
-        )}
+        <motion.div
+          key={tab}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.4 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7"
+        >
+          {active.map((project, i) => (
+            <ProjectCard key={project.id} project={project} index={i} onOpen={() => onOpenProject(project.id)} />
+          ))}
+        </motion.div>
       </AnimatePresence>
     </section>
   );

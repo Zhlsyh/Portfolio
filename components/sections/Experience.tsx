@@ -1,5 +1,4 @@
 import { motion } from 'motion/react';
-import { useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
 import SectionHeader from '@/components/SectionHeader';
 import OrgFlipCard from '@/components/OrgFlipCard';
@@ -12,7 +11,6 @@ export default function Experience({ onOpenProject }: ExperienceProps) {
   const { content } = useSiteData();
   const EXPERIENCE = content.experience;
   const ORG_CARDS = content.orgCards;
-  const [deckView, setDeckView] = useState<'fan' | 'grid'>('fan');
 
   return (
     <section id="experience" className="max-w-7xl mx-auto px-5 md:px-16 py-24 md:py-32">
@@ -71,7 +69,7 @@ export default function Experience({ onOpenProject }: ExperienceProps) {
         ))}
       </div>
 
-      {/* Organisasi & Kepanitiaan — kartu 3D flip + fanned deck */}
+      {/* Organisasi & Kepanitiaan — kartu 3D flip, dipertahankan dari versi lama */}
       <div className="mt-16 border-t pt-10" style={{ borderColor: 'var(--border)' }}>
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
@@ -83,82 +81,9 @@ export default function Experience({ onOpenProject }: ExperienceProps) {
               Klik kartu untuk animasi 3D flip & lihat dokumentasi kegiatan.
             </p>
           </div>
-
-          <div
-            className="hidden md:flex gap-1 p-1 rounded-full text-xs font-bold"
-            style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
-          >
-            <button
-              type="button"
-              data-cursor="Kipas"
-              onClick={() => setDeckView('fan')}
-              className="px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors"
-              style={{
-                background: deckView === 'fan' ? 'var(--accent)' : 'transparent',
-                color: deckView === 'fan' ? 'var(--accent-contrast)' : 'var(--text-dim)',
-              }}
-            >
-              <span className="material-symbols-outlined text-sm">style</span>
-              Tumpukan Kipas
-            </button>
-            <button
-              type="button"
-              data-cursor="Grid"
-              onClick={() => setDeckView('grid')}
-              className="px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors"
-              style={{
-                background: deckView === 'grid' ? 'var(--accent)' : 'transparent',
-                color: deckView === 'grid' ? 'var(--accent-contrast)' : 'var(--text-dim)',
-              }}
-            >
-              <span className="material-symbols-outlined text-sm">grid_view</span>
-              Sebar Grid
-            </button>
-          </div>
         </div>
 
-        {deckView === 'fan' && (
-          <div className="hidden md:flex justify-center items-center py-10 min-h-[540px] relative select-none">
-            {ORG_CARDS.map((card, i) => {
-              const offsets = [-150, -50, 50, 150];
-              const rotations = [-9, -3, 3, 9];
-
-              return (
-                <motion.div
-                  key={card.id}
-                  className="absolute w-72 transition-all duration-300"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  animate={{
-                    x: offsets[i],
-                    rotate: rotations[i],
-                    zIndex: i + 10,
-                  }}
-                  whileHover={{
-                    y: -36,
-                    scale: 1.05,
-                    rotate: 0,
-                    zIndex: 50,
-                    transition: { type: 'spring', damping: 18, stiffness: 280 },
-                  }}
-                >
-                  <OrgFlipCard
-                    id={card.id}
-                    index={i}
-                    logo={card.logo}
-                    role={card.role}
-                    period={card.period}
-                    responsibility={card.responsibility}
-                    onOpen={() => onOpenProject(card.id)}
-                  />
-                </motion.div>
-              );
-            })}
-          </div>
-        )}
-
-        <div className={deckView === 'fan' ? 'grid grid-cols-1 md:hidden gap-6' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {ORG_CARDS.map((card, i) => (
             <motion.div
               key={card.id}
