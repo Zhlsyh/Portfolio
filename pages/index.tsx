@@ -8,6 +8,7 @@ import TopNav from '@/components/TopNav';
 import FullScreenMenu from '@/components/FullScreenMenu';
 import ProjectModal from '@/components/ProjectModal';
 import ResumeModal from '@/components/ResumeModal';
+import FloatingStickers from '@/components/FloatingStickers';
 import Hero from '@/components/sections/Hero';
 import StatsBar from '@/components/sections/StatsBar';
 import Experience from '@/components/sections/Experience';
@@ -68,6 +69,7 @@ export default function Home() {
       <FullScreenMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
       <ProjectModal projectId={activeProject} onClose={() => setActiveProject(null)} />
       <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
+      <FloatingStickers />
     </>
   );
 }
