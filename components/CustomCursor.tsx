@@ -13,8 +13,10 @@ export default function CustomCursor() {
 
   useEffect(() => {
     const isFine = window.matchMedia('(pointer: fine)').matches;
-    setEnabled(isFine);
-    if (!isFine) return;
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const shouldEnable = isFine && !isReducedMotion;
+    setEnabled(shouldEnable);
+    if (!shouldEnable) return;
 
     function handleMove(e: MouseEvent) {
       dotX.set(e.clientX);

@@ -92,7 +92,7 @@ export default function Contact() {
                   className="font-display font-extrabold text-4xl md:text-7xl px-6 whitespace-nowrap"
                   style={{ color: i % 2 === 0 ? 'var(--text)' : 'var(--accent)' }}
                 >
-                  MARI BERKOLABORASI •
+                  {i % 2 === 0 ? 'TERBUKA UNTUK PELUANG KERJA & PROYEK •' : 'MARI BERKOLABORASI •'}
                 </span>
               ))}
             </div>
@@ -103,7 +103,7 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-5 md:px-16 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-14">
         <div>
           <span className="font-mono-label text-xs uppercase" style={{ color: 'var(--accent)' }}>
-            06 — Say Hello
+            06 // KONTAK & KOLABORASI
           </span>
           <h2 className="font-display font-extrabold text-4xl md:text-6xl mt-4">Hubungi Saya</h2>
           <p className="mt-4 max-w-md text-sm md:text-base" style={{ color: 'var(--text-dim)' }}>
@@ -172,12 +172,14 @@ export default function Contact() {
           className="surface-card rounded-2xl p-7 md:p-9 space-y-5"
         >
           <div>
-            <label className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--text-faint)' }}>
+            <label htmlFor="contact-name" className="font-mono-label text-[10px] uppercase block" style={{ color: 'var(--text-faint)' }}>
               Nama
             </label>
             <input
+              id="contact-name"
               name="name"
               type="text"
+              autoComplete="name"
               required
               className="w-full mt-2 bg-transparent border rounded-lg px-4 py-3 outline-none focus:border-accent transition-colors"
               style={{ borderColor: 'var(--border-strong)' }}
@@ -185,12 +187,14 @@ export default function Contact() {
             />
           </div>
           <div>
-            <label className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--text-faint)' }}>
+            <label htmlFor="contact-email" className="font-mono-label text-[10px] uppercase block" style={{ color: 'var(--text-faint)' }}>
               Email
             </label>
             <input
+              id="contact-email"
               name="email"
               type="email"
+              autoComplete="email"
               required
               className="w-full mt-2 bg-transparent border rounded-lg px-4 py-3 outline-none focus:border-accent transition-colors"
               style={{ borderColor: 'var(--border-strong)' }}
@@ -198,10 +202,11 @@ export default function Contact() {
             />
           </div>
           <div>
-            <label className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--text-faint)' }}>
+            <label htmlFor="contact-message" className="font-mono-label text-[10px] uppercase block" style={{ color: 'var(--text-faint)' }}>
               Pesan
             </label>
             <textarea
+              id="contact-message"
               name="message"
               required
               rows={4}

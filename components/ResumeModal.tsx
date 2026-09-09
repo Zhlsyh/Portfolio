@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react';
+import { useEffect } from 'react';
 
 interface ResumeModalProps {
   open: boolean;
@@ -24,6 +25,25 @@ const CV_OPTIONS = [
 ];
 
 export default function ResumeModal({ open, onClose }: ResumeModalProps) {
+  useEffect(() => {
+    if (!open) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [open, onClose]);
+
   return (
     <AnimatePresence>
       {open && (
@@ -50,7 +70,7 @@ export default function ResumeModal({ open, onClose }: ResumeModalProps) {
                 data-cursor="Tutup"
                 onClick={onClose}
                 aria-label="Tutup"
-                className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--surface)]"
+                className="w-11 h-11 rounded-full flex items-center justify-center hover:bg-[var(--surface)] transition-colors"
               >
                 <span className="material-symbols-outlined">close</span>
               </button>

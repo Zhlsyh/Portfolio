@@ -12,12 +12,21 @@ export default function IntroScreen({ onDone }: IntroScreenProps) {
   const [phase, setPhase] = useState<'greeting' | 'exit' | 'done'>('greeting');
 
   useEffect(() => {
-    // Fase sapaan tampil sejenak, lalu tirai terbuka ke landing page.
-    const t1 = setTimeout(() => setPhase('exit'), 1650);
+    if (typeof window !== 'undefined' && sessionStorage.getItem('intro_seen')) {
+      setPhase('done');
+      onDone();
+      return;
+    }
+
+    const t1 = setTimeout(() => setPhase('exit'), 1050);
     const t2 = setTimeout(() => {
       setPhase('done');
       onDone();
-    }, 2500);
+      try {
+        sessionStorage.setItem('intro_seen', 'true');
+      } catch {}
+    }, 1700);
+
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);

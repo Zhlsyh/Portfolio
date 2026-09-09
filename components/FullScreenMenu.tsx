@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
 
 interface FullScreenMenuProps {
@@ -21,6 +21,25 @@ export default function FullScreenMenu({ open, onClose }: FullScreenMenuProps) {
   const SITE = content.site;
   const [hovered, setHovered] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [open, onClose]);
+
   function handleNavigate(href: string) {
     onClose();
     setTimeout(() => {
@@ -37,20 +56,20 @@ export default function FullScreenMenu({ open, onClose }: FullScreenMenuProps) {
           exit={{ clipPath: 'circle(0% at 95% 95%)' }}
           transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
           className="fixed inset-0 z-[60] flex flex-col"
-          style={{ background: '#eef3ea', color: '#0d1f18' }}
+          style={{ background: 'var(--bg-elevated)', color: 'var(--text)' }}
         >
           <div
             className="flex items-center justify-between px-6 md:px-10 py-5"
-            style={{ borderBottom: '1px solid rgba(13,31,24,0.12)' }}
+            style={{ borderBottom: '1px solid var(--border)' }}
           >
-            <span className="material-symbols-outlined">mail</span>
-            <span className="font-bold tracking-wide">{SITE.initials}</span>
+            <span className="material-symbols-outlined text-accent">mail</span>
+            <span className="font-bold tracking-wide font-mono-label">{SITE.initials}</span>
             <button
               type="button"
               data-cursor="Tutup"
               onClick={onClose}
               aria-label="Tutup menu"
-              className="w-9 h-9 flex items-center justify-center"
+              className="w-11 h-11 rounded-full flex items-center justify-center hover:bg-[var(--surface)] transition-colors"
             >
               <span className="material-symbols-outlined">close</span>
             </button>
@@ -71,13 +90,13 @@ export default function FullScreenMenu({ open, onClose }: FullScreenMenuProps) {
               >
                 <span
                   className="font-mono-label text-xs w-10 shrink-0 transition-colors"
-                  style={{ color: hovered === item.href ? '#0f9d72' : '#0d1f18aa' }}
+                  style={{ color: hovered === item.href ? 'var(--accent)' : 'var(--text-faint)' }}
                 >
                   {item.index}
                 </span>
                 <h2
                   className="font-display font-extrabold text-4xl sm:text-6xl md:text-7xl flex-1 transition-colors"
-                  style={{ color: hovered === item.href ? '#0f9d72' : '#0d1f18' }}
+                  style={{ color: hovered === item.href ? 'var(--accent)' : 'var(--text)' }}
                 >
                   {item.label}
                 </h2>
@@ -88,7 +107,8 @@ export default function FullScreenMenu({ open, onClose }: FullScreenMenuProps) {
                       initial={{ opacity: 0, scale: 0.7, rotate: -6 }}
                       animate={{ opacity: 1, scale: 1, rotate: -4 }}
                       exit={{ opacity: 0, scale: 0.7 }}
-                      className="hidden md:block absolute right-24 top-1/2 -translate-y-1/2 w-24 h-24 rounded-xl overflow-hidden border-4 border-white shadow-xl"
+                      className="hidden md:block absolute right-24 top-1/2 -translate-y-1/2 w-24 h-24 rounded-xl overflow-hidden border-2 shadow-xl"
+                      style={{ borderColor: 'var(--border-strong)' }}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={PREVIEWS[item.href]} alt="" className="w-full h-full object-cover" />
@@ -98,7 +118,7 @@ export default function FullScreenMenu({ open, onClose }: FullScreenMenuProps) {
 
                 <span
                   className="font-mono-label text-[10px] uppercase hidden sm:block"
-                  style={{ color: '#0d1f1888' }}
+                  style={{ color: 'var(--text-faint)' }}
                 >
                   ( {item.tag} )
                 </span>
@@ -106,8 +126,8 @@ export default function FullScreenMenu({ open, onClose }: FullScreenMenuProps) {
             ))}
           </div>
 
-          <div className="px-6 md:px-10 py-5 font-mono-label text-[10px]" style={{ color: '#0d1f1866' }}>
-            © {new Date().getFullYear()} ZULHELMI SYAHTIAR — PNJ ELECTRONICS
+          <div className="px-6 md:px-10 py-5 font-mono-label text-[10px]" style={{ color: 'var(--text-faint)' }}>
+            © {new Date().getFullYear()} ZULHELMI SYAHTIAR · PNJ ELECTRONICS
           </div>
         </motion.div>
       )}

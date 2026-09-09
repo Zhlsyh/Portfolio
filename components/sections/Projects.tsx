@@ -66,7 +66,7 @@ export default function Projects({ onOpenProject }: ProjectsProps) {
       <p className="font-mono-label text-[10px] uppercase mt-8 mb-6" style={{ color: 'var(--text-faint)' }}>
         {tab === 'engineering'
           ? 'IoT, mikrokontroler, sistem kontrol & otomasi'
-          : 'Fotografi & desain grafis — dokumentasi hingga karya visual'}
+          : 'Fotografi & desain grafis: dokumentasi hingga karya visual'}
       </p>
 
       <AnimatePresence mode="wait">
@@ -111,6 +111,8 @@ function ProjectCard({ project, index, onOpen }: ProjectCardProps) {
         <img
           src={project.image}
           alt={project.title}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <span

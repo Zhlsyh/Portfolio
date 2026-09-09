@@ -26,15 +26,23 @@ export default function Hero({ onOpenResume, isDark }: HeroProps) {
         {/* Baris utama: teks kiri, foto kanan — susunan dipertahankan dari versi lama */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           <div className="lg:col-span-7 flex flex-col gap-6">
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="font-mono-label text-xs uppercase"
-              style={{ color: 'var(--text-faint)' }}
+              className="flex flex-wrap items-center gap-3"
             >
-              {HERO.eyebrow}
-            </motion.p>
+              <div
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono-label uppercase"
+                style={{ background: 'var(--accent-soft)', border: '1px solid var(--border-strong)', color: 'var(--accent)' }}
+              >
+                <span className="w-2 h-2 rounded-full bg-accent" />
+                Available for Work & IoT Projects
+              </div>
+              <span className="font-mono-label text-xs uppercase" style={{ color: 'var(--text-faint)' }}>
+                {HERO.eyebrow}
+              </span>
+            </motion.div>
 
             <h1 className="font-display font-extrabold leading-[0.95] tracking-tight text-[13vw] sm:text-[8vw] lg:text-[4.6vw]">
               {['Zulhelmi', 'Syahtiar.'].map((word, i) => (
@@ -125,12 +133,7 @@ export default function Hero({ onOpenResume, isDark }: HeroProps) {
                 />
               </div>
 
-              <div
-                className="absolute -top-5 -right-5 w-14 h-14 rounded-full flex items-center justify-center shadow-xl animate-pulse"
-                style={{ background: 'var(--accent)', color: 'var(--accent-contrast)' }}
-              >
-                <span className="material-symbols-outlined text-2xl">memory</span>
-              </div>
+
 
               <div
                 className="absolute -bottom-8 -left-6 md:-left-8 max-w-[260px] rounded-2xl px-5 py-4 shadow-2xl backdrop-blur-md"

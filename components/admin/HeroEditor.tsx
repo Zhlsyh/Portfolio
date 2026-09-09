@@ -34,7 +34,7 @@ export default function HeroEditor() {
 
   return (
     <div className="space-y-6">
-      <SectionCard title="Hero" description="Bagian paling atas halaman — nama, tagline, dan deskripsi singkat.">
+      <SectionCard title="Hero" description="Bagian paling atas halaman: nama, tagline, dan deskripsi singkat.">
         <div className="space-y-4">
           <Field label="Eyebrow (teks kecil di atas nama)">
             <TextInput value={hero.eyebrow} onChange={(e) => setHero({ ...hero, eyebrow: e.target.value })} />

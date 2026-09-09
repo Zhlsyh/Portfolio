@@ -20,7 +20,7 @@ export default function StatsBar() {
           className="font-mono-label text-[11px] md:text-xs uppercase"
           style={{ color: 'var(--text-faint)' }}
         >
-          <span style={{ color: 'var(--accent)' }}>{stat.value}</span> — {stat.label}
+          <span style={{ color: 'var(--accent)' }}>{stat.value}</span> · {stat.label}
         </motion.div>
       ))}
     </div>

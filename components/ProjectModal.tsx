@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
 
 interface ProjectModalProps {
@@ -11,6 +11,29 @@ export default function ProjectModal({ projectId, onClose }: ProjectModalProps) 
   const { projects } = useSiteData();
   const [lightbox, setLightbox] = useState<string | null>(null);
   const project = projectId ? projects[projectId] : null;
+
+  useEffect(() => {
+    if (!project) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        if (lightbox) {
+          setLightbox(null);
+        } else {
+          onClose();
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [project, lightbox, onClose]);
 
   return (
     <AnimatePresence>
@@ -40,8 +63,8 @@ export default function ProjectModal({ projectId, onClose }: ProjectModalProps) 
                 data-cursor="Tutup"
                 onClick={onClose}
                 aria-label="Tutup"
-                className="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md"
-                style={{ background: 'rgba(0,0,0,0.4)', color: '#fff' }}
+                className="absolute top-4 right-4 w-11 h-11 rounded-full flex items-center justify-center backdrop-blur-md hover:scale-105 transition-transform"
+                style={{ background: 'rgba(0,0,0,0.5)', color: '#fff' }}
               >
                 <span className="material-symbols-outlined">close</span>
               </button>

@@ -11,7 +11,7 @@ export default function AdminPage() {
   return (
     <>
       <Head>
-        <title>Admin — Zulhelmi Syahtiar</title>
+        <title>Admin | Zulhelmi Syahtiar</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 
