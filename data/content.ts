@@ -69,6 +69,20 @@ export const EXPERIENCE = [
     skillsLabel: 'Aplikasi & Tools',
     skills: ['Adobe Lightroom', 'Photoshop', 'Canva', 'Kamera Mirrorless'],
   },
+  {
+    tag: 'Kegiatan Akademik',
+    title: 'Asisten Dosen – Pengabdian Masyarakat',
+    org: 'Politeknik Negeri Jakarta',
+    period: '2024 – 2025',
+    location: 'Depok, Jawa Barat',
+    points: [
+      'Berperan sebagai Asisten Dosen pada proyek Pengabdian Masyarakat instalasi Green House Hidroponik bertenaga solar panel.',
+      'Mendukung proses instalasi sistem IoT dan kelistrikan panel surya untuk greenhouse hidroponik.',
+      'Mendampingi mahasiswa dan masyarakat dalam pemahaman teknologi energi terbarukan berbasis komunitas.',
+    ],
+    skillsLabel: 'Keahlian Terpakai',
+    skills: ['Solar Panel', 'Sistem IoT', 'Hidroponik', 'Pengabdian Masyarakat'],
+  },
 ];
 
 // ID project organisasi/kepanitiaan yang dipetakan dari PROJECTS_DATA (org-1..org-4)
@@ -156,6 +170,7 @@ export const CAPABILITIES = [
       { name: 'Three.js, WebRTC & Socket.IO', detail: 'Visualisasi 3D, Video P2P & Real-time Communication', iconType: 'material', icons: ['travel_explore'] },
       { name: 'AutoCAD & Fusion 360', detail: 'Desain Teknik 2D & Modeling 3D CAD', iconType: 'image', icons: ['/logos/autocad.webp', '/logos/fusion360.webp'] },
       { name: 'NI Multisim & Proteus', detail: 'Simulasi Rangkaian Elektronika Analog-Digital', iconType: 'image', icons: ['/logos/multisim.png', '/logos/proteus.png'] },
+      { name: 'Eagle (PCB Design)', detail: 'Perancangan Skematik & Layout PCB', iconType: 'material', icons: ['developer_board'] },
     ],
   },
   {
@@ -168,6 +183,17 @@ export const CAPABILITIES = [
       { name: 'Canva', detail: 'Editing, Layouting, Carousel', iconType: 'image', icons: ['/logos/canva.png'] },
       { name: 'ibis Paint X', detail: 'Ilustrasi Digital & Desain Vektor', iconType: 'image', icons: ['/logos/ibispaint.png'] },
       { name: 'CapCut Video Editor', detail: 'Editing Video', iconType: 'image', icons: ['/logos/capcut.png'] },
+    ],
+  },
+  {
+    icon: 'language',
+    title: 'Bahasa & Produktivitas',
+    subtitle: 'Komunikasi Profesional, Office Suite & Multibahasa',
+    items: [
+      { name: 'Microsoft Office', detail: 'Word (Laporan), Excel (Data), PowerPoint (Presentasi)', iconType: 'material', icons: ['description'] },
+      { name: 'Bahasa Indonesia', detail: 'Bahasa utama (native speaker)', iconType: 'material', icons: ['translate'] },
+      { name: 'Bahasa Melayu', detail: 'Fasih komunikasi lisan & tulisan', iconType: 'material', icons: ['translate'] },
+      { name: 'Bahasa Inggris', detail: 'Working Proficiency – TOEIC Prediction 620/990', iconType: 'material', icons: ['translate'] },
     ],
   },
 ];
