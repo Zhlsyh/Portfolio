@@ -241,6 +241,36 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
       { label: 'Fungsi', value: 'Power Supply Mikrokontroler' }
     ]
   },
+  'eng-6': {
+    id: 'eng-6',
+    category: 'engineering',
+    title: 'Robot Mobil Pendeteksi Objek dan Warna',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80',
+    tags: ['Raspberry Pi', 'Computer Vision', 'OpenCV', 'Object Detection'],
+    description: 'Mengembangkan sistem deteksi objek dan warna secara real-time menggunakan kamera berbasis Raspberry Pi dan library OpenCV. Robot bergerak otonom berdasarkan hasil analisis visual dari kamera.',
+    docLink: 'https://drive.google.com/',
+    specs: [
+      { label: 'Platform', value: 'Raspberry Pi' },
+      { label: 'Library Vision', value: 'OpenCV (Computer Vision)' },
+      { label: 'Fitur', value: 'Deteksi Objek & Warna Real-time' },
+      { label: 'Tahun', value: '2026' },
+    ],
+  },
+  'eng-7': {
+    id: 'eng-7',
+    category: 'engineering',
+    title: 'Mesin Cuci Tangan Otomatis Touchless',
+    image: 'https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=800&q=80',
+    tags: ['Arduino Uno', 'Sensor Infrared', 'Touchless', 'Otomasi'],
+    description: 'Merancang sistem touchless berbasis Arduino Uno dan sensor infrared untuk mengalirkan sabun/air secara otomatis tanpa sentuhan. Dirancang untuk higienis dan efisiensi pemakaian air.',
+    docLink: 'https://drive.google.com/',
+    specs: [
+      { label: 'Mikrokontroler', value: 'Arduino Uno' },
+      { label: 'Sensor', value: 'Infrared (IR) Proximity' },
+      { label: 'Mekanisme', value: 'Touchless Soap & Water Dispenser' },
+      { label: 'Tahun', value: '2024' },
+    ],
+  },
   'photo-1': {
     id: 'photo-1',
     category: 'photography',

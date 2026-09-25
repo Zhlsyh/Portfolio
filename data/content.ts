@@ -21,7 +21,7 @@ export const HERO = {
   title1: 'Zulhelmi',
   title2: 'Syahtiar.',
   description:
-    'Fresh Graduate Jurusan Teknik Elektro, Program Studi D3 Elektronika Industri. Memiliki minat kuat di bidang Internet of Things (IoT), mikroprosesor, sistem kontrol, pemrograman web, serta memiliki ketertarikan di bidang desain dan fotografi. Terbiasa mengerjakan proyek berbasis mikrokontroler dan pengembangan sistem otomasi sederhana. Bersemangat untuk terus belajar, berinovasi, dan menerapkan teknologi terbaru dalam dunia industri.',
+    'Fresh graduate D3 Elektronika Industri dari Politeknik Negeri Jakarta, dengan pengalaman magang pada sistem proteksi tenaga listrik di PT PLN. Memiliki minat kuat di bidang Internet of Things (IoT), mikrokontroler, pemrograman, dan sistem kontrol. Terbiasa mengerjakan proyek berbasis mikrokontroler dan pengembangan sistem otomasi sederhana. Bersemangat untuk terus belajar, berinovasi, dan menerapkan teknologi terbaru dalam dunia industri.',
   quote: 'Do what you wanna do',
   badges: [
     { icon: 'developer_board', label: 'Hardware & IoT', value: 'ESP32 & Arduino' },
@@ -33,7 +33,8 @@ export const HERO = {
 
 export const STATS = [
   { value: 'IPK 3.55', label: 'D3 Elektronika Industri PNJ' },
-  { value: '10+ Proyek', label: 'Engineering & Kreatif' },
+  { value: 'TOEIC 620', label: 'English Working Proficiency' },
+  { value: '12+ Proyek', label: 'Engineering & Kreatif' },
   { value: 'Sejak 2023', label: 'Aktif Berkarya' },
 ];
 
@@ -43,24 +44,27 @@ export const EXPERIENCE = [
     title: 'Magang Pemeliharaan Proteksi (HAR PRO)',
     org: 'PT PLN (Persero) ULTG Petukangan',
     period: 'Juli 2025 \u2013 November 2025',
-    location: 'Jakarta & Tangerang',
+    location: 'Tangerang Selatan',
     points: [
-      'Melaksanakan pemeliharaan dan pengawasan sistem relai proteksi Gardu Induk (Relai OCR, GFR, Differential, Distance, OVR/UVR, Buchholz, Thermal Overload).',
-      'Berpartisipasi dalam pengujian Battery Capacity Test (BCT) dan pengujian migrasi transformator gardu induk 150kV.',
-      'Penyusunan Laporan Hasil Uji (LHU) & proteksi sistem penyulang 20kV & 150kV.',
+      'Membantu pemeliharaan dan pengawasan berkala sistem proteksi Gardu Induk.',
+      'Melakukan pengujian relai proteksi (OCR, GFR, Diferensial, Distance Relay, OVR/UVR, Buchholz, Thermal Overload).',
+      'Terlibat dalam pengujian sistem saat migrasi DSS di gardu induk 150kV.',
+      'Melaksanakan Battery Capacity Test (BCT) untuk menjaga keandalan daya cadangan gardu induk.',
+      'Membantu pengujian non-cascade pada panel incoming transformator.',
     ],
     skillsLabel: 'Keahlian Terpakai',
-    skills: ['Relai Proteksi', 'Instrumentasi', 'Otomasi Gardu'],
+    skills: ['Relai Proteksi', 'OMICRON TestUniverse', 'Instrumentasi', 'SCADA', 'Otomasi Gardu'],
   },
   {
     tag: 'Freelance & Proyek Mandiri',
-    title: 'Freelance Photographer & Graphic Designer',
-    org: 'Klien Independen & Komunitas',
+    title: 'Freelance Graphic Designer & Photographer',
+    org: 'Klien Independen',
     period: 'Maret 2023 \u2013 Sekarang',
     location: 'Jabodetabek',
     points: [
-      'Merencanakan & mengeksekusi sesi fotografi kelulusan akademik, pasca-sidang, serta dokumentasi event dengan retouching warna di Adobe Lightroom.',
-      'Merancang karya desain grafis banner cetak kustom, poster acara, feeds Instagram, dan materi promosi visual untuk berbagai klien.',
+      'Menyediakan jasa fotografi kelulusan dan pasca-sidang, termasuk pengarahan gaya dan penyuntingan foto.',
+      'Membuat desain banner untuk acara perayaan kelulusan.',
+      'Membuat desain grafis media sosial untuk kebutuhan konten Instagram organisasi.',
     ],
     skillsLabel: 'Aplikasi & Tools',
     skills: ['Adobe Lightroom', 'Photoshop', 'Canva', 'Kamera Mirrorless'],
@@ -114,7 +118,7 @@ export const CAPABILITIES = [
     items: [
       { name: 'ESP32', detail: 'WiFi, Bluetooth, Sensor IoT & Database', iconType: 'material', icons: ['memory'] },
       { name: 'Arduino', detail: 'ADC, PWM, I2C, SPI & Pemrosesan Sensor', iconType: 'image', icons: ['https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg'] },
-      { name: 'Raspberry Pi Board', detail: 'Single Board Computer & Linux Embedded', iconType: 'image', icons: ['https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg'] },
+      { name: 'Raspberry Pi Board', detail: 'Single Board Computer & Linux Embedded & Computer Vision', iconType: 'image', icons: ['https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg'] },
     ],
   },
   {
@@ -123,8 +127,8 @@ export const CAPABILITIES = [
     subtitle: 'Kontrol Motor, PLC, SCADA & Proteksi Listrik',
     items: [
       { name: 'PID Controller & Fuzzy Logic', detail: 'Kontrol Kecepatan Motor DC & Kestabilan', iconType: 'material', icons: ['settings_input_component'] },
-      { name: 'PLC Schneider & SCADA Vijeo', detail: 'Pemrograman Ladder Diagram & Otomasi', iconType: 'material', icons: ['precision_manufacturing'] },
-      { name: 'Relai Proteksi PLN 150kV', detail: 'Relai OCR, GFR, Differential, BCT & Trafo', iconType: 'material', icons: ['electric_bolt'] },
+      { name: 'PLC Schneider & SCADA Vijeo Citect', detail: 'Pemrograman Ladder Diagram & Otomasi', iconType: 'material', icons: ['precision_manufacturing'] },
+      { name: 'Relai Proteksi & OMICRON', detail: 'OCR, GFR, Differential, REF MiCOM, GOOSE Config', iconType: 'material', icons: ['electric_bolt'] },
     ],
   },
   {
@@ -133,17 +137,23 @@ export const CAPABILITIES = [
     subtitle: 'Bahasa Pemrograman, Web Dashboard, CAD & Simulasi',
     items: [
       { name: 'C / C++ (Embedded Systems)', detail: 'Pemrograman Mikrokontroler & Firmware', iconType: 'image', icons: ['https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg'] },
-      { name: 'Python Scripting', detail: 'Pemrosesan Data Telemetri & Otomasi', iconType: 'image', icons: ['https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'] },
+      { name: 'Python Scripting', detail: 'Pemrosesan Data Telemetri, Otomasi & Computer Vision (OpenCV)', iconType: 'image', icons: ['https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'] },
+      { name: 'TypeScript, React & Node.js', detail: 'Fullstack Web & Real-time App Development', iconType: 'image', icons: [
+        'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
+        'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+        'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+      ] },
       { name: 'HTML, CSS & JavaScript', detail: 'Pengembangan Antarmuka Web & Web Dashboard', iconType: 'image', icons: [
         'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
         'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
         'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
       ] },
-      { name: 'Firebase', detail: 'Realtime Database, Authentication & Cloud Storage', iconType: 'image', icons: ['https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg'] },
+      { name: 'Firebase', detail: 'Realtime Database, Firestore, Authentication & Hosting', iconType: 'image', icons: ['https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg'] },
       { name: 'MySQL & PostgreSQL', detail: 'Relational Database & Pengelolaan Data', iconType: 'image', icons: [
         'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
         'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
       ] },
+      { name: 'Three.js, WebRTC & Socket.IO', detail: 'Visualisasi 3D, Video P2P & Real-time Communication', iconType: 'material', icons: ['travel_explore'] },
       { name: 'AutoCAD & Fusion 360', detail: 'Desain Teknik 2D & Modeling 3D CAD', iconType: 'image', icons: ['/logos/autocad.webp', '/logos/fusion360.webp'] },
       { name: 'NI Multisim & Proteus', detail: 'Simulasi Rangkaian Elektronika Analog-Digital', iconType: 'image', icons: ['/logos/multisim.png', '/logos/proteus.png'] },
     ],
@@ -165,13 +175,23 @@ export const CAPABILITIES = [
 export const CERTIFICATIONS = [
   {
     badge: 'BNSP Official Certification',
-    period: '2025 \u2013 2028',
+    period: '2026 \u2013 2029',
     title: 'Teknisi Instrumentasi',
     issuer: 'LSP PNJ / Badan Nasional Sertifikasi Profesi (BNSP) Republik Indonesia',
     description:
-      'Sertifikasi kompetensi resmi BNSP untuk kualifikasi Teknisi Instrumentasi. Teruji secara terstruktur dalam kalibrasi instrumen pengukuran industri, pengujian sensor & transmitter (tekanan, suhu, aliran, level), pemeliharaan peralatan kontrol proses, serta pemasangan dan trouble-shooting sistem instrumentasi industri.',
-    tags: ['BNSP Competency', 'Teknisi Instrumentasi', 'Kalibrasi & Testing', 'Sistem Kontrol Proses', 'Industrial Sensor'],
-    regNo: 'BNSP-INST-2025-PNJ',
+      'Sertifikasi kompetensi resmi BNSP untuk kualifikasi Teknisi Instrumentasi (2026) \u2014 Kompeten. Uji kompetensi: konfigurasi zero-span dan scaling level transmitter (4\u201320 mA) pada PLC, termasuk analisis linearitas dan deviasi hasil pengukuran.',
+    tags: ['BNSP Competency', 'Teknisi Instrumentasi', 'Kalibrasi & Testing', 'PLC & Transmitter', 'Industrial Sensor'],
+    regNo: 'BNSP-INST-2026-PNJ',
+  },
+  {
+    badge: 'English Proficiency Test',
+    period: '2026',
+    title: 'TOEIC Prediction Test',
+    issuer: 'Politeknik Negeri Jakarta',
+    description:
+      'TOEIC Prediction Test yang diselenggarakan oleh Politeknik Negeri Jakarta (2026). Skor 620/990 (Listening 260, Reading 360). Setara dengan kemampuan kerja profesional berbahasa Inggris (working proficiency).',
+    tags: ['TOEIC', 'English Proficiency', 'Working Proficiency', 'PNJ', 'Skor 620/990'],
+    regNo: 'TOEIC-PNJ-2026',
   },
 ];
 
