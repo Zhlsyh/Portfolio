@@ -12,7 +12,7 @@ export default function IntroScreen({ onDone }: IntroScreenProps) {
   const [phase, setPhase] = useState<'greeting' | 'exit' | 'done'>('greeting');
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && sessionStorage.getItem('intro_seen')) {
+    if (sessionStorage.getItem('intro_seen') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setPhase('done');
       onDone();
       return;

@@ -1,27 +1,21 @@
 import { useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
 import { saveSiteContent } from '@/lib/adminData';
+import { useSaveFeedback } from '@/hooks/useSaveFeedback';
 import { AddButton, Field, IconButton, SaveBar, SectionCard, TextArea, TextInput } from '@/components/admin/FormControls';
 import type { OrgCard } from '@/types/content';
 
 export default function OrgCardsEditor() {
   const { content, projects } = useSiteData();
   const [cards, setCards] = useState(content.orgCards);
-  const [saving, setSaving] = useState(false);
-  const [savedAt, setSavedAt] = useState<number | null>(null);
+  const { saving, savedAt, error, save } = useSaveFeedback();
 
   function update(i: number, patch: Partial<OrgCard>) {
     setCards(cards.map((x, idx) => (idx === i ? { ...x, ...patch } : x)));
   }
 
-  async function handleSave() {
-    setSaving(true);
-    try {
-      await saveSiteContent({ ...content, orgCards: cards });
-      setSavedAt(Date.now());
-    } finally {
-      setSaving(false);
-    }
+  function handleSave() {
+    void save(() => saveSiteContent({ ...content, orgCards: cards }));
   }
 
   const projectOptions = Object.keys(projects).filter((id) => id.startsWith('org-'));
@@ -72,7 +66,7 @@ export default function OrgCardsEditor() {
         label="Tambah Kartu Organisasi"
       />
 
-      <SaveBar onSave={handleSave} saving={saving} savedAt={savedAt} />
+      <SaveBar onSave={handleSave} saving={saving} savedAt={savedAt} error={error} />
     </div>
   );
 }

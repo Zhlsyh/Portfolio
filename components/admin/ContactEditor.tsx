@@ -1,27 +1,21 @@
 import { useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
 import { saveSiteContent } from '@/lib/adminData';
+import { useSaveFeedback } from '@/hooks/useSaveFeedback';
 import { AddButton, Field, IconButton, SaveBar, SectionCard, TextArea, TextInput } from '@/components/admin/FormControls';
 import type { SocialLink } from '@/types/content';
 
 export default function ContactEditor() {
   const { content } = useSiteData();
   const [contact, setContact] = useState(content.contact);
-  const [saving, setSaving] = useState(false);
-  const [savedAt, setSavedAt] = useState<number | null>(null);
+  const { saving, savedAt, error, save } = useSaveFeedback();
 
   function updateSocial(i: number, patch: Partial<SocialLink>) {
     setContact((c) => ({ ...c, socials: c.socials.map((s, idx) => (idx === i ? { ...s, ...patch } : s)) }));
   }
 
-  async function handleSave() {
-    setSaving(true);
-    try {
-      await saveSiteContent({ ...content, contact });
-      setSavedAt(Date.now());
-    } finally {
-      setSaving(false);
-    }
+  function handleSave() {
+    void save(() => saveSiteContent({ ...content, contact }));
   }
 
   return (
@@ -46,9 +40,9 @@ export default function ContactEditor() {
         <div className="space-y-3">
           {contact.socials.map((s, i) => (
             <div key={i} className="flex items-center gap-2 surface-card rounded-xl p-3">
-              <TextInput value={s.label} onChange={(e) => updateSocial(i, { label: e.target.value })} placeholder="Label" />
-              <TextInput value={s.handle} onChange={(e) => updateSocial(i, { handle: e.target.value })} placeholder="@handle" />
-              <TextInput value={s.href} onChange={(e) => updateSocial(i, { href: e.target.value })} placeholder="https://..." />
+              <TextInput aria-label={`Nama media sosial ${i + 1}`} value={s.label} onChange={(e) => updateSocial(i, { label: e.target.value })} placeholder="Label" />
+              <TextInput aria-label={`Akun media sosial ${i + 1}`} value={s.handle} onChange={(e) => updateSocial(i, { handle: e.target.value })} placeholder="@handle" />
+              <TextInput aria-label={`Tautan media sosial ${i + 1}`} value={s.href} onChange={(e) => updateSocial(i, { href: e.target.value })} placeholder="https://..." />
               <IconButton
                 onClick={() => setContact({ ...contact, socials: contact.socials.filter((_, idx) => idx !== i) })}
                 icon="delete"
@@ -64,7 +58,7 @@ export default function ContactEditor() {
         </div>
       </SectionCard>
 
-      <SaveBar onSave={handleSave} saving={saving} savedAt={savedAt} />
+      <SaveBar onSave={handleSave} saving={saving} savedAt={savedAt} error={error} />
     </div>
   );
 }

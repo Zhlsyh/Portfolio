@@ -159,6 +159,11 @@ export default function Contact() {
                   <span className="font-bold text-sm mt-0.5">{social.handle}</span>
                 </a>
               ))}
+              {CONTACT.socials.length === 0 && (
+                <p role="status" className="col-span-2 text-sm" style={{ color: 'var(--text-dim)' }}>
+                  Tautan media sosial belum tersedia.
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -241,7 +246,7 @@ export default function Contact() {
         style={{ borderColor: 'var(--border)', color: 'var(--text-faint)' }}
       >
         <span>© {new Date().getFullYear()} Zulhelmi Syahtiar</span>
-        <a href="#home" data-cursor="Naik" className="flex items-center gap-1.5 hover:text-accent transition-colors">
+        <a href="#home" data-cursor="Naik" className="min-h-11 flex items-center gap-1.5 hover:text-accent transition-colors">
           Kembali ke Atas
           <span className="material-symbols-outlined text-sm">arrow_upward</span>
         </a>

@@ -38,7 +38,7 @@ export default function Home() {
         <title>Zulhelmi Syahtiar | Electrical Engineer & IoT Developer Portfolio</title>
         <meta
           name="description"
-          content="Portofolio resmi Zulhelmi Syahtiar - Lulusan D3 Elektronika Industri Politeknik Negeri Jakarta (IPK 3.55/4.00). Spesialisasi IoT, ESP32, Kontrol PID & Fuzzy, PLC, Fotografi, dan Desain Grafis."
+          content="Portofolio Zulhelmi Syahtiar, lulusan D3 Elektronika Industri PNJ dengan pengalaman di proteksi listrik, IoT, sistem kontrol, fotografi, dan desain grafis."
         />
         <meta name="theme-color" content="#0b1712" />
       </Head>

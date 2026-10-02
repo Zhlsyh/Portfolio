@@ -45,7 +45,7 @@ export default function Projects({ onOpenProject }: ProjectsProps) {
               type="button"
               data-cursor="Pilih"
               onClick={() => setTab(t.key)}
-              className="relative px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wide flex items-center gap-1.5 transition-colors"
+              className="relative min-h-11 px-3 sm:px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wide flex items-center gap-1.5 transition-colors"
               style={{ color: tab === t.key ? 'var(--accent-contrast)' : 'var(--text-dim)' }}
             >
               {tab === t.key && (
@@ -78,9 +78,15 @@ export default function Projects({ onOpenProject }: ProjectsProps) {
           transition={{ duration: 0.4 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7"
         >
-          {active.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} onOpen={() => onOpenProject(project.id)} />
-          ))}
+          {active.length > 0 ? (
+            active.map((project, i) => (
+              <ProjectCard key={project.id} project={project} index={i} onOpen={() => onOpenProject(project.id)} />
+            ))
+          ) : (
+            <p role="status" className="text-sm" style={{ color: 'var(--text-dim)' }}>
+              Belum ada karya di kategori ini.
+            </p>
+          )}
         </motion.div>
       </AnimatePresence>
     </section>
@@ -107,16 +113,27 @@ function ProjectCard({ project, index, onOpen }: ProjectCardProps) {
       className="text-left group surface-card rounded-2xl overflow-hidden flex flex-col transition-colors hover:border-accent"
     >
       <div className="aspect-[4/3] relative overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={project.image}
-          alt={project.title}
-          loading="lazy"
-          decoding="async"
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
+        {project.image && !project.image.includes('images.unsplash.com') ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={project.image}
+            alt={project.title}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        ) : (
+          <div
+            role="img"
+            aria-label="Foto proyek belum tersedia"
+            className="w-full h-full flex items-center justify-center text-center p-4 text-sm"
+            style={{ background: 'var(--surface-strong)', color: 'var(--text-dim)' }}
+          >
+            Foto proyek belum tersedia
+          </div>
+        )}
         <span
-          className="absolute top-3 left-3 font-mono-label text-[10px] uppercase px-2.5 py-1 rounded-full backdrop-blur-md"
+          className="absolute top-3 left-3 font-mono-label text-[10px] uppercase px-2.5 py-1 rounded-full"
           style={{ background: 'rgba(0,0,0,0.5)', color: '#fff' }}
         >
           {project.category}

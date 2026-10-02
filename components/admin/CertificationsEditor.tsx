@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
 import { saveSiteContent } from '@/lib/adminData';
+import { useSaveFeedback } from '@/hooks/useSaveFeedback';
 import { AddButton, Field, IconButton, SaveBar, SectionCard, TextArea, TextInput } from '@/components/admin/FormControls';
 import type { Certification } from '@/types/content';
 
@@ -17,21 +18,14 @@ const EMPTY: Certification = {
 export default function CertificationsEditor() {
   const { content } = useSiteData();
   const [items, setItems] = useState(content.certifications);
-  const [saving, setSaving] = useState(false);
-  const [savedAt, setSavedAt] = useState<number | null>(null);
+  const { saving, savedAt, error, save } = useSaveFeedback();
 
   function update(i: number, patch: Partial<Certification>) {
     setItems(items.map((x, idx) => (idx === i ? { ...x, ...patch } : x)));
   }
 
-  async function handleSave() {
-    setSaving(true);
-    try {
-      await saveSiteContent({ ...content, certifications: items });
-      setSavedAt(Date.now());
-    } finally {
-      setSaving(false);
-    }
+  function handleSave() {
+    void save(() => saveSiteContent({ ...content, certifications: items }));
   }
 
   return (
@@ -76,7 +70,7 @@ export default function CertificationsEditor() {
 
       <AddButton onClick={() => setItems([...items, { ...EMPTY }])} label="Tambah Sertifikasi" />
 
-      <SaveBar onSave={handleSave} saving={saving} savedAt={savedAt} />
+      <SaveBar onSave={handleSave} saving={saving} savedAt={savedAt} error={error} />
     </div>
   );
 }

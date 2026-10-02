@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
+import { NAV_SECTION_HREFS } from '@/data/content';
+import { useDialogFocus } from '@/hooks/useDialogFocus';
 
 interface FullScreenMenuProps {
   open: boolean;
@@ -17,9 +19,12 @@ const PREVIEWS: Record<string, string> = {
 
 export default function FullScreenMenu({ open, onClose }: FullScreenMenuProps) {
   const { content } = useSiteData();
-  const NAV_ITEMS = content.nav;
+  const NAV_ITEMS = content.nav.filter((item) => NAV_SECTION_HREFS.includes(item.href));
   const SITE = content.site;
+  const dialogRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState<string | null>(null);
+
+  useDialogFocus(open, dialogRef, onClose);
 
   useEffect(() => {
     if (!open) return;
@@ -27,30 +32,20 @@ export default function FullScreenMenu({ open, onClose }: FullScreenMenuProps) {
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown);
     return () => {
       document.body.style.overflow = originalOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [open, onClose]);
-
-  function handleNavigate(href: string) {
-    onClose();
-    setTimeout(() => {
-      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-    }, 350);
-  }
 
   return (
     <AnimatePresence>
       {open && (
         <motion.div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu navigasi"
+          tabIndex={-1}
           initial={{ clipPath: 'circle(0% at 95% 95%)' }}
           animate={{ clipPath: 'circle(150% at 95% 95%)' }}
           exit={{ clipPath: 'circle(0% at 95% 95%)' }}
@@ -77,16 +72,19 @@ export default function FullScreenMenu({ open, onClose }: FullScreenMenuProps) {
 
           <div className="flex-1 overflow-y-auto no-scrollbar px-6 md:px-14">
             {NAV_ITEMS.map((item, i) => (
-              <motion.div
+              <motion.a
                 key={item.href}
+                href={item.href}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 + i * 0.06, duration: 0.5 }}
                 onMouseEnter={() => setHovered(item.href)}
                 onMouseLeave={() => setHovered(null)}
-                onClick={() => handleNavigate(item.href)}
+                onFocus={() => setHovered(item.href)}
+                onBlur={() => setHovered(null)}
+                onClick={onClose}
                 data-cursor="Explore"
-                className="menu-row relative flex items-center justify-between py-5 md:py-7 cursor-pointer group"
+                className="menu-row relative flex items-center justify-between py-5 md:py-7 group"
               >
                 <span
                   className="font-mono-label text-xs w-10 shrink-0 transition-colors"
@@ -122,7 +120,7 @@ export default function FullScreenMenu({ open, onClose }: FullScreenMenuProps) {
                 >
                   ( {item.tag} )
                 </span>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
 import { saveSiteContent } from '@/lib/adminData';
+import { useSaveFeedback } from '@/hooks/useSaveFeedback';
 import { AddButton, Field, IconButton, SaveBar, SectionCard, TextArea, TextInput } from '@/components/admin/FormControls';
 import type { ExperienceItem } from '@/types/content';
 
@@ -18,21 +19,14 @@ const EMPTY: ExperienceItem = {
 export default function ExperienceEditor() {
   const { content } = useSiteData();
   const [items, setItems] = useState(content.experience);
-  const [saving, setSaving] = useState(false);
-  const [savedAt, setSavedAt] = useState<number | null>(null);
+  const { saving, savedAt, error, save } = useSaveFeedback();
 
   function update(i: number, patch: Partial<ExperienceItem>) {
     setItems(items.map((x, idx) => (idx === i ? { ...x, ...patch } : x)));
   }
 
-  async function handleSave() {
-    setSaving(true);
-    try {
-      await saveSiteContent({ ...content, experience: items });
-      setSavedAt(Date.now());
-    } finally {
-      setSaving(false);
-    }
+  function handleSave() {
+    void save(() => saveSiteContent({ ...content, experience: items }));
   }
 
   return (
@@ -86,7 +80,7 @@ export default function ExperienceEditor() {
 
       <AddButton onClick={() => setItems([...items, { ...EMPTY }])} label="Tambah Pengalaman" />
 
-      <SaveBar onSave={handleSave} saving={saving} savedAt={savedAt} />
+      <SaveBar onSave={handleSave} saving={saving} savedAt={savedAt} error={error} />
     </div>
   );
 }

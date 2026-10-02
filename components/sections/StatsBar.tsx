@@ -5,6 +5,8 @@ export default function StatsBar() {
   const { content } = useSiteData();
   const STATS = content.stats;
 
+  if (STATS.length === 0) return null;
+
   return (
     <div
       className="max-w-7xl mx-auto px-5 md:px-16 py-6 flex flex-wrap gap-x-10 gap-y-3 justify-between border-t border-b"
@@ -23,6 +25,11 @@ export default function StatsBar() {
           <span style={{ color: 'var(--accent)' }}>{stat.value}</span> · {stat.label}
         </motion.div>
       ))}
+      {STATS.length === 0 && (
+        <p role="status" className="text-sm" style={{ color: 'var(--text-dim)' }}>
+          Belum ada data ringkas.
+        </p>
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
 import { saveSiteContent } from '@/lib/adminData';
+import { useSaveFeedback } from '@/hooks/useSaveFeedback';
 import {
   AddButton,
   Field,
@@ -17,8 +18,7 @@ const EMPTY_ITEM: CapabilityItem = { name: 'Nama Skill', detail: 'Deskripsi sing
 export default function CapabilitiesEditor() {
   const { content } = useSiteData();
   const [categories, setCategories] = useState(content.capabilities);
-  const [saving, setSaving] = useState(false);
-  const [savedAt, setSavedAt] = useState<number | null>(null);
+  const { saving, savedAt, error, save } = useSaveFeedback();
 
   function updateCategory(ci: number, patch: Partial<CapabilityCategory>) {
     setCategories(categories.map((c, idx) => (idx === ci ? { ...c, ...patch } : c)));
@@ -44,14 +44,8 @@ export default function CapabilitiesEditor() {
     setCategories(categories.filter((_, idx) => idx !== ci));
   }
 
-  async function handleSave() {
-    setSaving(true);
-    try {
-      await saveSiteContent({ ...content, capabilities: categories });
-      setSavedAt(Date.now());
-    } finally {
-      setSaving(false);
-    }
+  function handleSave() {
+    void save(() => saveSiteContent({ ...content, capabilities: categories }));
   }
 
   return (
@@ -81,16 +75,18 @@ export default function CapabilitiesEditor() {
               {cat.items.map((item, ii) => (
                 <div key={ii} className="surface-card rounded-xl p-3 space-y-2">
                   <div className="flex items-center gap-2">
-                    <TextInput value={item.name} onChange={(e) => updateItem(ci, ii, { name: e.target.value })} placeholder="Nama" />
+                    <TextInput aria-label={`Nama keahlian ${ci + 1}.${ii + 1}`} value={item.name} onChange={(e) => updateItem(ci, ii, { name: e.target.value })} placeholder="Nama" />
                     <IconButton onClick={() => removeItem(ci, ii)} icon="delete" label="Hapus item" danger />
                   </div>
                   <TextInput
+                    aria-label={`Deskripsi keahlian ${ci + 1}.${ii + 1}`}
                     value={item.detail}
                     onChange={(e) => updateItem(ci, ii, { detail: e.target.value })}
                     placeholder="Detail singkat"
                   />
                   <div className="flex items-center gap-2">
                     <Select
+                      aria-label={`Jenis ikon keahlian ${ci + 1}.${ii + 1}`}
                       value={item.iconType}
                       onChange={(v) => updateItem(ci, ii, { iconType: v as 'material' | 'image' })}
                       options={[
@@ -99,6 +95,7 @@ export default function CapabilitiesEditor() {
                       ]}
                     />
                     <TextInput
+                      aria-label={`Ikon keahlian ${ci + 1}.${ii + 1}`}
                       value={item.icons.join(', ')}
                       onChange={(e) => updateItem(ci, ii, { icons: e.target.value.split(',').map((s) => s.trim()).filter(Boolean) })}
                       placeholder={item.iconType === 'material' ? 'nama material icon' : 'url1.svg, url2.svg'}
@@ -122,7 +119,7 @@ export default function CapabilitiesEditor() {
         label="Tambah Kategori"
       />
 
-      <SaveBar onSave={handleSave} saving={saving} savedAt={savedAt} />
+      <SaveBar onSave={handleSave} saving={saving} savedAt={savedAt} error={error} />
     </div>
   );
 }

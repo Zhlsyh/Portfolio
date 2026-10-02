@@ -67,6 +67,11 @@ export default function Experience({ onOpenProject }: ExperienceProps) {
             </div>
           </motion.div>
         ))}
+        {EXPERIENCE.length === 0 && (
+          <p role="status" className="border-t py-8 text-sm" style={{ borderColor: 'var(--border)', color: 'var(--text-dim)' }}>
+            Belum ada informasi pengalaman.
+          </p>
+        )}
       </div>
 
       {/* Organisasi & Kepanitiaan — kartu 3D flip, dipertahankan dari versi lama */}
@@ -83,8 +88,9 @@ export default function Experience({ onOpenProject }: ExperienceProps) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {ORG_CARDS.map((card, i) => (
+        {ORG_CARDS.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {ORG_CARDS.map((card, i) => (
             <motion.div
               key={card.id}
               initial={{ opacity: 0, y: 24 }}
@@ -102,8 +108,13 @@ export default function Experience({ onOpenProject }: ExperienceProps) {
                 onOpen={() => onOpenProject(card.id)}
               />
             </motion.div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <p role="status" className="text-sm" style={{ color: 'var(--text-dim)' }}>
+            Belum ada kegiatan organisasi.
+          </p>
+        )}
       </div>
     </section>
   );

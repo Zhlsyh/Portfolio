@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, setDoc, deleteDoc, writeBatch } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, setDoc, deleteDoc, writeBatch, type WriteBatch } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { DEFAULT_CONTENT } from '@/data/content';
 import { PROJECTS_DATA } from '@/data/projects';
@@ -36,12 +36,33 @@ export async function deleteProject(id: string) {
  */
 export async function seedFirestoreWithDefaults() {
   const database = requireDb();
-  const batch = writeBatch(database);
+  const existingProjects = await getDocs(collection(database, 'projects'));
+  const defaultProjectIds = new Set(Object.keys(PROJECTS_DATA));
+  let batch = writeBatch(database);
+  let writeCount = 0;
 
-  batch.set(doc(database, 'content', 'main'), DEFAULT_CONTENT as SiteContent);
-  Object.values(PROJECTS_DATA).forEach((project) => {
-    batch.set(doc(database, 'projects', project.id), project);
-  });
+  async function addWrite(write: (currentBatch: WriteBatch) => void) {
+    write(batch);
+    writeCount += 1;
+    if (writeCount === 500) {
+      await batch.commit();
+      batch = writeBatch(database);
+      writeCount = 0;
+    }
+  }
+
+  for (const project of existingProjects.docs) {
+    if (!defaultProjectIds.has(project.id)) {
+      await addWrite((currentBatch) => currentBatch.delete(project.ref));
+    }
+  }
+
+  for (const project of Object.values(PROJECTS_DATA)) {
+    await addWrite((currentBatch) => currentBatch.set(doc(database, 'projects', project.id), project));
+  }
+
+  await addWrite((currentBatch) => currentBatch.set(doc(database, 'content', 'main'), DEFAULT_CONTENT as SiteContent));
+  if (writeCount > 0) await batch.commit();
 
   await batch.commit();
 }
@@ -49,6 +70,9 @@ export async function seedFirestoreWithDefaults() {
 /** Cek apakah koleksi projects & dokumen content sudah pernah di-seed. */
 export async function checkFirestoreHasData(): Promise<boolean> {
   const database = requireDb();
-  const snap = await getDocs(collection(database, 'projects'));
-  return !snap.empty;
+  const [projects, content] = await Promise.all([
+    getDocs(collection(database, 'projects')),
+    getDoc(doc(database, 'content', 'main')),
+  ]);
+  return !projects.empty || content.exists();
 }

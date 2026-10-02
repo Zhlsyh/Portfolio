@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
 
 interface OrgFlipCardProps {
@@ -14,19 +14,34 @@ interface OrgFlipCardProps {
 export default function OrgFlipCard({ id, index, logo, role, period, responsibility, onOpen }: OrgFlipCardProps) {
   const { projects } = useSiteData();
   const [flipped, setFlipped] = useState(false);
+  const frontRef = useRef<HTMLButtonElement>(null);
+  const backRef = useRef<HTMLButtonElement>(null);
+  const previousFlipped = useRef(false);
   const project = projects[id];
   const photoCount = project?.gallery?.length ?? 0;
   const num = String(index + 1).padStart(2, '0');
+
+  useEffect(() => {
+    if (previousFlipped.current === flipped) return;
+    previousFlipped.current = flipped;
+    (flipped ? backRef.current : frontRef.current)?.focus();
+  }, [flipped]);
 
   return (
     <div
       className={`uno-flip-container group ${flipped ? 'is-flipped' : ''}`}
       data-cursor={flipped ? 'Kembali' : 'Flip'}
-      onClick={() => setFlipped((f) => !f)}
     >
       <div className="uno-card-flipper">
         {/* FRONT */}
-        <div className="uno-card-face">
+        <button
+          ref={frontRef}
+          type="button"
+          aria-label={`Lihat rincian ${role}`}
+          inert={flipped}
+          onClick={() => setFlipped(true)}
+          className="uno-card-face text-left"
+        >
           <div className="flex justify-between items-center mb-1">
             <div className="uno-corner text-xl">
               <span>{num}</span>
@@ -77,10 +92,10 @@ export default function OrgFlipCard({ id, index, logo, role, period, responsibil
               <span className="material-symbols-outlined text-lg">smart_toy</span>
             </div>
           </div>
-        </div>
+        </button>
 
         {/* BACK */}
-        <div className="uno-card-face uno-card-back-face">
+        <div className="uno-card-face uno-card-back-face" inert={!flipped}>
           <div className="flex justify-between items-center mb-1">
             <div className="uno-corner text-xl">
               <span>{num}</span>
@@ -144,7 +159,7 @@ export default function OrgFlipCard({ id, index, logo, role, period, responsibil
                   e.stopPropagation();
                   onOpen();
                 }}
-                className="flex-1 py-2 font-extrabold text-[11px] uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1"
+                className="flex-1 min-h-11 py-2 font-extrabold text-[11px] uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1"
                 style={{ background: 'var(--accent)', color: 'var(--accent-contrast)' }}
               >
                 <span className="material-symbols-outlined text-sm">zoom_in</span>
@@ -156,7 +171,7 @@ export default function OrgFlipCard({ id, index, logo, role, period, responsibil
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="px-2.5 py-2 font-extrabold text-[11px] rounded-xl flex items-center justify-center gap-1 transition-all"
+                  className="min-h-11 px-2.5 py-2 font-extrabold text-[11px] rounded-xl flex items-center justify-center gap-1 transition-all"
                   style={{ background: 'var(--surface-strong)', border: '1px solid var(--border-strong)' }}
                   title="Buka Drive Dokumentasi"
                 >
@@ -165,10 +180,17 @@ export default function OrgFlipCard({ id, index, logo, role, period, responsibil
                 </a>
               )}
             </div>
-            <div className="text-center text-[10px] font-bold flex items-center justify-center gap-1" style={{ color: 'var(--text-faint)' }}>
+            <button
+              ref={backRef}
+              type="button"
+              aria-label={`Kembali ke kartu ${role}`}
+              onClick={() => setFlipped(false)}
+              className="w-full min-h-11 text-center text-[10px] font-bold flex items-center justify-center gap-1"
+              style={{ color: 'var(--text-faint)' }}
+            >
               <span className="material-symbols-outlined text-xs">undo</span>
-              Klik kartu untuk putar balik
-            </div>
+              Kembali ke kartu
+            </button>
           </div>
 
           <div className="flex justify-end pt-1">

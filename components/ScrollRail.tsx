@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'motion/react';
 import { useSiteData } from '@/context/SiteDataContext';
+import { NAV_SECTION_HREFS } from '@/data/content';
 
 export default function ScrollRail() {
   const { content } = useSiteData();
-  const NAV_ITEMS = content.nav;
+  const NAV_ITEMS = content.nav.filter((item) => NAV_SECTION_HREFS.includes(item.href));
   const { scrollYProgress } = useScroll();
   const smooth = useSpring(scrollYProgress, { damping: 30, stiffness: 120 });
   const markerTop = useTransform(smooth, [0, 1], ['4%', '92%']);
@@ -15,19 +16,22 @@ export default function ScrollRail() {
     const isSmall = window.matchMedia('(max-width: 900px)').matches;
     setVisible(!isSmall);
 
-    const sections = NAV_ITEMS.map((n) => document.querySelector(n.href)).filter(
-      Boolean
-    ) as HTMLElement[];
+    const sections = NAV_ITEMS.map((item) => ({
+      item,
+      element: document.getElementById(item.href.slice(1)),
+    })).filter((section): section is { item: (typeof NAV_ITEMS)[number]; element: HTMLElement } =>
+      section.element instanceof HTMLElement
+    );
 
     function onScroll() {
-      let current = NAV_ITEMS[0];
-      for (let i = 0; i < sections.length; i++) {
-        const rect = sections[i].getBoundingClientRect();
+      let currentLabel = sections[0]?.item.tag ?? 'INDEX';
+      for (const section of sections) {
+        const rect = section.element.getBoundingClientRect();
         if (rect.top < window.innerHeight * 0.5) {
-          current = NAV_ITEMS[i];
+          currentLabel = section.item.tag;
         }
       }
-      setSectionLabel(current.tag);
+      setSectionLabel(currentLabel);
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });

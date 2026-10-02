@@ -15,7 +15,7 @@
   --border-strong: rgba(238, 244, 239, 0.28);
   --text: #eef4ef;
   --text-dim: rgba(238, 244, 239, 0.68);
-  --text-faint: rgba(238, 244, 239, 0.42);
+  --text-faint: rgba(238, 244, 239, 0.68);
   --accent: #3fe8ab;
   --accent-strong: #24d99a;
   --accent-contrast: #06140f;
@@ -33,9 +33,9 @@ html:not(.dark) {
   --border-strong: rgba(10, 30, 20, 0.24);
   --text: #0d1f18;
   --text-dim: rgba(13, 31, 24, 0.68);
-  --text-faint: rgba(13, 31, 24, 0.44);
-  --accent: #0f9d72;
-  --accent-strong: #0c7f5c;
+  --text-faint: rgba(13, 31, 24, 0.68);
+  --accent: #06704d;
+  --accent-strong: #055f42;
   --accent-contrast: #f2fbf6;
   --accent-soft: rgba(15, 157, 114, 0.1);
   --grain-opacity: 0.035;
@@ -293,6 +293,16 @@ section[id] {
   border-bottom: none;
 }
 
+.menu-row:focus-visible,
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 /* ==========================================================================
    MARQUEE
    ========================================================================== */
@@ -311,3 +321,13 @@ section[id] {
    ========================================================================== */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+}

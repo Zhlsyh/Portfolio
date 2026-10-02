@@ -6,11 +6,12 @@ export default function SeedPanel() {
   const [hasData, setHasData] = useState<boolean | null>(null);
   const [seeding, setSeeding] = useState(false);
   const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
 
   useEffect(() => {
     checkFirestoreHasData()
       .then(setHasData)
-      .catch(() => setHasData(false));
+      .catch(() => setError('Gagal memeriksa Firestore. Periksa koneksi dan rules sebelum melanjutkan.'));
   }, []);
 
   async function handleSeed(force: boolean) {
@@ -19,12 +20,13 @@ export default function SeedPanel() {
     }
     setSeeding(true);
     setMessage('');
+    setError('');
     try {
       await seedFirestoreWithDefaults();
       setMessage('Berhasil! Data bawaan sudah ditulis ke Firestore.');
       setHasData(true);
     } catch (e) {
-      setMessage(e instanceof Error ? e.message : 'Gagal seed data.');
+      setError(e instanceof Error ? e.message : 'Gagal menyimpan data.');
     } finally {
       setSeeding(false);
     }
@@ -37,7 +39,7 @@ export default function SeedPanel() {
     >
       {hasData === null ? (
         <p className="text-xs" style={{ color: 'var(--text-faint)' }}>
-          Memeriksa status Firestore...
+          {error ? <span role="alert">{error}</span> : 'Memeriksa status Firestore...'}
         </p>
       ) : hasData ? (
         <div className="space-y-3">
@@ -76,6 +78,11 @@ export default function SeedPanel() {
       {message && (
         <p className="text-xs font-bold mt-3" style={{ color: 'var(--accent)' }}>
           {message}
+        </p>
+      )}
+      {error && hasData !== null && (
+        <p role="alert" className="text-xs font-bold mt-3" style={{ color: '#f87171' }}>
+          {error}
         </p>
       )}
     </SectionCard>

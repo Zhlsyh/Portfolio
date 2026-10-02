@@ -10,6 +10,7 @@ interface SiteDataValue {
   projects: ProjectsMap;
   loading: boolean;
   isLive: boolean;
+  error: string | null;
 }
 
 const SiteDataContext = createContext<SiteDataValue>({
@@ -17,12 +18,14 @@ const SiteDataContext = createContext<SiteDataValue>({
   projects: PROJECTS_DATA,
   loading: false,
   isLive: false,
+  error: null,
 });
 
 export function SiteDataProvider({ children }: { children: ReactNode }) {
   const [content, setContent] = useState<SiteContent>(DEFAULT_CONTENT as SiteContent);
   const [projects, setProjects] = useState<ProjectsMap>(PROJECTS_DATA);
   const [loading, setLoading] = useState<boolean>(isFirebaseConfigured);
+  const [loadErrors, setLoadErrors] = useState({ content: false, projects: false });
 
   useEffect(() => {
     if (!db) {
@@ -39,6 +42,7 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
     const unsubContent = onSnapshot(
       doc(db, 'content', 'main'),
       (snap) => {
+        setLoadErrors((current) => ({ ...current, content: false }));
         if (snap.exists()) {
           setContent(snap.data() as SiteContent);
         }
@@ -46,6 +50,7 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
         maybeStopLoading();
       },
       () => {
+        setLoadErrors((current) => ({ ...current, content: true }));
         contentLoaded = true;
         maybeStopLoading();
       }
@@ -54,6 +59,7 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
     const unsubProjects = onSnapshot(
       collection(db, 'projects'),
       (snap) => {
+        setLoadErrors((current) => ({ ...current, projects: false }));
         if (!snap.empty) {
           const map: ProjectsMap = {};
           snap.forEach((d) => {
@@ -65,6 +71,7 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
         maybeStopLoading();
       },
       () => {
+        setLoadErrors((current) => ({ ...current, projects: true }));
         projectsLoaded = true;
         maybeStopLoading();
       }
@@ -77,7 +84,15 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <SiteDataContext.Provider value={{ content, projects, loading, isLive: isFirebaseConfigured }}>
+    <SiteDataContext.Provider
+      value={{
+        content,
+        projects,
+        loading,
+        isLive: isFirebaseConfigured,
+        error: loadErrors.content || loadErrors.projects ? 'Firebase gagal memuat sebagian data. Konten lokal tetap ditampilkan.' : null,
+      }}
+    >
       {children}
     </SiteDataContext.Provider>
   );

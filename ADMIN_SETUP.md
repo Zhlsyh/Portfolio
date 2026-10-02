@@ -31,27 +31,9 @@ halaman `/admin` akan menampilkan pesan "Firebase Belum Dikonfigurasi".
 
 ## 4. Pasang Firestore Security Rules
 
-Di **Firestore Database > Rules**, ganti isinya dengan:
+Buka **Firestore Database > Rules**, salin isi `firestore.rules`, lalu klik **Publish**. Aturan memberi akses tulis hanya kepada akun admin dengan email `helmi2591@gmail.com`; pembacaan konten publik tetap diizinkan.
 
-```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    // Siapa saja boleh baca (supaya situs publik bisa menampilkan konten)
-    // Hanya admin yang login (akun yang kamu buat di langkah 3) yang boleh menulis.
-    match /content/{docId} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    match /projects/{docId} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-  }
-}
-```
-
-Klik **Publish**.
+Jika alamat akun admin berubah, perbarui email pada fungsi `isAdmin` di `firestore.rules` sebelum menerbitkan rules.
 
 ## 5. Ambil Config & Isi Environment Variable
 

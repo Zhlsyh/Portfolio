@@ -53,6 +53,11 @@ export default function Certifications() {
             </p>
           </motion.div>
         ))}
+        {CERTIFICATIONS.length === 0 && (
+          <p role="status" className="text-sm" style={{ color: 'var(--text-dim)' }}>
+            Belum ada sertifikasi yang ditampilkan.
+          </p>
+        )}
       </div>
     </section>
   );

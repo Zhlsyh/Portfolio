@@ -25,27 +25,20 @@ export default function Hero({ onOpenResume, isDark }: HeroProps) {
       <div className="relative max-w-7xl mx-auto w-full px-5 md:px-16 pt-32 pb-20">
         {/* Baris utama: teks kiri, foto kanan — susunan dipertahankan dari versi lama */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          <div className="lg:col-span-7 flex flex-col gap-6">
+          <div className="lg:col-span-7 min-w-0 flex flex-col gap-6">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
               className="flex flex-wrap items-center gap-3"
             >
-              <div
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono-label uppercase"
-                style={{ background: 'var(--accent-soft)', border: '1px solid var(--border-strong)', color: 'var(--accent)' }}
-              >
-                <span className="w-2 h-2 rounded-full bg-accent" />
-                Available for Work & IoT Projects
-              </div>
               <span className="font-mono-label text-xs uppercase" style={{ color: 'var(--text-faint)' }}>
                 {HERO.eyebrow}
               </span>
             </motion.div>
 
             <h1 className="font-display font-extrabold leading-[0.95] tracking-tight text-[13vw] sm:text-[8vw] lg:text-[4.6vw]">
-              {['Zulhelmi', 'Syahtiar.'].map((word, i) => (
+              {[HERO.title1, HERO.title2].map((word, i) => (
                 <span key={word} className="block overflow-hidden">
                   <motion.span
                     className="block"
@@ -108,7 +101,7 @@ export default function Hero({ onOpenResume, isDark }: HeroProps) {
           </div>
 
           {/* Frame foto kanan dengan badge & kutipan mengambang — dipertahankan dari versi lama */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+          <div className="lg:col-span-5 min-w-0 flex justify-center lg:justify-end">
             <motion.div
               style={{
                 rotateZ,
@@ -119,7 +112,7 @@ export default function Hero({ onOpenResume, isDark }: HeroProps) {
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-sm aspect-square"
+              className="relative w-full max-w-[calc(100vw-3.5rem)] min-w-0 aspect-square sm:max-w-sm"
             >
               <div
                 className="relative w-full h-full rounded-3xl overflow-hidden border shadow-2xl group"
@@ -136,7 +129,7 @@ export default function Hero({ onOpenResume, isDark }: HeroProps) {
 
 
               <div
-                className="absolute -bottom-8 -left-6 md:-left-8 max-w-[260px] rounded-2xl px-5 py-4 shadow-2xl backdrop-blur-md"
+                className="absolute -bottom-8 -left-6 md:-left-8 max-w-[260px] rounded-2xl px-5 py-4 shadow-2xl"
                 style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-strong)' }}
               >
                 <p className="text-xs md:text-sm italic font-medium">

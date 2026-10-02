@@ -53,30 +53,32 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
 
         <div className="space-y-4">
           <div>
-            <label className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--text-faint)' }}>
+            <label htmlFor="admin-email" className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--text-faint)' }}>
               Email
             </label>
             <input
+              id="admin-email"
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full mt-1.5 bg-transparent border rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-accent transition-colors"
+              className="w-full min-h-11 mt-1.5 bg-transparent border rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-accent transition-colors"
               style={{ borderColor: 'var(--border-strong)' }}
               placeholder="admin@email.com"
               autoComplete="username"
             />
           </div>
           <div>
-            <label className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--text-faint)' }}>
+            <label htmlFor="admin-password" className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--text-faint)' }}>
               Password
             </label>
             <input
+              id="admin-password"
               type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full mt-1.5 bg-transparent border rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-accent transition-colors"
+              className="w-full min-h-11 mt-1.5 bg-transparent border rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-accent transition-colors"
               style={{ borderColor: 'var(--border-strong)' }}
               placeholder="••••••••"
               autoComplete="current-password"
@@ -85,7 +87,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
         </div>
 
         {error && (
-          <p className="mt-4 text-xs font-bold" style={{ color: '#f87171' }}>
+          <p role="alert" className="mt-4 text-xs font-bold" style={{ color: '#f87171' }}>
             {error}
           </p>
         )}

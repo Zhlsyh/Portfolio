@@ -16,12 +16,14 @@ export const NAV_ITEMS = [
   { index: '06', label: 'Kontak', tag: 'SAY HELLO', href: '#contact' },
 ];
 
+export const NAV_SECTION_HREFS = NAV_ITEMS.map((item) => item.href);
+
 export const HERO = {
-  eyebrow: 'Fresh Graduate \u2014 D3 Elektronika Industri PNJ',
+  eyebrow: 'D3 Elektronika Industri, PNJ',
   title1: 'Zulhelmi',
   title2: 'Syahtiar.',
   description:
-    'Fresh graduate D3 Elektronika Industri dari Politeknik Negeri Jakarta, dengan pengalaman magang pada sistem proteksi tenaga listrik di PT PLN. Memiliki minat kuat di bidang Internet of Things (IoT), mikrokontroler, pemrograman, dan sistem kontrol. Terbiasa mengerjakan proyek berbasis mikrokontroler dan pengembangan sistem otomasi sederhana. Bersemangat untuk terus belajar, berinovasi, dan menerapkan teknologi terbaru dalam dunia industri.',
+    'Fresh graduate D3 Elektronika Industri dari Politeknik Negeri Jakarta dengan pengalaman magang pada sistem proteksi tenaga listrik di PT PLN. Memiliki minat kuat di bidang Internet of Things (IoT), mikrokontroler, pemrograman, dan sistem kontrol. Terbiasa mengerjakan proyek berbasis mikrokontroler dan pengembangan sistem otomasi sederhana. Bersemangat untuk terus belajar, berinovasi, dan menerapkan teknologi terbaru dalam dunia industri.',
   quote: 'Do what you wanna do',
   badges: [
     { icon: 'developer_board', label: 'Hardware & IoT', value: 'ESP32 & Arduino' },
@@ -31,12 +33,7 @@ export const HERO = {
   ],
 };
 
-export const STATS = [
-  { value: 'IPK 3.55', label: 'D3 Elektronika Industri PNJ' },
-  { value: 'TOEIC 620', label: 'English Working Proficiency' },
-  { value: '12+ Proyek', label: 'Engineering & Kreatif' },
-  { value: 'Sejak 2023', label: 'Aktif Berkarya' },
-];
+export const STATS = [];
 
 export const EXPERIENCE = [
   {

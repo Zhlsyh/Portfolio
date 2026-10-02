@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
+import { NAV_SECTION_HREFS } from '@/data/content';
 
 interface TopNavProps {
   onOpenMenu: () => void;
@@ -11,21 +12,24 @@ interface TopNavProps {
 
 export default function TopNav({ onOpenMenu, onOpenResume, isDark, onToggleTheme }: TopNavProps) {
   const { content } = useSiteData();
-  const NAV_ITEMS = content.nav;
+  const NAV_ITEMS = content.nav.filter((item) => NAV_SECTION_HREFS.includes(item.href));
   const SITE = content.site;
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState('#home');
 
   useEffect(() => {
-    const sections = NAV_ITEMS.map((n) => document.querySelector(n.href)).filter(Boolean) as HTMLElement[];
+    const sections = NAV_ITEMS.map((item) => ({
+      href: item.href,
+      element: document.getElementById(item.href.slice(1)),
+    })).filter((item): item is { href: string; element: HTMLElement } => item.element instanceof HTMLElement);
 
     function onScroll() {
       setScrolled(window.scrollY > 12);
-      let current = NAV_ITEMS[0].href;
-      for (let i = 0; i < sections.length; i++) {
-        const rect = sections[i].getBoundingClientRect();
+      let current = sections[0]?.href ?? '#home';
+      for (const section of sections) {
+        const rect = section.element.getBoundingClientRect();
         if (rect.top < window.innerHeight * 0.4) {
-          current = NAV_ITEMS[i].href;
+          current = section.href;
         }
       }
       setActive(current);
@@ -33,10 +37,10 @@ export default function TopNav({ onOpenMenu, onOpenResume, isDark, onToggleTheme
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
-  }, [NAV_ITEMS]);
+  }, [content.nav]);
 
   function handleNav(href: string) {
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: 'smooth' });
   }
 
   return (
@@ -56,7 +60,7 @@ export default function TopNav({ onOpenMenu, onOpenResume, isDark, onToggleTheme
           type="button"
           data-cursor="Home"
           onClick={() => handleNav('#home')}
-          className="font-display font-extrabold text-lg md:text-xl tracking-tight transition-opacity hover:opacity-80 flex items-center gap-2"
+          className="min-h-11 min-w-11 font-display font-extrabold text-lg md:text-xl tracking-tight transition-opacity hover:opacity-80 flex items-center gap-2"
         >
           <span
             className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-mono-label"
@@ -96,7 +100,7 @@ export default function TopNav({ onOpenMenu, onOpenResume, isDark, onToggleTheme
             data-cursor="Tema"
             aria-label="Ganti tema"
             onClick={onToggleTheme}
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-all"
+            className="w-11 h-11 rounded-full flex items-center justify-center transition-all"
             style={{ border: '1px solid var(--border-strong)', background: 'var(--surface)' }}
           >
             <span className="material-symbols-outlined text-[19px]" style={{ color: 'var(--accent)' }}>
@@ -118,7 +122,7 @@ export default function TopNav({ onOpenMenu, onOpenResume, isDark, onToggleTheme
             data-cursor="Menu"
             aria-label="Buka menu"
             onClick={onOpenMenu}
-            className="lg:hidden w-10 h-10 rounded-full flex items-center justify-center"
+            className="lg:hidden w-11 h-11 rounded-full flex items-center justify-center"
             style={{ border: '1px solid var(--border-strong)', background: 'var(--surface)' }}
           >
             <span className="material-symbols-outlined text-[20px]">menu</span>

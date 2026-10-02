@@ -33,7 +33,7 @@ interface AdminShellProps {
 
 export default function AdminShell({ onLogout, userEmail }: AdminShellProps) {
   const [tab, setTab] = useState<TabKey>('hero');
-  const { isLive, loading } = useSiteData();
+  const { isLive, loading, error } = useSiteData();
 
   return (
     <div className="min-h-screen flex" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
@@ -107,6 +107,11 @@ export default function AdminShell({ onLogout, userEmail }: AdminShellProps) {
 
       {/* Content */}
       <main className="flex-1 p-5 md:p-10 pb-24 md:pb-10 max-w-4xl">
+        {error && (
+          <p role="alert" className="mb-5 text-sm font-bold" style={{ color: '#f87171' }}>
+            {error} Periksa koneksi sebelum menyimpan perubahan.
+          </p>
+        )}
         {loading ? (
           <p className="text-sm" style={{ color: 'var(--text-faint)' }}>
             Memuat data...

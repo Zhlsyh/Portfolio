@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
+import { useDialogFocus } from '@/hooks/useDialogFocus';
 
 interface ProjectModalProps {
   projectId: string | null;
@@ -10,7 +11,12 @@ interface ProjectModalProps {
 export default function ProjectModal({ projectId, onClose }: ProjectModalProps) {
   const { projects } = useSiteData();
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const lightboxRef = useRef<HTMLDivElement>(null);
   const project = projectId ? projects[projectId] : null;
+
+  useDialogFocus(Boolean(project) && !lightbox, dialogRef, onClose);
+  useDialogFocus(Boolean(lightbox), lightboxRef, () => setLightbox(null));
 
   useEffect(() => {
     if (!project) return;
@@ -18,27 +24,22 @@ export default function ProjectModal({ projectId, onClose }: ProjectModalProps) 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') {
-        if (lightbox) {
-          setLightbox(null);
-        } else {
-          onClose();
-        }
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown);
     return () => {
       document.body.style.overflow = originalOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [project, lightbox, onClose]);
+  }, [project]);
 
   return (
     <AnimatePresence>
       {project && (
         <motion.div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="project-dialog-title"
+          aria-hidden={lightbox ? true : undefined}
+          inert={lightbox ? true : undefined}
+          tabIndex={-1}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -56,14 +57,25 @@ export default function ProjectModal({ projectId, onClose }: ProjectModalProps) 
             style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-strong)' }}
           >
             <div className="aspect-[16/9] relative">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+              {project.image && !project.image.includes('images.unsplash.com') ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+              ) : (
+                <div
+                  role="img"
+                  aria-label="Foto proyek belum tersedia"
+                  className="w-full h-full flex items-center justify-center text-center p-4"
+                  style={{ background: 'var(--surface-strong)', color: 'var(--text-dim)' }}
+                >
+                  Foto proyek belum tersedia
+                </div>
+              )}
               <button
                 type="button"
                 data-cursor="Tutup"
                 onClick={onClose}
                 aria-label="Tutup"
-                className="absolute top-4 right-4 w-11 h-11 rounded-full flex items-center justify-center backdrop-blur-md hover:scale-105 transition-transform"
+                className="absolute top-4 right-4 w-11 h-11 rounded-full flex items-center justify-center hover:scale-105 transition-transform"
                 style={{ background: 'rgba(0,0,0,0.5)', color: '#fff' }}
               >
                 <span className="material-symbols-outlined">close</span>
@@ -77,7 +89,7 @@ export default function ProjectModal({ projectId, onClose }: ProjectModalProps) 
             </div>
 
             <div className="p-6 md:p-9">
-              <h2 className="font-display font-extrabold text-2xl md:text-4xl">{project.title}</h2>
+              <h2 id="project-dialog-title" className="font-display font-extrabold text-2xl md:text-4xl">{project.title}</h2>
 
               <div className="flex flex-wrap gap-2 mt-4">
                 {project.tags.map((tag) => (
@@ -149,6 +161,11 @@ export default function ProjectModal({ projectId, onClose }: ProjectModalProps) 
 
       {lightbox && (
         <motion.div
+          ref={lightboxRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Tampilan gambar ${project?.title ?? 'proyek'}`}
+          tabIndex={-1}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -156,8 +173,17 @@ export default function ProjectModal({ projectId, onClose }: ProjectModalProps) 
           style={{ background: 'rgba(0,0,0,0.9)' }}
           onClick={() => setLightbox(null)}
         >
+          <button
+            type="button"
+            aria-label="Tutup gambar"
+            onClick={() => setLightbox(null)}
+            className="absolute top-4 right-4 w-11 h-11 rounded-full flex items-center justify-center"
+            style={{ background: 'rgba(0,0,0,0.55)', color: '#fff' }}
+          >
+            <span className="material-symbols-outlined">close</span>
+          </button>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={lightbox} alt="" className="max-w-full max-h-full rounded-lg object-contain" />
+          <img src={lightbox} alt={`${project?.title ?? 'Proyek'}, tampilan diperbesar`} className="max-w-full max-h-full rounded-lg object-contain" />
         </motion.div>
       )}
     </AnimatePresence>

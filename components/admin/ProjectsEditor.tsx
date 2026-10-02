@@ -80,20 +80,24 @@ export default function ProjectsEditor() {
         </div>
         <div className="space-y-1.5 max-h-[60vh] overflow-y-auto no-scrollbar">
           {ids.map((id) => (
-            <button
+            <div
               key={id}
-              type="button"
-              data-cursor="Pilih"
-              onClick={() => selectProject(id)}
-              className="w-full text-left px-3 py-2 rounded-lg text-xs flex items-center justify-between gap-2 transition-colors"
+              className="w-full flex items-center gap-2 rounded-lg transition-colors"
               style={{
                 background: selectedId === id ? 'var(--accent-soft)' : 'transparent',
                 color: selectedId === id ? 'var(--accent)' : 'var(--text-dim)',
               }}
             >
-              <span className="truncate font-bold">{projects[id].title}</span>
-              <IconButton onClick={() => handleDelete(id)} icon="delete" label="Hapus" danger />
-            </button>
+              <button
+                type="button"
+                data-cursor="Pilih"
+                onClick={() => selectProject(id)}
+                className="min-w-0 flex-1 text-left px-3 py-2.5 text-xs"
+              >
+                <span className="truncate font-bold">{projects[id].title}</span>
+              </button>
+              <IconButton onClick={() => handleDelete(id)} icon="delete" label={`Hapus ${projects[id].title}`} danger />
+            </div>
           ))}
         </div>
         <AddButton onClick={startNew} label="Proyek Baru" />
@@ -151,6 +155,7 @@ export default function ProjectsEditor() {
                 {draft.specs.map((spec, i) => (
                   <div key={i} className="flex items-center gap-2">
                     <TextInput
+                      aria-label={`Label spesifikasi ${i + 1}`}
                       value={spec.label}
                       onChange={(e) =>
                         setDraft({ ...draft, specs: draft.specs.map((s, idx) => (idx === i ? { ...s, label: e.target.value } : s)) })
@@ -158,6 +163,7 @@ export default function ProjectsEditor() {
                       placeholder="Label"
                     />
                     <TextInput
+                      aria-label={`Nilai spesifikasi ${i + 1}`}
                       value={spec.value}
                       onChange={(e) =>
                         setDraft({ ...draft, specs: draft.specs.map((s, idx) => (idx === i ? { ...s, value: e.target.value } : s)) })
@@ -187,6 +193,7 @@ export default function ProjectsEditor() {
                   {(draft.gallery || []).map((item, i) => (
                     <div key={item.id || i} className="flex items-center gap-2">
                       <TextInput
+                        aria-label={`URL foto galeri ${i + 1}`}
                         value={item.url}
                         onChange={(e) =>
                           setDraft({

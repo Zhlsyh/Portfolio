@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useSiteData } from '@/context/SiteDataContext';
 import { saveSiteContent } from '@/lib/adminData';
+import { useSaveFeedback } from '@/hooks/useSaveFeedback';
 import { AddButton, Field, IconButton, SaveBar, SectionCard, TextArea, TextInput } from '@/components/admin/FormControls';
 import type { HeroBadge } from '@/types/content';
 
 export default function HeroEditor() {
   const { content } = useSiteData();
   const [hero, setHero] = useState(content.hero);
-  const [saving, setSaving] = useState(false);
-  const [savedAt, setSavedAt] = useState<number | null>(null);
+  const { saving, savedAt, error, save } = useSaveFeedback();
 
   function updateBadge(i: number, patch: Partial<HeroBadge>) {
     setHero((h) => ({ ...h, badges: h.badges.map((b, idx) => (idx === i ? { ...b, ...patch } : b)) }));
@@ -22,14 +22,8 @@ export default function HeroEditor() {
     setHero((h) => ({ ...h, badges: h.badges.filter((_, idx) => idx !== i) }));
   }
 
-  async function handleSave() {
-    setSaving(true);
-    try {
-      await saveSiteContent({ ...content, hero });
-      setSavedAt(Date.now());
-    } finally {
-      setSaving(false);
-    }
+  function handleSave() {
+    void save(() => saveSiteContent({ ...content, hero }));
   }
 
   return (
@@ -61,13 +55,14 @@ export default function HeroEditor() {
           {hero.badges.map((badge, i) => (
             <div key={i} className="flex items-center gap-2 surface-card rounded-xl p-3">
               <TextInput
+                aria-label={`Ikon badge ${i + 1}`}
                 value={badge.icon}
                 onChange={(e) => updateBadge(i, { icon: e.target.value })}
                 placeholder="material icon"
                 className="w-32 shrink-0"
               />
-              <TextInput value={badge.label} onChange={(e) => updateBadge(i, { label: e.target.value })} placeholder="Label" />
-              <TextInput value={badge.value} onChange={(e) => updateBadge(i, { value: e.target.value })} placeholder="Value" />
+              <TextInput aria-label={`Label badge ${i + 1}`} value={badge.label} onChange={(e) => updateBadge(i, { label: e.target.value })} placeholder="Label" />
+              <TextInput aria-label={`Nilai badge ${i + 1}`} value={badge.value} onChange={(e) => updateBadge(i, { value: e.target.value })} placeholder="Value" />
               <IconButton onClick={() => removeBadge(i)} icon="delete" label="Hapus badge" danger />
             </div>
           ))}
@@ -75,7 +70,7 @@ export default function HeroEditor() {
         </div>
       </SectionCard>
 
-      <SaveBar onSave={handleSave} saving={saving} savedAt={savedAt} />
+      <SaveBar onSave={handleSave} saving={saving} savedAt={savedAt} error={error} />
     </div>
   );
 }

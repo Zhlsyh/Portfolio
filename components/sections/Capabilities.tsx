@@ -76,6 +76,11 @@ export default function Capabilities() {
             </div>
           </motion.div>
         ))}
+        {CAPABILITIES.length === 0 && (
+          <p role="status" className="border-t py-8 text-sm" style={{ borderColor: 'var(--border)', color: 'var(--text-dim)' }}>
+            Belum ada data kapabilitas.
+          </p>
+        )}
       </div>
     </section>
   );

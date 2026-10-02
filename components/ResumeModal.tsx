@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { useDialogFocus } from '@/hooks/useDialogFocus';
 
 interface ResumeModalProps {
   open: boolean;
@@ -9,38 +10,34 @@ interface ResumeModalProps {
 const CV_OPTIONS = [
   {
     label: 'Bahasa Indonesia',
-    file: '/CV_Zulhelmi_Syahtiar_ID.pdf',
+    file: '/CV_Zulhelmi_Syahtiar_Umum_ID.pdf',
     desc: 'Versi standar untuk lamaran kerja dalam negeri',
   },
   {
     label: 'English Version',
-    file: '/CV_Zulhelmi_Syahtiar_EN.pdf',
+    file: '/CV_Zulhelmi_Syahtiar_General_EN.pdf',
     desc: 'Standard version for international applications',
   },
   {
     label: 'Creative Layout',
-    file: '/CV_Zulhelmi_Syahtiar_Creative.pdf',
+    file: '/CV_Zulhelmi_Syahtiar_Creative_EN.pdf',
     desc: 'Layout visual untuk portofolio kreatif',
   },
 ];
 
 export default function ResumeModal({ open, onClose }: ResumeModalProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  useDialogFocus(open, dialogRef, onClose);
+
   useEffect(() => {
     if (!open) return;
 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown);
     return () => {
       document.body.style.overflow = originalOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [open, onClose]);
 
@@ -48,6 +45,11 @@ export default function ResumeModal({ open, onClose }: ResumeModalProps) {
     <AnimatePresence>
       {open && (
         <motion.div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="resume-dialog-title"
+          tabIndex={-1}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -64,7 +66,7 @@ export default function ResumeModal({ open, onClose }: ResumeModalProps) {
             style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-strong)' }}
           >
             <div className="flex items-center justify-between">
-              <h3 className="font-display font-extrabold text-2xl">Unduh CV</h3>
+              <h3 id="resume-dialog-title" className="font-display font-extrabold text-2xl">Unduh CV</h3>
               <button
                 type="button"
                 data-cursor="Tutup"
