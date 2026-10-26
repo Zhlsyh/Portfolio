@@ -6,14 +6,12 @@ import Sections from '@/components/Sections';
 import ProjectModal, { type Project } from '@/components/ProjectModal';
 import StaticDiorama from '@/components/StaticDiorama';
 import SkyBackdrop from '@/components/SkyBackdrop';
-import IntroOverlay from '@/components/IntroOverlay';
 import { useSectionProgress } from '@/hooks/useSectionProgress';
 
 const SceneCanvas = dynamic(() => import('@/components/scene/SceneCanvas'), { ssr: false });
 
 type Mode = 'pending' | '3d' | 'static';
 type Theme = 'light' | 'dark';
-type IntroPhase = 'greeting' | 'parting' | 'done';
 
 function hasWebGL() {
   try {
@@ -36,20 +34,12 @@ export default function Home() {
   const [ready, setReady] = useState(false);
   const [project, setProject] = useState<Project | null>(null);
   const [theme, setTheme] = useState<Theme>('light');
-  const [introPhase, setIntroPhase] = useState<IntroPhase>('greeting');
 
   useSectionProgress(
     SECTIONS.map((s) => s.id),
     progress,
     setActive,
   );
-
-  const handleSkipIntro = useCallback(() => {
-    setIntroPhase('done');
-    if (typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('skip-intro'));
-    }
-  }, []);
 
   useEffect(() => {
     // Tema sudah dipasang oleh skrip di <head>; sinkronkan ke state React.
@@ -69,43 +59,10 @@ export default function Home() {
       (nav.deviceMemory && nav.deviceMemory <= 2) ||
       nav.connection?.saveData;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!webgl || stored === 'off') {
-      setMode('static');
-      setReady(true);
-    } else if (stored === 'on') {
-      setMode('3d');
-    } else {
-      const useStatic = Boolean(reduce || weak);
-      setMode(useStatic ? 'static' : '3d');
-      if (useStatic) setReady(true);
-    }
-
-    if (reduce || (typeof window !== 'undefined' && window.scrollY > 40)) {
-      setIntroPhase('done');
-    }
+    if (!webgl || stored === 'off') setMode('static');
+    else if (stored === 'on') setMode('3d');
+    else setMode(reduce || weak ? 'static' : '3d');
   }, []);
-
-  // Sinkronisasi otomatis alur animasi intro: greeting -> parting (buka awan & kamera meluncur) -> done
-  useEffect(() => {
-    if (introPhase === 'greeting' && ready) {
-      const timerParting = setTimeout(() => {
-        setIntroPhase('parting');
-        if (typeof window !== 'undefined') {
-          window.dispatchEvent(new CustomEvent('start-camera-flyin'));
-        }
-      }, 2200);
-
-      return () => clearTimeout(timerParting);
-    }
-
-    if (introPhase === 'parting') {
-      const timerDone = setTimeout(() => {
-        setIntroPhase('done');
-      }, 1300);
-
-      return () => clearTimeout(timerDone);
-    }
-  }, [introPhase, ready]);
 
   const go = useCallback((id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -160,9 +117,6 @@ export default function Home() {
         <SkyBackdrop />
       </div>
 
-      {/* Overlay awan sapaan pembuka */}
-      <IntroOverlay phase={introPhase} onSkip={handleSkipIntro} dark={dark} />
-
       <Nav
         active={active}
         onGo={go}
@@ -171,7 +125,6 @@ export default function Home() {
         onToggle={toggle}
         dark={dark}
         onToggleTheme={toggleTheme}
-        introActive={introPhase === 'greeting'}
       />
 
       {/* Panggung 3D: menempel di atas pada mobile, memenuhi layar di belakang konten pada desktop */}
@@ -199,12 +152,7 @@ export default function Home() {
         </span>
       </div>
 
-      <Sections
-        onOpen={setProject}
-        onGo={go}
-        alternate={showScene}
-        introActive={introPhase === 'greeting'}
-      />
+      <Sections onOpen={setProject} onGo={go} alternate={showScene} />
       <ProjectModal project={project} onClose={() => setProject(null)} />
       <noscript>
         <p style={{ padding: '1rem' }}>Situs ini memerlukan JavaScript untuk menampilkan diorama 3D dan daftar proyek.</p>

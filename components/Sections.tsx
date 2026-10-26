@@ -109,10 +109,9 @@ interface Props {
   onGo: (id: string) => void;
   /** true: panel berganti sisi mengikuti kamera 3D. false: semua panel di kiri (mode ilustrasi statis). */
   alternate: boolean;
-  introActive?: boolean;
 }
 
-export default function Sections({ onOpen, onGo, alternate, introActive = false }: Props) {
+export default function Sections({ onOpen, onGo, alternate }: Props) {
   const { eng, photo, design } = useMemo(() => {
     const all = Object.values(PROJECTS_DATA).filter((p) => !p.id.startsWith('org-'));
     const rank = (id: string) => {
@@ -138,13 +137,7 @@ export default function Sections({ onOpen, onGo, alternate, introActive = false 
       <main className="pointer-events-none relative z-10 pb-24 md:pb-0">
         {/* HOME */}
         <Section id="home">
-          <div
-            className={`glass space-y-5 p-5 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] md:p-8 ${
-              introActive
-                ? '-translate-x-32 opacity-0 pointer-events-none'
-                : 'translate-x-0 opacity-100'
-            }`}
-          >
+          <div className="glass space-y-5 p-5 md:p-8">
             <span className="eyebrow bg-sun">Fresh graduate · D3 Elektronika Industri PNJ</span>
             <h1 className="text-[2.6rem] sm:text-6xl md:text-[4.2rem]">
               Zulhelmi

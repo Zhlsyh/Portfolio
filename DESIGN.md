@@ -92,9 +92,9 @@ Teknologi: React Three Fiber, drei, Three.js. Semua objek low-poly buatan kode (
 
 - **Platform:** tiga lapis kotak membulat, empat ubin pastel (mint, kuning, biru, pink), bayangan lembut di bawah agar terasa melayang.
 - **Objek hidup:** motor DC berputar, LED berkedip, drone mengambang dan rotornya berputar, layar monitor desain bergonta-ganti karya tiap 2,6 detik, kamera sesekali flash, polaroid bergoyang, bendera kotak surat melambai, amplop melayang, piringan hitam berputar dengan not musik, maskot mengikuti kamera.
-- **Maskot:** kapsul kuning berhelm safety oranye (nod ke dunia industri). Ukuran tetap konsisten di semua section, berkedip berkala, memiliki balon sapaan "Halo! 👋" saat mendarat atau diklik, dan selalu mengikuti orientasi kamera.
+- **Maskot:** kapsul kuning berhelm safety oranye (nod ke dunia industri). Ukuran tetap konsisten di semua section dan selalu mengikuti orientasi kamera.
 - **Cahaya:** satu cahaya arah dengan bayangan lembut, cahaya langit (hemisphere), cahaya isi, dan lima lampu titik untuk malam.
-- **Kamera & Intro Awan:** Posisi tiap section di `KEYS` (posisi, target, geser horizontal). Halaman dibuka dengan intro sinematik: kamera berada jauh di atas awan, layar tertutup awan atmosferik dengan sapaan "Halo! Saya Zulhelmi Syahtiar" dan tombol "Lewati Intro". Saat fase pembukaan, awan terbelah ke samping, kamera meluncur (*fly-in*) turun ke posisi Home, bersamaan dengan Navbar dan kartu Hero yang meluncur masuk secara perlahan dari pinggir. Di desktop kamera sedikit bergeser mengikuti pointer. Di layar sempit kamera mundur sampai +50% supaya satu pojok tetap utuh.
+- **Kamera:** posisi tiap section di `KEYS` (posisi, target, geser horizontal). Berpindah halus (`damp`) mengikuti progres scroll. Di desktop kamera sedikit bergeser mengikuti pointer. Di layar sempit kamera mundur sampai +50% supaya satu pojok tetap utuh.
 - **Geser horizontal desktop (`ox`):** objek digeser ±16 sampai 20% lebar layar menjauhi panel, sehingga panel dan objek tidak saling menutupi.
 
 ## 7. Responsif
