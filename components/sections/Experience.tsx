@@ -13,60 +13,81 @@ export default function Experience({ onOpenProject }: ExperienceProps) {
   const ORG_CARDS = content.orgCards;
 
   return (
-    <section id="experience" className="max-w-7xl mx-auto px-5 md:px-16 py-24 md:py-32">
-      <SectionHeader index="02" title="Rekam Jejak" subtitle="Pengalaman kerja & magang industri" />
+    <section id="experience" className="max-w-5xl mx-auto px-5 sm:px-8 md:px-10 py-20 md:py-28">
+      <SectionHeader index="02" title="Rekam Jejak" subtitle="Pengalaman kerja dan magang industri" />
 
       <div className="mt-14">
-        {EXPERIENCE.map((exp, i) => (
-          <motion.div
-            key={exp.title}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: i * 0.05 }}
-            className="border-t py-10 md:py-12 grid grid-cols-1 md:grid-cols-12 gap-6"
-            style={{ borderColor: 'var(--border)' }}
-          >
-            <div className="md:col-span-3">
-              <span className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--accent)' }}>
-                {exp.tag}
-              </span>
-              <p className="font-mono-label text-[11px] mt-2" style={{ color: 'var(--text-faint)' }}>
-                {exp.period}
-              </p>
-              <p className="font-mono-label text-[11px]" style={{ color: 'var(--text-faint)' }}>
-                {exp.location}
-              </p>
-            </div>
-
-            <div className="md:col-span-9">
-              <h3 className="font-display font-extrabold text-2xl md:text-4xl">{exp.title}</h3>
-              <p className="mt-1.5 font-bold" style={{ color: 'var(--text-dim)' }}>
-                {exp.org}
-              </p>
-              <ul className="mt-5 space-y-2.5">
-                {exp.points.map((point) => (
-                  <li key={point} className="flex gap-3 text-sm md:text-[15px]" style={{ color: 'var(--text-dim)' }}>
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'var(--accent)' }} />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-6">
-                <p className="font-mono-label text-[10px] uppercase mb-2" style={{ color: 'var(--text-faint)' }}>
-                  {exp.skillsLabel}
+        <div className="space-y-12">
+          {EXPERIENCE.map((exp, i) => (
+            <motion.div
+              key={exp.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, delay: i * 0.05 }}
+              className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start group"
+            >
+              {/* Left column: Tag, Period, Location */}
+              <div className="md:col-span-3 md:text-right md:pr-2">
+                <span
+                  className="font-mono-label text-[10px] uppercase px-2.5 py-1 rounded border inline-block"
+                  style={{ color: 'var(--accent)', borderColor: 'var(--border)', background: 'var(--surface)' }}
+                >
+                  {exp.tag}
+                </span>
+                <p className="font-display font-bold text-lg md:text-xl mt-2" style={{ color: 'var(--text)' }}>
+                  {exp.period}
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {exp.skills.map((skill) => (
-                    <span key={skill} className="surface-card px-3 py-1.5 rounded-lg text-xs font-bold">
-                      {skill}
-                    </span>
-                  ))}
+                <p className="font-mono-label text-xs mt-1" style={{ color: 'var(--text-faint)' }}>
+                  {exp.location}
+                </p>
+              </div>
+
+              {/* Right column with timeline spine and experience card */}
+              <div className="md:col-span-9 relative pl-7 sm:pl-9 border-l-2 border-dashed border-[var(--border-strong)]">
+                {/* Timeline node dot centered on the spine */}
+                <div
+                  className="absolute -left-[9px] top-3 w-4 h-4 rounded-full border-2 flex items-center justify-center transition-transform group-hover:scale-125 z-10"
+                  style={{
+                    borderColor: 'var(--accent)',
+                    background: 'var(--bg)',
+                    boxShadow: '0 0 0 4px var(--accent-soft)',
+                  }}
+                >
+                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }} />
+                </div>
+
+                <div className="surface-card rounded-2xl p-6 md:p-8 hover:border-accent transition-colors">
+                  <h3 className="font-display font-bold text-2xl md:text-3xl">{exp.title}</h3>
+                  <p className="mt-1 font-bold text-sm md:text-base" style={{ color: 'var(--accent)' }}>
+                    {exp.org}
+                  </p>
+                  <ul className="mt-5 space-y-2.5">
+                    {exp.points.map((point) => (
+                      <li key={point} className="flex gap-3 text-sm md:text-[15px]" style={{ color: 'var(--text-dim)' }}>
+                        <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'var(--accent)' }} />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-6 pt-5 border-t" style={{ borderColor: 'var(--border)' }}>
+                    <p className="font-mono-label text-[10px] uppercase mb-2.5" style={{ color: 'var(--text-faint)' }}>
+                      {exp.skillsLabel}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {exp.skills.map((skill) => (
+                        <span key={skill} className="chip-pill">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
+
         {EXPERIENCE.length === 0 && (
           <p role="status" className="border-t py-8 text-sm" style={{ borderColor: 'var(--border)', color: 'var(--text-dim)' }}>
             Belum ada informasi pengalaman.
@@ -78,12 +99,14 @@ export default function Experience({ onOpenProject }: ExperienceProps) {
       <div className="mt-16 border-t pt-10" style={{ borderColor: 'var(--border)' }}>
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
-            <h3 className="font-display font-extrabold text-2xl md:text-3xl flex items-center gap-3">
+            <div className="flex items-center gap-3">
               <span className="material-symbols-outlined text-accent text-3xl">style</span>
-              Organisasi & Kepanitiaan
-            </h3>
+              <h3 className="font-display font-extrabold text-2xl md:text-3xl">
+                Organisasi & Kepanitiaan
+              </h3>
+            </div>
             <p className="text-xs md:text-sm mt-1.5" style={{ color: 'var(--text-faint)' }}>
-              Klik kartu untuk animasi 3D flip & lihat dokumentasi kegiatan.
+              Klik kartu untuk animasi 3D flip bolak-balik & lihat dokumentasi kegiatan.
             </p>
           </div>
         </div>

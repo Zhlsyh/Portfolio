@@ -38,9 +38,33 @@ export default function Home() {
         <title>Zulhelmi Syahtiar | Electrical Engineer & IoT Developer Portfolio</title>
         <meta
           name="description"
-          content="Portofolio Zulhelmi Syahtiar, lulusan D3 Elektronika Industri PNJ dengan pengalaman di proteksi listrik, IoT, sistem kontrol, fotografi, dan desain grafis."
+          content="Portofolio resmi Zulhelmi Syahtiar — Lulusan D3 Elektronika Industri PNJ dengan pengalaman di proteksi listrik PLN, sistem kendali, IoT, fotografi, dan media visual."
         />
+        <meta name="keywords" content="Zulhelmi Syahtiar, Electrical Engineer, IoT Developer, Elektronika Industri, PNJ, Proteksi Listrik, Trainer Motor DC, Three.js Digital Twin" />
+        <meta name="author" content="Zulhelmi Syahtiar" />
         <meta name="theme-color" content="#0b1712" />
+
+        {/* Open Graph / LinkedIn / WhatsApp */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Zulhelmi Syahtiar | Electrical Engineer & IoT Developer Portfolio" />
+        <meta
+          property="og:description"
+          content="Portofolio resmi Zulhelmi Syahtiar — Lulusan D3 Elektronika Industri PNJ dengan pengalaman di proteksi listrik PLN, sistem kendali, IoT, fotografi, dan media visual."
+        />
+        <meta property="og:image" content="/profile.jpeg" />
+        <meta property="og:locale" content="id_ID" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Zulhelmi Syahtiar | Electrical Engineer & IoT Developer Portfolio" />
+        <meta
+          name="twitter:description"
+          content="Portofolio resmi Zulhelmi Syahtiar — Lulusan D3 Elektronika Industri PNJ dengan pengalaman di proteksi listrik PLN, sistem kendali, IoT, fotografi, dan media visual."
+        />
+        <meta name="twitter:image" content="/profile.jpeg" />
+
+        {/* Favicon */}
+        <link rel="icon" type="image/jpeg" href="/profile.jpeg" />
       </Head>
 
       <GrainOverlay />

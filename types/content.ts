@@ -23,8 +23,12 @@ export interface HeroContent {
   eyebrow: string;
   title1: string;
   title2: string;
+  headlineRole?: string;
+  taglineSub?: string;
   description: string;
   quote: string;
+  gpa?: string;
+  location?: string;
   badges: HeroBadge[];
 }
 
@@ -46,7 +50,7 @@ export interface ExperienceItem {
 
 export interface CapabilityItem {
   name: string;
-  detail: string;
+  detail?: string;
   iconType: 'material' | 'image';
   icons: string[];
 }

@@ -22,13 +22,16 @@ const SiteDataContext = createContext<SiteDataValue>({
 });
 
 export function SiteDataProvider({ children }: { children: ReactNode }) {
+  // Gunakan data kode lokal (data/content.ts & data/projects.ts) sebagai prioritas utama
+  // agar perubahan kurasi CV langsung tampil dan tidak tertimpa data usang dari Firestore.
+  const preferLocal = process.env.NEXT_PUBLIC_PREFER_LOCAL_DATA !== 'false';
   const [content, setContent] = useState<SiteContent>(DEFAULT_CONTENT as SiteContent);
   const [projects, setProjects] = useState<ProjectsMap>(PROJECTS_DATA);
-  const [loading, setLoading] = useState<boolean>(isFirebaseConfigured);
+  const [loading, setLoading] = useState<boolean>(!preferLocal && isFirebaseConfigured);
   const [loadErrors, setLoadErrors] = useState({ content: false, projects: false });
 
   useEffect(() => {
-    if (!db) {
+    if (!db || preferLocal) {
       setLoading(false);
       return;
     }

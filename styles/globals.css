@@ -20,6 +20,7 @@
   --accent-strong: #24d99a;
   --accent-contrast: #06140f;
   --accent-soft: rgba(63, 232, 171, 0.12);
+  --error: #f87171;
   --grain-opacity: 0.05;
 }
 
@@ -38,6 +39,7 @@ html:not(.dark) {
   --accent-strong: #055f42;
   --accent-contrast: #f2fbf6;
   --accent-soft: rgba(15, 157, 114, 0.1);
+  --error: #b42318; /* merah gelap, 5.8:1 di atas permukaan terang (tem #f87171 hanya lulus di mode gelap) */
   --grain-opacity: 0.035;
 }
 
@@ -52,7 +54,9 @@ html:not(.dark) {
 
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background: var(--bg);
+    background-color: var(--bg);
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 28px 28px;
     color: var(--text);
   }
 
@@ -64,6 +68,10 @@ html:not(.dark) {
   .font-mono-label {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     letter-spacing: 0.08em;
+  }
+
+  .font-handwritten {
+    font-family: 'Caveat', cursive, 'Plus Jakarta Sans', sans-serif;
   }
 
   p {
@@ -162,7 +170,7 @@ section[id] {
 
 .uno-card-title {
   color: var(--text);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .uno-card-subtitle {
@@ -304,6 +312,31 @@ select:focus-visible {
 }
 
 /* ==========================================================================
+   SIGNAL RULER - motif identitas kedua: garis berulang tiga-tik pendek
+   (tick) dengan satu tick aksen lebih tinggi di ujung kiri, melanjutkan
+   bahasa "sinyal & instrumen industri" yang sudah dipakai label mono.
+   ========================================================================== */
+.signal-ruler {
+  position: relative;
+  height: 9px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--border) 0 1px,
+    transparent 1px 10px
+  );
+}
+
+.signal-ruler::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -5px;
+  width: 1px;
+  height: 14px;
+  background: var(--accent);
+}
+
+/* ==========================================================================
    MARQUEE
    ========================================================================== */
 @keyframes marquee-scroll {
@@ -330,4 +363,86 @@ select:focus-visible {
   .marquee-track {
     animation: none;
   }
+}
+
+/* ==========================================================================
+   SKETCHBOOK & NOTEBOOK STYLING (Inspired by Septian's playful engineering journal)
+   ========================================================================== */
+.wavy-link {
+  text-decoration: underline wavy var(--accent);
+  text-underline-offset: 4px;
+  transition: all 0.2s ease;
+}
+.wavy-link:hover {
+  text-decoration-style: solid;
+}
+
+.timeline-spine {
+  position: relative;
+}
+.timeline-spine::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  bottom: 0;
+  left: 7px;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border-strong) 0,
+    var(--border-strong) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  border: 2px solid var(--accent);
+  background: var(--bg);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+  flex-shrink: 0;
+}
+
+.sketch-tape {
+  position: relative;
+}
+.sketch-tape::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 70px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+  pointer-events: none;
+}
+html:not(.dark) .sketch-tape::before {
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+}
+
+.chip-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+.chip-pill:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  transform: translateY(-1px);
 }

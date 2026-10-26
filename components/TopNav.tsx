@@ -55,23 +55,17 @@ export default function TopNav({ onOpenMenu, onOpenResume, isDark, onToggleTheme
         boxShadow: scrolled ? '0 12px 30px rgba(0,0,0,0.18)' : 'none',
       }}
     >
-      <div className="flex justify-between items-center px-5 md:px-16 py-4 max-w-7xl mx-auto h-20">
+      <div className="flex justify-between items-center px-5 sm:px-8 md:px-10 py-4 max-w-5xl mx-auto h-20">
         <button
           type="button"
           data-cursor="Home"
           onClick={() => handleNav('#home')}
-          className="min-h-11 min-w-11 font-display font-extrabold text-lg md:text-xl tracking-tight transition-opacity hover:opacity-80 flex items-center gap-2"
+          className="min-h-11 font-display font-extrabold text-lg md:text-xl tracking-tight transition-opacity hover:opacity-80 flex items-center"
         >
-          <span
-            className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-mono-label"
-            style={{ background: 'var(--accent)', color: 'var(--accent-contrast)' }}
-          >
-            {SITE.initials}
-          </span>
-          <span className="hidden sm:inline">{SITE.name.toUpperCase()}</span>
+          <span>{SITE.name.toUpperCase()}</span>
         </button>
 
-        <div className="hidden lg:flex items-center gap-1 font-bold text-xs uppercase tracking-wider">
+        <div className="hidden lg:flex items-center gap-1 font-bold text-xs">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.href}
@@ -112,7 +106,7 @@ export default function TopNav({ onOpenMenu, onOpenResume, isDark, onToggleTheme
             type="button"
             data-cursor="Unduh"
             onClick={onOpenResume}
-            className="hidden sm:flex btn-accent px-5 py-2.5 rounded-full font-extrabold text-xs uppercase tracking-wide"
+            className="hidden sm:flex btn-accent px-5 py-2.5 rounded-xl font-bold text-xs"
           >
             Resume
           </button>

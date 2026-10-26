@@ -51,24 +51,17 @@ export default function ScrollRail() {
       </span>
 
       <div className="relative flex-1 w-px my-6" style={{ background: 'var(--border)' }}>
-        {Array.from({ length: 5 }).map((_, i) => (
-          <span
-            key={i}
-            className="absolute -left-6 font-mono-label text-[9px]"
-            style={{ top: `${i * 24}%`, color: 'var(--text-faint)' }}
-          >
-            {String(i * 900).padStart(4, '0')}
-          </span>
-        ))}
-
         <motion.div
           className="absolute -left-[3px] w-[7px] h-[7px] rotate-45"
           style={{ top: markerTop, background: 'var(--accent)' }}
         />
       </div>
 
+      {/* Penanda bagian aktif: nomor index asli dari navigasi, bukan angka dekoratif */}
       <span className="font-mono-label text-[10px]" style={{ color: 'var(--text-faint)' }}>
-        {'</>'}
+        {String((NAV_ITEMS.findIndex((item) => item.tag === sectionLabel) + 1 || 1)).padStart(2, '0')}
+        <span style={{ color: 'var(--accent)' }}>/</span>
+        {String(NAV_ITEMS.length).padStart(2, '0')}
       </span>
     </div>
   );

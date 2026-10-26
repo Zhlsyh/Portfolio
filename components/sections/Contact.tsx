@@ -80,53 +80,71 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="relative pt-24 md:pt-32">
-      {/* Marquee besar */}
-      <div className="overflow-hidden py-4 border-y" style={{ borderColor: 'var(--border)' }}>
-        <div className="marquee-track">
-          {[0, 1].map((rep) => (
-            <div key={rep} className="flex shrink-0">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <span
-                  key={i}
-                  className="font-display font-extrabold text-4xl md:text-7xl px-6 whitespace-nowrap"
-                  style={{ color: i % 2 === 0 ? 'var(--text)' : 'var(--accent)' }}
-                >
-                  {i % 2 === 0 ? 'TERBUKA UNTUK PELUANG KERJA & PROYEK •' : 'MARI BERKOLABORASI •'}
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
+    <section id="contact" className="relative pt-16 md:pt-24">
+      {/* Banner statis kolaborasi (diam, tidak berjalan) */}
+      <div className="py-8 md:py-10 border-y text-center overflow-hidden" style={{ borderColor: 'var(--border)', background: 'var(--bg-soft)' }}>
+        <p className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl tracking-tight" style={{ color: 'var(--text)' }}>
+          MARI BERKOLABORASI
+        </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-5 md:px-16 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-14">
+      <div className="max-w-5xl mx-auto px-5 sm:px-8 md:px-10 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div>
-          <span className="font-mono-label text-xs uppercase" style={{ color: 'var(--accent)' }}>
-            06 // KONTAK & KOLABORASI
-          </span>
-          <h2 className="font-display font-extrabold text-4xl md:text-6xl mt-4">Hubungi Saya</h2>
+          <div className="flex items-center gap-3 mb-2">
+            <span className="font-mono-label text-xs uppercase px-2.5 py-0.5 rounded border border-[var(--border)]" style={{ color: 'var(--accent)', background: 'var(--surface)' }}>
+              06 // KONTAK
+            </span>
+            <span className="h-px flex-1 max-w-[60px]" style={{ background: 'var(--border-strong)' }} />
+          </div>
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl mt-2 tracking-tight">Hubungi Saya</h2>
           <p className="mt-4 max-w-md text-sm md:text-base" style={{ color: 'var(--text-dim)' }}>
             {CONTACT.description}
           </p>
 
           <div className="mt-8 space-y-3">
-            <button
-              type="button"
-              data-cursor="Salin"
-              onClick={copyEmail}
-              className="w-full text-left surface-card rounded-xl p-4 flex items-center justify-between gap-3 hover:border-accent transition-colors"
-            >
-              <div>
-                <p className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--text-faint)' }}>
-                  Email Direct
-                </p>
-                <p className="font-bold mt-0.5">{CONTACT.email}</p>
+            <div className="surface-card rounded-2xl p-5 hover:border-accent transition-colors">
+              <p className="font-mono-label text-[10px] uppercase mb-1" style={{ color: 'var(--text-faint)' }}>
+                Email Langsung
+              </p>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <a
+                  href={`mailto:${CONTACT.email}`}
+                  className="font-display font-bold text-lg sm:text-xl hover:text-accent wavy-link break-all transition-colors"
+                >
+                  {CONTACT.email}
+                </a>
+                <button
+                  type="button"
+                  data-cursor="Salin"
+                  onClick={copyEmail}
+                  className="px-3 py-1.5 rounded-lg border text-xs font-mono-label flex items-center gap-1.5 hover:bg-[var(--surface-strong)] transition-colors"
+                  style={{ borderColor: 'var(--border)' }}
+                >
+                  <span className="material-symbols-outlined text-sm text-accent">
+                    {copied ? 'check' : 'content_copy'}
+                  </span>
+                  {copied ? 'Tersalin!' : 'Salin'}
+                </button>
               </div>
-              <span className="material-symbols-outlined text-accent">
-                {copied ? 'check' : 'content_copy'}
-              </span>
-            </button>
+            </div>
+
+            <a
+              href="https://wa.me/6283894469333"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="surface-card rounded-xl p-4 flex items-center justify-between gap-3 hover:border-accent transition-colors block"
+            >
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-accent">call</span>
+                <div>
+                  <p className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--text-faint)' }}>
+                    Telepon & WhatsApp
+                  </p>
+                  <p className="font-bold mt-0.5">0838-9446-9333</p>
+                </div>
+              </div>
+              <span className="material-symbols-outlined text-sm text-accent">arrow_outward</span>
+            </a>
 
             <div className="surface-card rounded-xl p-4 flex items-center gap-3">
               <span className="material-symbols-outlined text-accent">location_on</span>
@@ -144,21 +162,29 @@ export default function Contact() {
               Media Sosial
             </p>
             <div className="grid grid-cols-2 gap-2.5">
-              {CONTACT.socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-cursor={social.label}
-                  className="surface-card rounded-xl px-4 py-3 flex flex-col hover:border-accent transition-colors"
-                >
-                  <span className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--text-faint)' }}>
-                    {social.label}
-                  </span>
-                  <span className="font-bold text-sm mt-0.5">{social.handle}</span>
-                </a>
-              ))}
+              {CONTACT.socials
+                .filter(
+                  (s) =>
+                    !s.label?.toLowerCase().includes('mediocreation') &&
+                    !s.label?.toLowerCase().includes('personal brand') &&
+                    !s.handle?.toLowerCase().includes('mediocreation') &&
+                    !s.href?.toLowerCase().includes('mediocreation')
+                )
+                .map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cursor={social.label}
+                    className="surface-card rounded-xl px-4 py-3 flex flex-col hover:border-accent transition-colors"
+                  >
+                    <span className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--text-faint)' }}>
+                      {social.label}
+                    </span>
+                    <span className="font-bold text-sm mt-0.5">{social.handle}</span>
+                  </a>
+                ))}
               {CONTACT.socials.length === 0 && (
                 <p role="status" className="col-span-2 text-sm" style={{ color: 'var(--text-dim)' }}>
                   Tautan media sosial belum tersedia.
@@ -186,7 +212,7 @@ export default function Contact() {
               type="text"
               autoComplete="name"
               required
-              className="w-full mt-2 bg-transparent border rounded-lg px-4 py-3 outline-none focus:border-accent transition-colors"
+              className="w-full mt-2 bg-transparent border rounded-xl px-4 py-3 outline-none focus:border-accent focus-visible:ring-2 focus-visible:ring-accent transition-colors"
               style={{ borderColor: 'var(--border-strong)' }}
               placeholder="Nama lengkap Anda"
             />
@@ -201,7 +227,7 @@ export default function Contact() {
               type="email"
               autoComplete="email"
               required
-              className="w-full mt-2 bg-transparent border rounded-lg px-4 py-3 outline-none focus:border-accent transition-colors"
+              className="w-full mt-2 bg-transparent border rounded-xl px-4 py-3 outline-none focus:border-accent focus-visible:ring-2 focus-visible:ring-accent transition-colors"
               style={{ borderColor: 'var(--border-strong)' }}
               placeholder="email@contoh.com"
             />
@@ -215,7 +241,7 @@ export default function Contact() {
               name="message"
               required
               rows={4}
-              className="w-full mt-2 bg-transparent border rounded-lg px-4 py-3 outline-none focus:border-accent transition-colors resize-none"
+              className="w-full mt-2 bg-transparent border rounded-xl px-4 py-3 outline-none focus:border-accent focus-visible:ring-2 focus-visible:ring-accent transition-colors resize-none"
               style={{ borderColor: 'var(--border-strong)' }}
               placeholder="Tulis pesan Anda di sini..."
             />
@@ -225,7 +251,7 @@ export default function Contact() {
             type="submit"
             data-cursor="Kirim"
             disabled={status === 'sending'}
-            className="btn-accent w-full py-3.5 rounded-full font-extrabold text-sm uppercase tracking-wide disabled:opacity-60"
+            className="btn-accent w-full py-3.5 rounded-xl font-extrabold text-sm disabled:opacity-60 transition-transform hover:scale-[1.01] shadow-sm"
           >
             {status === 'sending' ? 'Mengirim...' : 'Kirim Pesan'}
           </button>
@@ -233,7 +259,7 @@ export default function Contact() {
           {feedback && (
             <p
               className="text-sm font-bold text-center"
-              style={{ color: status === 'success' ? 'var(--accent)' : '#f87171' }}
+              style={{ color: status === 'success' ? 'var(--accent)' : 'var(--error)' }}
             >
               {feedback}
             </p>
@@ -242,11 +268,18 @@ export default function Contact() {
       </div>
 
       <div
-        className="max-w-7xl mx-auto px-5 md:px-16 py-6 flex items-center justify-between border-t font-mono-label text-[10px] uppercase"
-        style={{ borderColor: 'var(--border)', color: 'var(--text-faint)' }}
+        className="max-w-5xl mx-auto px-5 sm:px-8 md:px-10 py-8 flex items-center justify-between gap-4 border-t"
+        style={{ borderColor: 'var(--border)' }}
       >
-        <span>© {new Date().getFullYear()} Zulhelmi Syahtiar</span>
-        <a href="#home" data-cursor="Naik" className="min-h-11 flex items-center gap-1.5 hover:text-accent transition-colors">
+        <span className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--text-faint)' }}>
+          © {new Date().getFullYear()} Zulhelmi Syahtiar
+        </span>
+        <a
+          href="#home"
+          data-cursor="Naik"
+          className="min-h-11 flex items-center gap-1.5 font-mono-label text-[10px] uppercase hover:text-accent transition-colors"
+          style={{ color: 'var(--text-faint)' }}
+        >
           Kembali ke Atas
           <span className="material-symbols-outlined text-sm">arrow_upward</span>
         </a>

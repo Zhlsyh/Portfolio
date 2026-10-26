@@ -61,7 +61,7 @@ export default function OrgFlipCard({ id, index, logo, role, period, responsibil
 
           <div className="space-y-2.5 pt-1">
             <div
-              className="flex items-center justify-between text-[11px] md:text-xs font-extrabold px-2.5 py-1.5 rounded-xl border whitespace-nowrap overflow-hidden"
+              className="flex items-center justify-between text-[11px] md:text-xs font-bold px-2.5 py-1.5 rounded-xl border whitespace-nowrap overflow-hidden"
               style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}
             >
               <span className="flex items-center gap-1" style={{ color: 'var(--text-faint)' }}>
@@ -102,7 +102,7 @@ export default function OrgFlipCard({ id, index, logo, role, period, responsibil
               <span className="material-symbols-outlined text-lg">collections</span>
             </div>
             <span
-              className="text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full"
+              className="text-[10px] font-bold uppercase tracking-wide px-2.5 py-0.5 rounded-full"
               style={{ background: 'var(--accent)', color: 'var(--accent-contrast)' }}
             >
               Details
@@ -111,7 +111,7 @@ export default function OrgFlipCard({ id, index, logo, role, period, responsibil
 
           <div className="space-y-2.5 my-auto py-1">
             <div className="p-2.5 rounded-xl space-y-1" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
-              <h4 className="text-xs font-extrabold flex items-center gap-1.5 border-b pb-1" style={{ borderColor: 'var(--border)' }}>
+              <h4 className="text-xs font-bold flex items-center gap-1.5 border-b pb-1" style={{ borderColor: 'var(--border)' }}>
                 <span className="material-symbols-outlined text-accent text-sm">badge</span>
                 Tugas & Responsibilitas
               </h4>
@@ -121,13 +121,13 @@ export default function OrgFlipCard({ id, index, logo, role, period, responsibil
             </div>
 
             <div className="p-2.5 rounded-xl space-y-1.5" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
-              <div className="flex items-center justify-between text-[11px] font-extrabold">
+              <div className="flex items-center justify-between text-[11px] font-bold">
                 <span className="flex items-center gap-1">
                   <span className="material-symbols-outlined text-accent text-sm">photo_library</span>
                   Dokumentasi
                 </span>
                 <span
-                  className="px-2 py-0.5 rounded-md font-extrabold"
+                  className="px-2 py-0.5 rounded-md font-bold"
                   style={{ background: 'var(--accent-soft)', color: 'var(--accent)', border: '1px solid var(--accent-soft)' }}
                 >
                   {photoCount} Foto
@@ -159,7 +159,7 @@ export default function OrgFlipCard({ id, index, logo, role, period, responsibil
                   e.stopPropagation();
                   onOpen();
                 }}
-                className="flex-1 min-h-11 py-2 font-extrabold text-[11px] uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1"
+                className="flex-1 min-h-11 py-2 font-bold text-[11px] rounded-xl transition-all flex items-center justify-center gap-1"
                 style={{ background: 'var(--accent)', color: 'var(--accent-contrast)' }}
               >
                 <span className="material-symbols-outlined text-sm">zoom_in</span>
@@ -171,7 +171,7 @@ export default function OrgFlipCard({ id, index, logo, role, period, responsibil
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="min-h-11 px-2.5 py-2 font-extrabold text-[11px] rounded-xl flex items-center justify-center gap-1 transition-all"
+                  className="min-h-11 px-2.5 py-2 font-bold text-[11px] rounded-xl flex items-center justify-center gap-1 transition-all"
                   style={{ background: 'var(--surface-strong)', border: '1px solid var(--border-strong)' }}
                   title="Buka Drive Dokumentasi"
                 >

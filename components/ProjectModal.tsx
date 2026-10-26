@@ -122,9 +122,9 @@ export default function ProjectModal({ projectId, onClose }: ProjectModalProps) 
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="Buka"
-                  className="btn-accent inline-flex items-center gap-2 mt-7 px-6 py-3 rounded-full font-extrabold text-sm uppercase tracking-wide"
+                  className="btn-accent inline-flex items-center gap-2 mt-7 px-6 py-3.5 rounded-xl font-extrabold text-sm shadow-md transition-transform hover:scale-[1.02]"
                 >
-                  Kunjungi Tautan
+                  Lihat Dokumentasi / Demo
                   <span className="material-symbols-outlined text-base">arrow_outward</span>
                 </a>
               )}

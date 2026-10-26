@@ -7,21 +7,36 @@ interface ResumeModalProps {
   onClose: () => void;
 }
 
-const CV_OPTIONS = [
+const CV_CATEGORIES = [
   {
-    label: 'Bahasa Indonesia',
-    file: '/CV_Zulhelmi_Syahtiar_Umum_ID.pdf',
-    desc: 'Versi standar untuk lamaran kerja dalam negeri',
+    icon: 'developer_board',
+    tag: 'Rekomendasi Teknik',
+    title: 'CV Rekayasa & IoT (Technical)',
+    desc: 'Spesialisasi sistem proteksi listrik gardu induk PLN, mikrokontroler ESP32/PLC, kendali PID/Fuzzy, dan IoT.',
+    files: {
+      id: '/CV_Zulhelmi_Syahtiar_Teknik_ID.pdf',
+      en: '/CV_Zulhelmi_Syahtiar_Technical_EN.pdf',
+    },
   },
   {
-    label: 'English Version',
-    file: '/CV_Zulhelmi_Syahtiar_General_EN.pdf',
-    desc: 'Standard version for international applications',
+    icon: 'photo_camera',
+    tag: 'Media & Desain',
+    title: 'CV Media Kreatif (Creative)',
+    desc: 'Fokus pada desain grafis, produksi konten media sosial, fotografi profesional, dan manajemen aset visual.',
+    files: {
+      id: '/CV_Zulhelmi_Syahtiar_Kreatif_ID.pdf',
+      en: '/CV_Zulhelmi_Syahtiar_Creative_EN.pdf',
+    },
   },
   {
-    label: 'Creative Layout',
-    file: '/CV_Zulhelmi_Syahtiar_Creative_EN.pdf',
-    desc: 'Layout visual untuk portofolio kreatif',
+    icon: 'description',
+    tag: 'Lengkap',
+    title: 'CV Umum (General Summary)',
+    desc: 'Ringkasan komprehensif seluruh rekam jejak akademik, kepanitiaan organisasi, dan kemampuan multidisiplin.',
+    files: {
+      id: '/CV_Zulhelmi_Syahtiar_Umum_ID.pdf',
+      en: '/CV_Zulhelmi_Syahtiar_General_EN.pdf',
+    },
   },
 ];
 
@@ -62,42 +77,103 @@ export default function ResumeModal({ open, onClose }: ResumeModalProps) {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
-            className="w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl p-7 md:p-9"
+            className="w-full sm:max-w-xl max-h-[90vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl p-6 sm:p-8"
             style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-strong)' }}
           >
-            <div className="flex items-center justify-between">
-              <h3 id="resume-dialog-title" className="font-display font-extrabold text-2xl">Unduh CV</h3>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h3 id="resume-dialog-title" className="font-display font-bold text-2xl tracking-tight">
+                  Pilih & Unduh CV
+                </h3>
+                <p className="text-xs sm:text-sm mt-1" style={{ color: 'var(--text-faint)' }}>
+                  Pilih kurasi CV yang sesuai dengan kebutuhan kualifikasi dan bahasa Anda.
+                </p>
+              </div>
               <button
                 type="button"
                 data-cursor="Tutup"
                 onClick={onClose}
                 aria-label="Tutup"
-                className="w-11 h-11 rounded-full flex items-center justify-center hover:bg-[var(--surface)] transition-colors"
+                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[var(--surface-strong)] transition-colors shrink-0"
               >
-                <span className="material-symbols-outlined">close</span>
+                <span className="material-symbols-outlined text-xl">close</span>
               </button>
             </div>
 
-            <div className="mt-6 space-y-3">
-              {CV_OPTIONS.map((opt, i) => (
-                <a
-                  key={opt.file}
-                  href={opt.file}
-                  download
-                  data-cursor="Unduh"
-                  className="surface-card rounded-xl p-4 flex items-center justify-between gap-4 hover:border-accent transition-colors"
+            <div className="mt-6 space-y-3.5">
+              {CV_CATEGORIES.map((cat) => (
+                <div
+                  key={cat.title}
+                  className="surface-card rounded-2xl p-4 sm:p-5 border transition-all duration-200 hover:border-accent"
+                  style={{ borderColor: 'var(--border)' }}
                 >
-                  <div>
-                    <p className="font-mono-label text-[10px] uppercase" style={{ color: 'var(--accent)' }}>
-                      {String(i + 1).padStart(2, '0')}
-                    </p>
-                    <p className="font-bold mt-0.5">{opt.label}</p>
-                    <p className="text-xs mt-0.5" style={{ color: 'var(--text-faint)' }}>
-                      {opt.desc}
-                    </p>
+                  <div className="flex items-start gap-3.5">
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                      style={{ background: 'var(--surface-strong)', border: '1px solid var(--border)' }}
+                    >
+                      <span className="material-symbols-outlined text-accent text-xl">{cat.icon}</span>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="font-mono-label text-[9px] uppercase px-2 py-0.5 rounded border"
+                          style={{
+                            color: 'var(--accent)',
+                            borderColor: 'var(--border-strong)',
+                            background: 'var(--surface)',
+                          }}
+                        >
+                          {cat.tag}
+                        </span>
+                      </div>
+                      <h4 className="font-display font-bold text-base mt-1" style={{ color: 'var(--text)' }}>
+                        {cat.title}
+                      </h4>
+                      <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--text-dim)' }}>
+                        {cat.desc}
+                      </p>
+                    </div>
                   </div>
-                  <span className="material-symbols-outlined text-accent">download</span>
-                </a>
+
+                  <div className="flex flex-wrap items-center gap-2 mt-4 pt-3.5 border-t" style={{ borderColor: 'var(--border)' }}>
+                    <span className="font-mono-label text-[10px] uppercase text-[var(--text-faint)] mr-1">
+                      Pilihan Berkas:
+                    </span>
+                    <a
+                      href={cat.files.id}
+                      download
+                      data-cursor="Unduh ID"
+                      className="px-3 py-1.5 rounded-lg border text-xs font-bold font-mono-label flex items-center gap-1.5 transition-colors hover:border-accent hover:bg-[var(--surface-strong)]"
+                      style={{ borderColor: 'var(--border-strong)', color: 'var(--text)' }}
+                    >
+                      <span className="material-symbols-outlined text-sm text-accent">download</span>
+                      Bahasa ID
+                    </a>
+                    <a
+                      href={cat.files.en}
+                      download
+                      data-cursor="Unduh EN"
+                      className="px-3 py-1.5 rounded-lg border text-xs font-bold font-mono-label flex items-center gap-1.5 transition-colors hover:border-accent hover:bg-[var(--surface-strong)]"
+                      style={{ borderColor: 'var(--border-strong)', color: 'var(--text)' }}
+                    >
+                      <span className="material-symbols-outlined text-sm text-accent">download</span>
+                      English EN
+                    </a>
+                    <a
+                      href={cat.files.id}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cursor="Lihat"
+                      title="Buka pratinjau dokumen di tab baru"
+                      className="ml-auto px-2.5 py-1.5 rounded-lg border text-xs font-mono-label flex items-center gap-1 transition-colors hover:text-accent hover:border-accent"
+                      style={{ borderColor: 'var(--border)', color: 'var(--text-faint)' }}
+                    >
+                      <span className="material-symbols-outlined text-sm">open_in_new</span>
+                      <span className="hidden sm:inline">Pratinjau</span>
+                    </a>
+                  </div>
+                </div>
               ))}
             </div>
           </motion.div>

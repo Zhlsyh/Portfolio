@@ -25,11 +25,6 @@ export default function StatsBar() {
           <span style={{ color: 'var(--accent)' }}>{stat.value}</span> · {stat.label}
         </motion.div>
       ))}
-      {STATS.length === 0 && (
-        <p role="status" className="text-sm" style={{ color: 'var(--text-dim)' }}>
-          Belum ada data ringkas.
-        </p>
-      )}
     </div>
   );
 }
