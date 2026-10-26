@@ -34,6 +34,8 @@ const _a = new THREE.Vector3();
 const _b = new THREE.Vector3();
 const _tgt = new THREE.Vector3();
 const _wantPos = new THREE.Vector3();
+const _introPos = new THREE.Vector3();
+const _introTgt = new THREE.Vector3();
 
 export default function CameraRig({
   progress,
@@ -49,13 +51,19 @@ export default function CameraRig({
     swayX: number;
     swayY: number;
     initialized: boolean;
+    introActive: boolean;
+    introProgress: number;
+    introDispatched: boolean;
   }>({
-    pos: new THREE.Vector3(...KEYS[0].pos),
-    tgt: new THREE.Vector3(...KEYS[0].tgt),
-    ox: KEYS[0].ox,
+    pos: new THREE.Vector3(22, 23, 24),
+    tgt: new THREE.Vector3(0, 0.2, 0),
+    ox: 0,
     swayX: 0,
     swayY: 0,
     initialized: false,
+    introActive: true,
+    introProgress: 0,
+    introDispatched: false,
   });
 
   useFrame((state, dt) => {
@@ -90,25 +98,82 @@ export default function CameraRig({
 
     const c = cur.current;
 
-    // Inisialisasi posisi awal secara mulus saat pertama kali dimuat
+    // Inisialisasi posisi awal saat pertama kali dimuat
     if (!c.initialized) {
-      c.pos.copy(_wantPos);
-      c.tgt.copy(_tgt);
-      c.ox = wantOx;
+      const reduceMotion =
+        typeof window !== 'undefined' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Jika user sudah di-scroll atau mengaktifkan prefers-reduced-motion, lewati fly-in
+      if (progress.current > 0.05 || reduceMotion) {
+        c.pos.copy(_wantPos);
+        c.tgt.copy(_tgt);
+        c.ox = wantOx;
+        c.introActive = false;
+        c.introProgress = 1;
+        c.introDispatched = true;
+      } else {
+        c.pos.set(22, 23, 24);
+        c.tgt.set(0, 0.2, 0);
+        c.ox = 0;
+        c.introActive = true;
+        c.introProgress = 0;
+        c.introDispatched = false;
+      }
       c.initialized = true;
     }
 
-    // Spring damping konstan yang halus dan natural
-    const lam = 3.6;
-    c.pos.x = THREE.MathUtils.damp(c.pos.x, _wantPos.x, lam, safeDt);
-    c.pos.y = THREE.MathUtils.damp(c.pos.y, _wantPos.y, lam, safeDt);
-    c.pos.z = THREE.MathUtils.damp(c.pos.z, _wantPos.z, lam, safeDt);
+    if (c.introActive) {
+      // Jika pengguna langsung scroll sebelum intro selesai, langsung alihkan ke kendali scroll
+      if (progress.current > 0.05) {
+        c.introActive = false;
+        c.introProgress = 1;
+      } else {
+        c.introProgress = Math.min(1, c.introProgress + safeDt / 2.0);
+        const p = ease(c.introProgress);
 
-    c.tgt.x = THREE.MathUtils.damp(c.tgt.x, _tgt.x, lam, safeDt);
-    c.tgt.y = THREE.MathUtils.damp(c.tgt.y, _tgt.y, lam, safeDt);
-    c.tgt.z = THREE.MathUtils.damp(c.tgt.z, _tgt.z, lam, safeDt);
+        _introPos.set(22, 23, 24).lerp(_wantPos, p);
+        _introTgt.set(0, 0.2, 0).lerp(_tgt, p);
+        const curWantOx = wantOx * p;
 
-    c.ox = THREE.MathUtils.damp(c.ox, wantOx, lam, safeDt);
+        const lam = 4.6;
+        c.pos.x = THREE.MathUtils.damp(c.pos.x, _introPos.x, lam, safeDt);
+        c.pos.y = THREE.MathUtils.damp(c.pos.y, _introPos.y, lam, safeDt);
+        c.pos.z = THREE.MathUtils.damp(c.pos.z, _introPos.z, lam, safeDt);
+
+        c.tgt.x = THREE.MathUtils.damp(c.tgt.x, _introTgt.x, lam, safeDt);
+        c.tgt.y = THREE.MathUtils.damp(c.tgt.y, _introTgt.y, lam, safeDt);
+        c.tgt.z = THREE.MathUtils.damp(c.tgt.z, _introTgt.z, lam, safeDt);
+
+        c.ox = THREE.MathUtils.damp(c.ox, curWantOx, lam, safeDt);
+
+        // Kirim event saat kamera hampir mendarat agar maskot menyambut tepat waktu
+        if (c.introProgress >= 0.85 && !c.introDispatched) {
+          c.introDispatched = true;
+          if (typeof window !== 'undefined') {
+            window.dispatchEvent(new CustomEvent('diorama-landed'));
+          }
+        }
+
+        if (c.introProgress >= 1) {
+          c.introActive = false;
+        }
+      }
+    }
+
+    if (!c.introActive) {
+      // Spring damping konstan yang halus dan natural
+      const lam = 3.6;
+      c.pos.x = THREE.MathUtils.damp(c.pos.x, _wantPos.x, lam, safeDt);
+      c.pos.y = THREE.MathUtils.damp(c.pos.y, _wantPos.y, lam, safeDt);
+      c.pos.z = THREE.MathUtils.damp(c.pos.z, _wantPos.z, lam, safeDt);
+
+      c.tgt.x = THREE.MathUtils.damp(c.tgt.x, _tgt.x, lam, safeDt);
+      c.tgt.y = THREE.MathUtils.damp(c.tgt.y, _tgt.y, lam, safeDt);
+      c.tgt.z = THREE.MathUtils.damp(c.tgt.z, _tgt.z, lam, safeDt);
+
+      c.ox = THREE.MathUtils.damp(c.ox, wantOx, lam, safeDt);
+    }
 
     // Damping parallax pointer agar gerakan mouse tidak patah atau mengagetkan
     const targetSwayX = desktop ? pointer.x * 0.22 : 0;

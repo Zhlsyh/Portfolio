@@ -1,4 +1,4 @@
-import { useRef, type MutableRefObject } from 'react';
+import { useRef, useEffect, type MutableRefObject } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Ball, Box, C, Cyl, DISPLAY_FONT, useCanvasTexture } from './shared';
@@ -8,9 +8,21 @@ export default function Center({ progress: _progress }: { progress?: MutableRefO
   const root = useRef<THREE.Group>(null!);
   const mascot = useRef<THREE.Group>(null!);
   const body = useRef<THREE.Group>(null!);
+  const eyes = useRef<THREE.Group>(null!);
+  const bubble = useRef<THREE.Group>(null!);
+  const bubbleTimer = useRef(0);
   const jump = useRef(0);
   const vinyl = useRef<THREE.Group>(null!);
   const notes = useRef<THREE.Group[]>([]);
+
+  useEffect(() => {
+    const handleLanded = () => {
+      jump.current = 1;
+      bubbleTimer.current = 3.0;
+    };
+    window.addEventListener('diorama-landed', handleLanded);
+    return () => window.removeEventListener('diorama-landed', handleLanded);
+  }, []);
 
   const sign = useCanvasTexture(512, 192, (ctx, w, h) => {
     ctx.fillStyle = C.paper;
@@ -26,6 +38,42 @@ export default function Center({ progress: _progress }: { progress?: MutableRefO
     ctx.fillStyle = C.orange;
     ctx.font = `700 34px ${DISPLAY_FONT}`;
     ctx.fillText('embedded × kreatif', w / 2, h / 2 + 52);
+  });
+
+  const bubbleTex = useCanvasTexture(320, 160, (ctx, w, h) => {
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    if (ctx.roundRect) {
+      ctx.roundRect(14, 12, w - 28, h - 48, 22);
+    } else {
+      ctx.rect(14, 12, w - 28, h - 48);
+    }
+    ctx.fill();
+    ctx.strokeStyle = C.ink;
+    ctx.lineWidth = 7;
+    ctx.stroke();
+
+    // Ekor balon percakapan
+    ctx.beginPath();
+    ctx.moveTo(w / 2 - 16, h - 48);
+    ctx.lineTo(w / 2, h - 14);
+    ctx.lineTo(w / 2 + 16, h - 48);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(w / 2 - 16, h - 48);
+    ctx.lineTo(w / 2, h - 14);
+    ctx.lineTo(w / 2 + 16, h - 48);
+    ctx.strokeStyle = C.ink;
+    ctx.lineWidth = 7;
+    ctx.stroke();
+
+    ctx.fillStyle = C.ink;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = `800 46px ${DISPLAY_FONT}`;
+    ctx.fillText('Halo! 👋', w / 2, (h - 48) / 2 + 10);
   });
 
   useFrame((state, dt) => {
@@ -50,6 +98,22 @@ export default function Center({ progress: _progress }: { progress?: MutableRefO
     body.current.position.y = bob + hop;
     const squash = 1 + Math.sin(t * 4.4) * 0.025;
     body.current.scale.set(1 / squash, squash, 1 / squash);
+
+    // Animasi kedip mata natural
+    const blinkCycle = t % 4.2;
+    const isBlinking = blinkCycle > 4.05;
+    if (eyes.current) {
+      eyes.current.scale.y = isBlinking ? 0.15 : 1;
+    }
+
+    // Animasi balon sapaan muncul dan memudar halus
+    if (bubble.current) {
+      bubbleTimer.current = Math.max(0, bubbleTimer.current - dt);
+      const targetScale = bubbleTimer.current > 0.3 ? 1 : bubbleTimer.current / 0.3;
+      const nextScale = THREE.MathUtils.damp(bubble.current.scale.x, targetScale, 10, dt);
+      bubble.current.scale.setScalar(nextScale);
+      bubble.current.visible = nextScale > 0.01;
+    }
   });
 
   return (
@@ -97,17 +161,41 @@ export default function Center({ progress: _progress }: { progress?: MutableRefO
       ))}
 
       {/* maskot */}
-      <group ref={mascot} position={[0, 0.12, 0.2]} onClick={(e) => { e.stopPropagation(); jump.current = 1; }}
-        onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = 'pointer'; }}
-        onPointerOut={() => { document.body.style.cursor = ''; }}>
+      {/* maskot */}
+      <group
+        ref={mascot}
+        position={[0, 0.12, 0.2]}
+        onClick={(e) => {
+          e.stopPropagation();
+          jump.current = 1;
+          bubbleTimer.current = 3.0;
+        }}
+        onPointerOver={(e) => {
+          e.stopPropagation();
+          document.body.style.cursor = 'pointer';
+        }}
+        onPointerOut={() => {
+          document.body.style.cursor = '';
+        }}
+      >
+        {/* Balon sapaan interaktif di atas helm */}
+        <group ref={bubble} position={[0, 1.55, 0]} scale={0} visible={false}>
+          <mesh>
+            <planeGeometry args={[1.2, 0.6]} />
+            <meshBasicMaterial map={bubbleTex} transparent toneMapped={false} />
+          </mesh>
+        </group>
+
         <group ref={body}>
           <mesh position={[0, 0.5, 0]} castShadow receiveShadow>
             <capsuleGeometry args={[0.38, 0.36, 8, 20]} />
             <meshStandardMaterial color={C.yellow} roughness={0.55} />
           </mesh>
-          {/* mata */}
-          <Ball r={0.065} pos={[-0.15, 0.68, 0.34]} color={C.ink} scale={[1, 1.3, 0.6]} cast={false} />
-          <Ball r={0.065} pos={[0.15, 0.68, 0.34]} color={C.ink} scale={[1, 1.3, 0.6]} cast={false} />
+          {/* mata dengan animasi kedip */}
+          <group ref={eyes} position={[0, 0.68, 0.34]}>
+            <Ball r={0.065} pos={[-0.15, 0, 0]} color={C.ink} scale={[1, 1.3, 0.6]} cast={false} />
+            <Ball r={0.065} pos={[0.15, 0, 0]} color={C.ink} scale={[1, 1.3, 0.6]} cast={false} />
+          </group>
           <Ball r={0.05} pos={[-0.27, 0.56, 0.3]} color={C.pink} scale={[1, 0.7, 0.4]} cast={false} />
           <Ball r={0.05} pos={[0.27, 0.56, 0.3]} color={C.pink} scale={[1, 0.7, 0.4]} cast={false} />
           <Box size={[0.12, 0.03, 0.03]} pos={[0, 0.55, 0.375]} color={C.ink} cast={false} />
