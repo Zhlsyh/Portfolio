@@ -182,7 +182,6 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     image: '/photos/RobotPenjagaTanaman.jpeg',
     tags: ['ESP32-C3', 'DHT11', 'Soil Sensor', 'IoT'],
     description: 'Proyek KSM Psychorobotic PNJ - Robot monitoring penjaga tanaman menggunakan ESP32-C3, sensor suhu & kelembaban udara DHT11, serta sensor kelembaban tanah untuk pemantauan kondisi lingkungan tanaman secara otomatis berbasis IoT.',
-    docLink: 'https://drive.google.com/',
     specs: [
       { label: 'Prosesor', value: 'ESP32-C3 RISC-V' },
       { label: 'Sensor Terpasang', value: 'DHT11 + Soil Moisture' },
@@ -212,7 +211,6 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     image: '/photos/trainerlogic/TrainerKitLogic.jpeg',
     tags: ['Elektronika Digital', 'IC Logic', 'Mux/Demux', 'BCD'],
     description: 'Perancangan trainer kit gerbang logika untuk pembelajaran Elektronika Digital. Dilengkapi gerbang dasar AND, OR, NOT, NAND, NOR, XOR, Full Adder, Multiplexer, Demultiplexer, Flip-flop, Dekoder BCD ke 7-Segment, dan LED indikator.',
-    docLink: 'https://drive.google.com/',
     specs: [
       { label: 'Komponen Utama', value: 'IC Seri 74xx Logic Gates' },
       { label: 'Fitur Trainer', value: 'Full Adder, Mux/Demux, BCD' },
@@ -233,7 +231,6 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     image: '',
     tags: ['Hardware', 'Regulator IC 7809', 'Power Supply'],
     description: 'Perancangan dan fabrikasi rangkaian catu daya (power supply) teregulasi menggunakan IC 7809 dengan keluaran tegangan stabil 9V DC untuk memasok daya rangkaian elektronik dan mikrokontroler.',
-    docLink: 'https://drive.google.com/',
     specs: [
       { label: 'Regulator IC', value: 'LM7809 (Output 9V DC)' },
       { label: 'Proteksi', value: 'Filter Kapasitor & Dioda' },
@@ -248,7 +245,6 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     image: '',
     tags: ['Raspberry Pi', 'Computer Vision', 'OpenCV', 'Object Detection'],
     description: 'Mengembangkan sistem deteksi objek dan warna secara real-time menggunakan kamera berbasis Raspberry Pi dan library OpenCV. Robot bergerak otonom berdasarkan hasil analisis visual dari kamera.',
-    docLink: 'https://drive.google.com/',
     specs: [
       { label: 'Platform', value: 'Raspberry Pi' },
       { label: 'Library Vision', value: 'OpenCV (Computer Vision)' },
@@ -263,7 +259,6 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     image: '',
     tags: ['Arduino Uno', 'Sensor Infrared', 'Touchless', 'Otomasi'],
     description: 'Merancang sistem touchless berbasis Arduino Uno dan sensor infrared untuk mengalirkan sabun/air secara otomatis tanpa sentuhan. Dirancang untuk higienis dan efisiensi pemakaian air.',
-    docLink: 'https://drive.google.com/',
     specs: [
       { label: 'Mikrokontroler', value: 'Arduino Uno' },
       { label: 'Sensor', value: 'Infrared (IR) Proximity' },
@@ -546,7 +541,6 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     image: '',
     tags: ['Banner Cetak', 'Canva', 'Photoshop', 'Klien Freelance'],
     description: 'Pembuatan desain visual banner cetak khusus (custom banner) untuk acara selebrasi kelulusan akademik klien dengan komposisi warna kontras dan siap cetak.',
-    docLink: 'https://drive.google.com/',
     specs: [
       { label: 'Format Output', value: 'Cetak Baliho / Spanduk CMYK' },
       { label: 'Software', value: 'Adobe Photoshop & Canva' },
@@ -561,7 +555,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     title: 'Portofolio Desain Grafis & Visual Psychorobotic',
     image: 'https://lh3.googleusercontent.com/d/1plTaT3xwKsPDfDs4d19fmbw6TzNmwKbH',
     tags: ['Psychorobotic PNJ', 'Kominfo', 'Desain Grafis', 'Feeds & Poster'],
-    description: 'Perancangan dan pengelolaan materi visual digital, infografis robotika, template postingan Instagram, serta publikasi informasi untuk Kominfo KST Psychorobotic PNJ. Link Google Drive Portofolio Desain: https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing',
+    description: 'Perancangan dan pengelolaan materi visual digital, infografis robotika, template postingan Instagram, serta publikasi informasi untuk Kominfo KST Psychorobotic PNJ.',
     docLink: 'https://drive.google.com/drive/folders/1MW-zqLVDPw4Wtqc5LLOj4cOjHaEPR4eq?usp=sharing',
     specs: [
       { label: 'Organisasi', value: 'KSM Psychorobotic PNJ' },
@@ -609,7 +603,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     title: 'Fraction 2024 (Wisuda TE PNJ)',
     image: 'https://lh3.googleusercontent.com/d/1MLZmwJyVrF5j24ZOzERTEM4hjISuHK9C',
     tags: ['Fraction 2024', 'Desain Grafis', 'Wisuda TE PNJ'],
-    description: 'Portofolio karya desain grafis, dan dokumentasi Fraction 2024. Link Google Drive Portofolio Desain: https://drive.google.com/drive/folders/16ANdl0vBs7JVwluv6RIOTcAb1tsw5KO4?usp=sharing',
+    description: 'Portofolio karya desain grafis, dan dokumentasi Fraction 2024.',
     docLink: 'https://drive.google.com/drive/folders/16ANdl0vBs7JVwluv6RIOTcAb1tsw5KO4?usp=sharing',
     specs: [
       { label: 'Proyek Acara', value: 'Fraction 2024 - Wisuda TE PNJ' },

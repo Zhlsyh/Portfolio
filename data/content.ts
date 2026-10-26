@@ -10,38 +10,6 @@ export const SITE = {
   location: 'Cipayung, Jakarta Timur',
 };
 
-export const NAV_ITEMS = [
-  { index: '01', label: 'Home', tag: 'INDEX', href: '#home' },
-  { index: '02', label: 'Pengalaman', tag: 'REKAM JEJAK', href: '#experience' },
-  { index: '03', label: 'Karya', tag: 'ARSIP', href: '#projects' },
-  { index: '04', label: 'Keahlian', tag: 'KAPABILITAS', href: '#skills' },
-  { index: '05', label: 'Sertifikasi', tag: 'LISENSI', href: '#certifications' },
-  { index: '06', label: 'Kontak', tag: 'SAY HELLO', href: '#contact' },
-];
-
-export const NAV_SECTION_HREFS = NAV_ITEMS.map((item) => item.href);
-
-export const HERO = {
-  eyebrow: '',
-  title1: 'Zulhelmi',
-  title2: 'Syahtiar.',
-  headlineRole: '',
-  taglineSub: '(elektronika industri + embedded IoT + sistem kendali)',
-  description:
-    'Lulusan D3 Elektronika Industri dari Politeknik Negeri Jakarta, dengan pengalaman magang pada sistem proteksi tenaga listrik di PT PLN. Memiliki minat kuat di bidang Internet of Things (IoT), mikrokontroler, pemrograman, dan sistem kontrol. Terbiasa mengerjakan proyek berbasis mikrokontroler dan pengembangan sistem otomasi sederhana. Bersemangat untuk terus belajar, berinovasi, dan menerapkan teknologi terbaru dalam dunia industri.',
-  quote: 'Do what you wanna do',
-  gpa: '',
-  location: '',
-  badges: [
-    { icon: 'developer_board', label: 'IoT & Mikrokontroler', value: 'ESP32, Arduino, Raspberry Pi' },
-    { icon: 'tune', label: 'Sistem Kendali', value: 'PID, Fuzzy, PLC & SCADA' },
-    { icon: 'electric_bolt', label: 'Proteksi Listrik', value: 'Relai Proteksi & OMICRON' },
-    { icon: 'photo_camera', label: 'Multimedia & Kreatif', value: 'Fotografi, Desain & Video' },
-  ],
-};
-
-export const STATS = [];
-
 export const EXPERIENCE = [
   {
     tag: 'Magang Kerja Industri',
@@ -315,17 +283,4 @@ export const CONTACT = {
     { label: 'GitHub', handle: 'Zhlsyh', href: 'https://github.com/Zhlsyh/' },
     { label: 'Instagram', handle: '@zhlsyh', href: 'https://www.instagram.com/zhlsyh' },
   ],
-};
-
-export const DEFAULT_CONTENT = {
-  site: SITE,
-  nav: NAV_ITEMS,
-  hero: HERO,
-  stats: STATS,
-  experience: EXPERIENCE,
-  orgProjectIds: ORG_PROJECT_IDS,
-  orgCards: ORG_CARDS,
-  capabilities: CAPABILITIES,
-  certifications: CERTIFICATIONS,
-  contact: CONTACT,
 };

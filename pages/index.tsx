@@ -1,97 +1,162 @@
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
-import GrainOverlay from '@/components/GrainOverlay';
-import CustomCursor from '@/components/CustomCursor';
-import ScrollRail from '@/components/ScrollRail';
-import IntroScreen from '@/components/IntroScreen';
-import TopNav from '@/components/TopNav';
-import FullScreenMenu from '@/components/FullScreenMenu';
-import ProjectModal from '@/components/ProjectModal';
-import ResumeModal from '@/components/ResumeModal';
-import Hero from '@/components/sections/Hero';
-import StatsBar from '@/components/sections/StatsBar';
-import Experience from '@/components/sections/Experience';
-import Projects from '@/components/sections/Projects';
-import Capabilities from '@/components/sections/Capabilities';
-import Certifications from '@/components/sections/Certifications';
-import Contact from '@/components/sections/Contact';
-import { useTheme } from '@/hooks/useTheme';
+import dynamic from 'next/dynamic';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import Nav, { SECTIONS } from '@/components/Nav';
+import Sections from '@/components/Sections';
+import ProjectModal, { type Project } from '@/components/ProjectModal';
+import StaticDiorama from '@/components/StaticDiorama';
+import SkyBackdrop from '@/components/SkyBackdrop';
+import { useSectionProgress } from '@/hooks/useSectionProgress';
+
+const SceneCanvas = dynamic(() => import('@/components/scene/SceneCanvas'), { ssr: false });
+
+type Mode = 'pending' | '3d' | 'static';
+type Theme = 'light' | 'dark';
+
+function hasWebGL() {
+  try {
+    const c = document.createElement('canvas');
+    return !!(c.getContext('webgl2') || c.getContext('webgl'));
+  } catch {
+    return false;
+  }
+}
+
+const TITLE = 'Zulhelmi Syahtiar | Embedded & IoT Engineer, Fotografer, Desainer';
+const DESC =
+  'Portofolio Zulhelmi Syahtiar, lulusan D3 Elektronika Industri PNJ: proyek ESP32 dan sistem kendali, magang proteksi PLN, fotografi, dan desain grafis.';
 
 export default function Home() {
-  const { isDark, toggle } = useTheme();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [resumeOpen, setResumeOpen] = useState(false);
-  const [activeProject, setActiveProject] = useState<string | null>(null);
-  const [introDone, setIntroDone] = useState(false);
+  const progress = useRef(0);
+  const [active, setActive] = useState(0);
+  const [mode, setMode] = useState<Mode>('pending');
+  const [canToggle, setCanToggle] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [project, setProject] = useState<Project | null>(null);
+  const [theme, setTheme] = useState<Theme>('light');
 
-  // Kunci scroll selama animasi intro tampil, lepas begitu selesai.
+  useSectionProgress(
+    SECTIONS.map((s) => s.id),
+    progress,
+    setActive,
+  );
+
   useEffect(() => {
-    document.body.style.overflow = introDone ? '' : 'hidden';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [introDone]);
+    // Tema sudah dipasang oleh skrip di <head>; sinkronkan ke state React.
+    setTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+
+    const webgl = hasWebGL();
+    setCanToggle(webgl);
+    let stored: string | null = null;
+    try {
+      stored = localStorage.getItem('portfolio-3d');
+    } catch {
+      /* penyimpanan tidak tersedia */
+    }
+    const nav = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
+    const weak =
+      (nav.hardwareConcurrency && nav.hardwareConcurrency <= 2) ||
+      (nav.deviceMemory && nav.deviceMemory <= 2) ||
+      nav.connection?.saveData;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!webgl || stored === 'off') setMode('static');
+    else if (stored === 'on') setMode('3d');
+    else setMode(reduce || weak ? 'static' : '3d');
+  }, []);
+
+  const go = useCallback((id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
+
+  const toggle = () => {
+    const next: Mode = mode === '3d' ? 'static' : '3d';
+    setMode(next);
+    try {
+      localStorage.setItem('portfolio-3d', next === '3d' ? 'on' : 'off');
+    } catch {
+      /* abaikan */
+    }
+  };
+
+  const toggleTheme = () => {
+    const next: Theme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem('portfolio-theme', next);
+    } catch {
+      /* abaikan */
+    }
+  };
+
+  const handleReady = useCallback(() => setReady(true), []);
+
+  const showScene = mode === '3d';
+  const dark = theme === 'dark';
 
   return (
     <>
       <Head>
-        <title>Zulhelmi Syahtiar | Electrical Engineer & IoT Developer Portfolio</title>
-        <meta
-          name="description"
-          content="Portofolio resmi Zulhelmi Syahtiar — Lulusan D3 Elektronika Industri PNJ dengan pengalaman di proteksi listrik PLN, sistem kendali, IoT, fotografi, dan media visual."
-        />
-        <meta name="keywords" content="Zulhelmi Syahtiar, Electrical Engineer, IoT Developer, Elektronika Industri, PNJ, Proteksi Listrik, Trainer Motor DC, Three.js Digital Twin" />
+        <title>{TITLE}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="referrer" content="no-referrer" />
+        <meta name="description" content={DESC} />
         <meta name="author" content="Zulhelmi Syahtiar" />
-        <meta name="theme-color" content="#0b1712" />
-
-        {/* Open Graph / LinkedIn / WhatsApp */}
+        <meta name="theme-color" content={dark ? '#0a0f1f' : '#f6efe3'} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Zulhelmi Syahtiar | Electrical Engineer & IoT Developer Portfolio" />
-        <meta
-          property="og:description"
-          content="Portofolio resmi Zulhelmi Syahtiar — Lulusan D3 Elektronika Industri PNJ dengan pengalaman di proteksi listrik PLN, sistem kendali, IoT, fotografi, dan media visual."
-        />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESC} />
         <meta property="og:image" content="/profile.jpeg" />
         <meta property="og:locale" content="id_ID" />
-
-        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Zulhelmi Syahtiar | Electrical Engineer & IoT Developer Portfolio" />
-        <meta
-          name="twitter:description"
-          content="Portofolio resmi Zulhelmi Syahtiar — Lulusan D3 Elektronika Industri PNJ dengan pengalaman di proteksi listrik PLN, sistem kendali, IoT, fotografi, dan media visual."
-        />
-        <meta name="twitter:image" content="/profile.jpeg" />
-
-        {/* Favicon */}
         <link rel="icon" type="image/jpeg" href="/profile.jpeg" />
       </Head>
 
-      <GrainOverlay />
-      <CustomCursor />
-      <ScrollRail />
-      <IntroScreen onDone={() => setIntroDone(true)} />
+      {/* langit desktop: tetap di belakang seluruh halaman */}
+      <div className="fixed inset-0 -z-10 hidden md:block" aria-hidden>
+        <SkyBackdrop />
+      </div>
 
-      <TopNav
-        onOpenMenu={() => setMenuOpen(true)}
-        onOpenResume={() => setResumeOpen(true)}
-        isDark={isDark}
-        onToggleTheme={toggle}
+      <Nav
+        active={active}
+        onGo={go}
+        is3d={showScene}
+        canToggle={canToggle}
+        onToggle={toggle}
+        dark={dark}
+        onToggleTheme={toggleTheme}
       />
 
-      <main className="relative">
-        <Hero onOpenResume={() => setResumeOpen(true)} isDark={isDark} />
-        <StatsBar />
-        <Experience onOpenProject={setActiveProject} />
-        <Projects onOpenProject={setActiveProject} />
-        <Capabilities />
-        <Certifications />
-        <Contact />
-      </main>
+      {/* Panggung 3D: menempel di atas pada mobile, memenuhi layar di belakang konten pada desktop */}
+      <div
+        aria-hidden
+        className="sticky top-0 z-20 h-[42svh] overflow-hidden rounded-b-[1.75rem] border-b border-[var(--glass-border)] bg-[var(--stage)] shadow-[0_14px_30px_-18px_var(--glass-shadow)] md:fixed md:inset-0 md:z-0 md:h-auto md:overflow-visible md:rounded-none md:border-0 md:bg-transparent md:shadow-none"
+      >
+        <SkyBackdrop className="md:hidden" />
+        <div
+          className={`absolute inset-0 grid place-items-center p-6 transition-opacity duration-700 md:inset-y-0 md:left-auto md:right-0 md:w-[58%] ${
+            showScene && ready ? 'pointer-events-none opacity-0' : 'opacity-100'
+          }`}
+        >
+          <div className="static-dio h-full max-h-[34rem] w-full max-w-[36rem]">
+            <StaticDiorama />
+          </div>
+        </div>
+        {showScene && (
+          <div className={`absolute inset-0 transition-opacity duration-700 ${ready ? 'opacity-100' : 'opacity-0'}`}>
+            <SceneCanvas progress={progress} onSelect={go} onReady={handleReady} dark={dark} />
+          </div>
+        )}
+        <span className="glass absolute bottom-3 left-3 !rounded-full px-3 py-1 text-xs font-bold md:hidden">
+          {SECTIONS[active].label}
+        </span>
+      </div>
 
-      <FullScreenMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
-      <ProjectModal projectId={activeProject} onClose={() => setActiveProject(null)} />
-      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
+      <Sections onOpen={setProject} onGo={go} alternate={showScene} />
+      <ProjectModal project={project} onClose={() => setProject(null)} />
+      <noscript>
+        <p style={{ padding: '1rem' }}>Situs ini memerlukan JavaScript untuk menampilkan diorama 3D dan daftar proyek.</p>
+      </noscript>
     </>
   );
 }

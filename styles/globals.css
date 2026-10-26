@@ -1,448 +1,421 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-/* ==========================================================================
-   DESIGN TOKENS
-   Konsep: "signal & depth" - studio elektronik dengan nuansa dalam,
-   tipografi kinetik besar, label mono teknis, dan aksen mint/emerald.
-   ========================================================================== */
+/* Token tema: nilai berubah lewat [data-theme]. Aksen (tangerine, sky, dst.) sama di kedua tema. */
 :root {
-  --bg: #0b1712;
-  --bg-soft: #0e2019;
-  --bg-elevated: #122a21;
-  --surface: rgba(255, 255, 255, 0.045);
-  --surface-strong: rgba(255, 255, 255, 0.08);
-  --border: rgba(238, 244, 239, 0.14);
-  --border-strong: rgba(238, 244, 239, 0.28);
-  --text: #eef4ef;
-  --text-dim: rgba(238, 244, 239, 0.68);
-  --text-faint: rgba(238, 244, 239, 0.68);
-  --accent: #3fe8ab;
-  --accent-strong: #24d99a;
-  --accent-contrast: #06140f;
-  --accent-soft: rgba(63, 232, 171, 0.12);
-  --error: #f87171;
-  --grain-opacity: 0.05;
+  --cream: #f6efe3;
+  --paper: #fffaf0;
+  --ink: #2b2230;
+  --ink-soft: #5d5266;
+  --edge: #2b2230;
+  --surface: rgba(255, 255, 255, 0.62);
+  --surface-strong: #fffdf7;
+  --glass: rgba(255, 251, 242, 0.62);
+  --glass-strong: rgba(255, 251, 242, 0.9);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-shadow: rgba(60, 40, 30, 0.28);
+  --chip-border: rgba(43, 34, 48, 0.55);
+  --dot: rgba(43, 34, 48, 0.07);
+  --tint-mint: rgba(127, 209, 174, 0.28);
+  --tint-pink: rgba(255, 158, 181, 0.26);
+  --tint-sun: rgba(255, 210, 74, 0.3);
+  --tint-sky: rgba(110, 193, 228, 0.28);
+  --stage: #dff1f7;
+  --on-accent: #2b2230;
+  --focus-ring: #ff7a45;
+  color-scheme: light;
 }
 
-html:not(.dark) {
-  --bg: #eef3ea;
-  --bg-soft: #e7eee2;
-  --bg-elevated: #ffffff;
-  --surface: rgba(10, 30, 20, 0.04);
-  --surface-strong: rgba(10, 30, 20, 0.07);
-  --border: rgba(10, 30, 20, 0.12);
-  --border-strong: rgba(10, 30, 20, 0.24);
-  --text: #0d1f18;
-  --text-dim: rgba(13, 31, 24, 0.68);
-  --text-faint: rgba(13, 31, 24, 0.68);
-  --accent: #06704d;
-  --accent-strong: #055f42;
-  --accent-contrast: #f2fbf6;
-  --accent-soft: rgba(15, 157, 114, 0.1);
-  --error: #b42318; /* merah gelap, 5.8:1 di atas permukaan terang (tem #f87171 hanya lulus di mode gelap) */
-  --grain-opacity: 0.035;
+:root[data-theme='dark'] {
+  --cream: #0a0f1f;
+  --paper: #141b33;
+  --ink: #f3ead9;
+  --ink-soft: #b4b2cb;
+  --edge: rgba(255, 255, 255, 0.34);
+  --surface: rgba(255, 255, 255, 0.07);
+  --surface-strong: #1d2646;
+  --glass: rgba(15, 21, 44, 0.58);
+  --glass-strong: rgba(15, 21, 44, 0.9);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-shadow: rgba(0, 0, 0, 0.6);
+  --chip-border: rgba(255, 255, 255, 0.28);
+  --dot: rgba(255, 255, 255, 0.05);
+  --tint-mint: rgba(127, 209, 174, 0.15);
+  --tint-pink: rgba(255, 158, 181, 0.14);
+  --tint-sun: rgba(255, 210, 74, 0.15);
+  --tint-sky: rgba(110, 193, 228, 0.15);
+  --stage: #0d1430;
+  --focus-ring: #ffd24a;
+  color-scheme: dark;
 }
 
-@layer base {
-  * {
-    border-color: var(--border);
-  }
+@theme inline {
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-edge: var(--edge);
+  --color-surface: var(--surface);
+  --color-on-accent: var(--on-accent);
+  --color-tint-mint: var(--tint-mint);
+  --color-tint-pink: var(--tint-pink);
+  --color-tint-sun: var(--tint-sun);
+  --color-tint-sky: var(--tint-sky);
+  --color-tangerine: #ff7a45;
+  --color-sky: #6ec1e4;
+  --color-sun: #ffd24a;
+  --color-mint: #7fd1ae;
+  --color-blush: #ff9eb5;
+  --font-display: 'Bricolage Grotesque', ui-rounded, 'Segoe UI', system-ui, sans-serif;
+  --font-sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
 
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: var(--bg);
-    background-image: radial-gradient(var(--border) 1px, transparent 1px);
-    background-size: 28px 28px;
-    color: var(--text);
-  }
-
-  h1, h2, h3, .font-display {
-    font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
-    letter-spacing: -0.02em;
-  }
-
-  .font-mono-label {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    letter-spacing: 0.08em;
-  }
-
-  .font-handwritten {
-    font-family: 'Caveat', cursive, 'Plus Jakarta Sans', sans-serif;
-  }
-
-  p {
-    line-height: 1.7;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  transition: background-color 0.4s ease, color 0.4s ease;
-  cursor: none;
+  margin: 0;
+  background-color: var(--cream);
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.55;
+  overflow-x: clip;
+  transition: background-color 0.6s, color 0.4s;
 }
 
-@media (pointer: coarse), (hover: none), (prefers-reduced-motion: reduce) {
-  body {
-    cursor: auto;
-  }
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
 
-/* ==========================================================================
-   FIXED TOP NAV — scroll offset supaya section tidak tertutup navbar
-   ========================================================================== */
-section[id] {
-  scroll-margin-top: 96px;
-}
-
-/* ==========================================================================
-   UNO FLIP CARD SYSTEM — kartu kepanitiaan 3D flip, dipertahankan dari versi
-   lama, direstyle memakai token warna tema baru (var(--accent), dst).
-   ========================================================================== */
-.uno-flip-container {
-  perspective: 1400px;
-  cursor: pointer;
-  min-height: 460px;
-  user-select: none;
-}
-
-.uno-card-flipper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 460px;
-  transform-style: preserve-3d;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.uno-flip-container.is-flipped .uno-card-flipper {
-  transform: rotateY(180deg);
-}
-
-.uno-card-face {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  border-radius: 1.75rem;
-  border: 2px solid var(--border-strong);
-  background: linear-gradient(150deg, var(--bg-elevated) 0%, var(--bg-soft) 100%);
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.28);
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.uno-flip-container:hover .uno-card-face {
-  border-color: var(--accent);
-  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.3), 0 0 25px var(--accent-soft);
-}
-
-.uno-card-back-face {
-  transform: rotateY(180deg);
-}
-
-.uno-oval-themed {
-  background: var(--surface);
-  border: 2px solid var(--accent-soft);
-  border-radius: 100%;
-  transform: rotate(-10deg);
-  box-shadow: inset 0 0 15px var(--accent-soft);
-  padding: 1rem 0.75rem;
-  margin: 0.5rem auto;
-  width: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.35s ease, border-color 0.3s ease;
-}
-
-.uno-flip-container:hover .uno-oval-themed {
-  transform: rotate(-5deg) scale(1.05);
-  border-color: var(--accent);
-}
-
-.uno-card-title {
-  color: var(--text);
-  font-weight: 700;
-}
-
-.uno-card-subtitle {
-  color: var(--accent);
-  font-weight: 700;
-}
-
-.uno-corner {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-weight: 900;
-  color: var(--accent);
-  line-height: 1;
-}
-
-.uno-corner-br {
-  transform: rotate(180deg);
-}
-
-/* ==========================================================================
-   GRAIN / NOISE OVERLAY
-   ========================================================================== */
-.grain-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
-  pointer-events: none;
-  opacity: var(--grain-opacity);
-  mix-blend-mode: overlay;
-}
-
-/* ==========================================================================
-   UTILITY SURFACES
-   ========================================================================== */
-.surface-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-}
-
-.surface-card-strong {
-  background: var(--surface-strong);
-  border: 1px solid var(--border-strong);
-}
-
-.text-accent {
-  color: var(--accent);
-}
-
-.bg-accent {
-  background-color: var(--accent);
-}
-
-.border-accent {
-  border-color: var(--accent);
-}
-
-.btn-accent {
-  background-color: var(--accent);
-  color: var(--accent-contrast);
-}
-
-::selection {
-  background: var(--accent);
-  color: var(--accent-contrast);
-}
-
-/* ==========================================================================
-   SCROLLBAR
-   ========================================================================== */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--border-strong);
-  border-radius: 999px;
-}
-
-/* ==========================================================================
-   CUSTOM CURSOR
-   ========================================================================== */
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--accent);
-  pointer-events: none;
-  z-index: 100;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: difference;
-}
-
-.cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  border-radius: 999px;
-  border: 1px solid var(--border-strong);
-  background: rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(2px);
-  pointer-events: none;
-  z-index: 99;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text);
-  white-space: nowrap;
-}
-
-/* ==========================================================================
-   FULL-SCREEN NAV MENU
-   ========================================================================== */
-.menu-row {
-  border-bottom: 1px solid rgba(13, 31, 24, 0.12);
-}
-.menu-row:last-child {
-  border-bottom: none;
-}
-
-.menu-row:focus-visible,
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--accent);
+:focus-visible {
+  outline: 3px solid var(--focus-ring, #ff7a45);
   outline-offset: 3px;
+  border-radius: 8px;
 }
-
-/* ==========================================================================
-   SIGNAL RULER - motif identitas kedua: garis berulang tiga-tik pendek
-   (tick) dengan satu tick aksen lebih tinggi di ujung kiri, melanjutkan
-   bahasa "sinyal & instrumen industri" yang sudah dipakai label mono.
-   ========================================================================== */
-.signal-ruler {
-  position: relative;
-  height: 9px;
-  background-image: repeating-linear-gradient(
-    to right,
-    var(--border) 0 1px,
-    transparent 1px 10px
-  );
-}
-
-.signal-ruler::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: -5px;
-  width: 1px;
-  height: 14px;
-  background: var(--accent);
-}
-
-/* ==========================================================================
-   MARQUEE
-   ========================================================================== */
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee-scroll 22s linear infinite;
-}
-
-/* ==========================================================================
-   MISC
-   ========================================================================== */
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-
-  .marquee-track {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
-/* ==========================================================================
-   SKETCHBOOK & NOTEBOOK STYLING (Inspired by Septian's playful engineering journal)
-   ========================================================================== */
-.wavy-link {
-  text-decoration: underline wavy var(--accent);
-  text-underline-offset: 4px;
-  transition: all 0.2s ease;
-}
-.wavy-link:hover {
-  text-decoration-style: solid;
+@layer components {
+  /* Panel utama: kaca buram */
+  .glass {
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+    backdrop-filter: blur(20px) saturate(1.5);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.75rem;
+    box-shadow:
+      0 18px 48px -18px var(--glass-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+  .glass-strong {
+    background: var(--glass-strong);
+    -webkit-backdrop-filter: blur(26px) saturate(1.4);
+    backdrop-filter: blur(26px) saturate(1.4);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.75rem;
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.55);
+  }
+  /* Kartu di dalam panel: latar solid semi-opak agar hierarki kontras tegas */
+  .glass-card {
+    background: var(--surface-strong);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.25rem;
+    box-shadow: 0 6px 18px -10px var(--glass-shadow);
+  }
+  @supports not (backdrop-filter: blur(1px)) {
+    .glass {
+      background: var(--glass-strong);
+    }
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--chip-border);
+    border-radius: 0.625rem;
+    padding: 0.18rem 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--surface);
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1.5px solid var(--edge);
+    border-radius: 999px;
+    padding: 0.65rem 1.2rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: 0 3px 0 var(--edge);
+    transition:
+      transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.15s;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--surface-strong);
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 var(--edge);
+  }
+  .btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 var(--edge);
+  }
+  .btn-primary {
+    background: var(--color-tangerine);
+    color: var(--on-accent);
+    border-color: #2b2230;
+    box-shadow: 0 3px 0 #2b2230;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 5px 0 #2b2230;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.75rem;
+    border: 2px solid #2b2230;
+    border-radius: 999px;
+    color: var(--on-accent);
+  }
+  .card-lift {
+    transition:
+      transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.2s,
+      background 0.2s;
+  }
+  .card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 30px -14px var(--glass-shadow);
+  }
 }
 
-.timeline-spine {
-  position: relative;
+@keyframes float-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
 }
-.timeline-spine::before {
-  content: '';
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.pop-in {
+  animation: pop-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hint-bounce {
+  animation: float-hint 1.8s ease-in-out infinite;
+}
+
+.spec-row:nth-child(odd) {
+  background: rgba(255, 210, 74, 0.16);
+}
+
+/* ---------- langit siang / malam ---------- */
+.sky {
   position: absolute;
-  top: 14px;
-  bottom: 0;
-  left: 7px;
-  width: 2px;
-  background: repeating-linear-gradient(
-    to bottom,
-    var(--border-strong) 0,
-    var(--border-strong) 6px,
-    transparent 6px,
-    transparent 12px
-  );
-}
-
-.timeline-dot {
-  width: 16px;
-  height: 16px;
-  border-radius: 9999px;
-  border: 2px solid var(--accent);
-  background: var(--bg);
-  box-shadow: 0 0 0 4px var(--accent-soft);
-  flex-shrink: 0;
-}
-
-.sketch-tape {
-  position: relative;
-}
-.sketch-tape::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-2deg);
-  width: 70px;
-  height: 18px;
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px dashed rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(2px);
-  z-index: 10;
+  inset: 0;
+  overflow: hidden;
   pointer-events: none;
 }
-html:not(.dark) .sketch-tape::before {
-  background: rgba(0, 0, 0, 0.08);
-  border: 1px dashed rgba(0, 0, 0, 0.2);
+.sky-layer {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.9s ease;
+}
+.sky-day {
+  background: linear-gradient(180deg, #bfe5f6 0%, #e3f1ee 38%, rgba(246, 239, 227, 0) 80%);
+  opacity: 1;
+}
+.sky-night {
+  background: linear-gradient(180deg, #060917 0%, #0e1530 55%, #17204a 100%);
+  opacity: 0;
+}
+:root[data-theme='dark'] .sky-day {
+  opacity: 0;
+}
+:root[data-theme='dark'] .sky-night {
+  opacity: 1;
 }
 
-.chip-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.375rem 0.75rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  border-radius: 9999px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  transition: all 0.2s ease;
+.sun {
+  position: absolute;
+  right: 9%;
+  top: 9%;
+  width: clamp(70px, 9vw, 120px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 38%, #fff6b0, #ffd24a 62%, #ffb53a);
+  box-shadow:
+    0 0 0 10px rgba(255, 224, 120, 0.22),
+    0 0 70px 30px rgba(255, 214, 90, 0.45);
 }
-.chip-pill:hover {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  color: var(--accent);
-  transform: translateY(-1px);
+.sun::before {
+  content: '';
+  position: absolute;
+  inset: -55%;
+  border-radius: 50%;
+  background: repeating-conic-gradient(rgba(255, 220, 110, 0.42) 0 6deg, transparent 6deg 20deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 28%, #000 30%, transparent 70%);
+  mask-image: radial-gradient(circle, transparent 28%, #000 30%, transparent 70%);
+  animation: spin 70s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cloud {
+  position: absolute;
+  left: -30%;
+  height: 34px;
+  width: 120px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  filter: drop-shadow(0 8px 12px rgba(120, 160, 190, 0.25));
+  animation: drift linear infinite;
+}
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+.cloud::before {
+  width: 58px;
+  height: 58px;
+  left: 18px;
+  top: -28px;
+}
+.cloud::after {
+  width: 44px;
+  height: 44px;
+  left: 62px;
+  top: -20px;
+}
+@keyframes drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(170vw);
+  }
+}
+
+.moon {
+  position: absolute;
+  right: 10%;
+  top: 8%;
+  width: clamp(64px, 8vw, 104px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 34%, rgba(176, 168, 132, 0.55) 0 7%, transparent 8%),
+    radial-gradient(circle at 62% 28%, rgba(176, 168, 132, 0.45) 0 5%, transparent 6%),
+    radial-gradient(circle at 56% 66%, rgba(176, 168, 132, 0.5) 0 9%, transparent 10%),
+    radial-gradient(circle at 35% 35%, #fffdf0, #f3e9c4 60%, #dcd2a6);
+  box-shadow:
+    0 0 50px 14px rgba(255, 245, 200, 0.28),
+    0 0 140px 50px rgba(150, 170, 255, 0.16);
+}
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: twinkle ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+.shooting-star {
+  position: absolute;
+  top: 14%;
+  left: 12%;
+  width: 110px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff);
+  border-radius: 2px;
+  opacity: 0;
+  transform: rotate(28deg);
+  animation: shoot 9s ease-in 3s infinite;
+}
+@keyframes shoot {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(28deg);
+  }
+  3% {
+    opacity: 1;
+  }
+  9% {
+    opacity: 0;
+    transform: translate(320px, 170px) rotate(28deg);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Ilustrasi statis lebih redup saat malam */
+:root[data-theme='dark'] .static-dio {
+  filter: brightness(0.72) saturate(0.9);
+}
+
+/* Disclosure organisasi */
+details.org > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details.org > summary::-webkit-details-marker {
+  display: none;
+}
+details.org[open] .org-caret {
+  transform: rotate(180deg);
 }

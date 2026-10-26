@@ -1,77 +1,29 @@
-# Zulhelmi Syahtiar
+# Portofolio Zulhelmi Syahtiar: Diorama Studio
 
-Portfolio personal untuk pengalaman di elektronika industri, proyek IoT dan sistem kontrol, serta karya fotografi dan desain.
+Next.js (Pages Router) + Tailwind v4 + React Three Fiber. Satu diorama 3D, kamera berpindah antar pojok saat scroll.
 
-## Stack
-
-- Next.js 15 dengan Pages Router dan React 19
-- TypeScript
-- Tailwind CSS 4 dan CSS variables
-- Motion untuk transisi dan animasi
-- Firebase Authentication dan Firestore untuk CMS
-- Web3Forms untuk form kontak
-
-## Fitur
-
-- Bagian pengalaman, proyek, kapabilitas, sertifikasi, dan kontak
-- Detail proyek dengan galeri gambar
-- Tema gelap dan terang
-- Form kontak dengan validasi dan status pengiriman
-- Halaman `/admin` untuk mengelola konten setelah Firebase dikonfigurasi
-
-## Struktur Proyek
-
-```text
-Portfolio-main/
-├── lib/
-│   ├── adminData.ts
-│   └── firebase.ts
-├── components/
-│   ├── admin/
-│   └── sections/
-├── pages/
-│   ├── _app.tsx
-│   ├── admin.tsx
-│   └── index.tsx
-├── data/
-├── context/
-├── public/
-│   ├── photos/
-│   ├── logos/
-│   └── CV_Zulhelmi_Syahtiar_*.pdf
-├── styles/
-│   └── globals.css
-└── package.json
-```
-
-## Menjalankan Secara Lokal
-
-### 1. Clone Repository & Install Dependensi
+## Menjalankan
 ```bash
-git clone https://github.com/Zhlsyh/Portfolio.git
-cd Portfolio
 npm install
+npm run dev      # http://localhost:3000
+npm run build    # hasil statis di folder out/ (siap Vercel / Firebase Hosting)
 ```
 
-### 2. Konfigurasi Environment Variable (Form Kontak Web3Forms)
-Buat file `.env.local` di root direktori:
-```env
-NEXT_PUBLIC_WEB3FORMS_KEY=your_web3forms_access_key
-```
-*(Dapatkan Access Key gratis di [Web3Forms](https://web3forms.com) dengan memasukkan email Anda).*
+## Fitur tambahan (v2)
+- Mode siang/malam: tombol matahari/bulan di kanan atas, pilihan tersimpan, default mengikuti sistem. Malam: bulan, bintang, bintang jatuh, lampu hangat di tiap pojok. Siang: matahari dan awan.
+- Panel konten berbahan kaca buram (`.glass` di `styles/globals.css`).
+- Section Perjalanan (pendidikan + organisasi) dan Bonus (hobi + Spotify). Datanya di `data/journey.ts`.
+- Pemutar piringan hitam di tengah diorama. Untuk menampilkan pemutar Spotify, isi `SPOTIFY.embedPath` di `data/journey.ts` (contoh `playlist/ID_PLAYLIST`).
 
-### 3. Jalankan Server Dev
-```bash
-npm run dev
-```
-Buka browser dan akses **`http://localhost:3000`**.
+## Struktur
+- `data/content.ts`, `data/projects.ts`: konten (dari web lama, belum diubah). Edit di sini untuk mengganti teks/proyek.
+- `components/Sections.tsx`: panel konten tiap section (Home, Workbench, Photo Corner, Design Desk, Keahlian, Kontak).
+- `components/scene/`: scene 3D. `Workbench`, `PhotoCorner`, `DesignDesk`, `ContactCorner`, `Center` = tiap pojok; `CameraRig.tsx` = posisi kamera per section (`KEYS`).
+- `hooks/useSectionProgress.ts`: mengubah posisi scroll menjadi indeks kamera.
+- `components/StaticDiorama.tsx`: ilustrasi cadangan (tanpa WebGL / mode ringan / reduced motion).
+- `public/cv/CV_Zulhelmi_Syahtiar_Umum.pdf`: CV terbaru yang ditautkan tombol "Unduh CV".
 
-### 4. Build untuk Production
-```bash
-npm run build
-npm run start
-```
-
----
-
-Setup Firebase untuk CMS dijelaskan di [ADMIN_SETUP.md](ADMIN_SETUP.md).
+## Perilaku responsif
+- Desktop: kanvas penuh di belakang, panel konten bergantian kiri/kanan, kamera digeser agar objek tidak tertutup panel.
+- Mobile: kanvas menempel di atas (42% tinggi layar), konten mengalir di bawahnya, navigasi di bilah bawah.
+- Otomatis memakai ilustrasi statis bila WebGL tidak ada, prefers-reduced-motion aktif, RAM/CPU rendah, atau Data Saver menyala. Pengunjung bisa menukar lewat tombol di kanan atas.
