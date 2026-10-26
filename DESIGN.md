@@ -92,7 +92,7 @@ Teknologi: React Three Fiber, drei, Three.js. Semua objek low-poly buatan kode (
 
 - **Platform:** tiga lapis kotak membulat, empat ubin pastel (mint, kuning, biru, pink), bayangan lembut di bawah agar terasa melayang.
 - **Objek hidup:** motor DC berputar, LED berkedip, drone mengambang dan rotornya berputar, layar monitor desain bergonta-ganti karya tiap 2,6 detik, kamera sesekali flash, polaroid bergoyang, bendera kotak surat melambai, amplop melayang, piringan hitam berputar dengan not musik, maskot mengikuti kamera.
-- **Maskot:** kapsul kuning berhelm safety oranye (nod ke dunia industri). Mengecil otomatis saat kamera di Workbench agar tidak menghalangi.
+- **Maskot:** kapsul kuning berhelm safety oranye (nod ke dunia industri). Ukuran tetap konsisten di semua section dan selalu mengikuti orientasi kamera.
 - **Cahaya:** satu cahaya arah dengan bayangan lembut, cahaya langit (hemisphere), cahaya isi, dan lima lampu titik untuk malam.
 - **Kamera:** posisi tiap section di `KEYS` (posisi, target, geser horizontal). Berpindah halus (`damp`) mengikuti progres scroll. Di desktop kamera sedikit bergeser mengikuti pointer. Di layar sempit kamera mundur sampai +50% supaya satu pojok tetap utuh.
 - **Geser horizontal desktop (`ox`):** objek digeser ±16 sampai 20% lebar layar menjauhi panel, sehingga panel dan objek tidak saling menutupi.

@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { Ball, Box, C, Cyl, DISPLAY_FONT, useCanvasTexture } from './shared';
 
 /** Tengah diorama: maskot berhelm yang mengikuti kamera, plus papan nama. */
-export default function Center({ progress }: { progress: MutableRefObject<number> }) {
+export default function Center({ progress: _progress }: { progress?: MutableRefObject<number> } = {}) {
   const root = useRef<THREE.Group>(null!);
   const mascot = useRef<THREE.Group>(null!);
   const body = useRef<THREE.Group>(null!);
@@ -30,11 +30,6 @@ export default function Center({ progress }: { progress: MutableRefObject<number
 
   useFrame((state, dt) => {
     const t = state.clock.elapsedTime;
-    // Menyusut saat kamera berada di Workbench supaya tidak menghalangi pandangan.
-    const away = THREE.MathUtils.clamp((Math.abs(progress.current - 1) - 0.15) / 0.6, 0, 1);
-    const vis = away * away * (3 - 2 * away);
-    root.current.scale.setScalar(Math.max(0.0001, vis));
-    root.current.visible = vis > 0.01;
     vinyl.current.rotation.y += dt * 3.2;
     notes.current.forEach((g, i) => {
       if (!g) return;
