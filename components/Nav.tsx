@@ -17,6 +17,7 @@ interface NavProps {
   onToggle: () => void;
   dark: boolean;
   onToggleTheme: () => void;
+  introActive?: boolean;
 }
 
 const pill =
@@ -40,15 +41,17 @@ function MoonIcon() {
   );
 }
 
-export default function Nav({ active, onGo, is3d, canToggle, onToggle, dark, onToggleTheme }: NavProps) {
+export default function Nav({ active, onGo, is3d, canToggle, onToggle, dark, onToggleTheme, introActive = false }: NavProps) {
   return (
     <>
-      {/* merek */}
+      {/* merek: meluncur dari pinggir kiri */}
       <button
         type="button"
         onClick={() => onGo('home')}
         aria-label="Kembali ke atas"
-        className={`${pill} fixed left-3 top-3 z-50 flex items-center gap-2 py-1.5 pl-1.5 pr-1.5 md:left-6 md:top-5 xl:pr-4`}
+        className={`${pill} fixed left-3 top-3 z-50 flex items-center gap-2 py-1.5 pl-1.5 pr-1.5 transition-all duration-700 ease-out md:left-6 md:top-5 xl:pr-4 ${
+          introActive ? '-translate-x-32 opacity-0 pointer-events-none' : 'translate-x-0 opacity-100'
+        }`}
       >
         <span className="grid h-9 w-9 place-items-center rounded-full border-2 border-[#2b2230] bg-tangerine font-display text-sm font-extrabold text-on-accent">
           Z·S
@@ -56,8 +59,12 @@ export default function Nav({ active, onGo, is3d, canToggle, onToggle, dark, onT
         <span className="hidden font-display text-sm font-bold xl:inline">Zulhelmi Syahtiar</span>
       </button>
 
-      {/* kontrol kanan: tema + 3D */}
-      <div className="fixed right-3 top-3 z-50 flex items-center gap-2 md:right-6 md:top-5">
+      {/* kontrol kanan (tema + 3D): meluncur dari pinggir kanan */}
+      <div
+        className={`fixed right-3 top-3 z-50 flex items-center gap-2 transition-all duration-700 ease-out md:right-6 md:top-5 ${
+          introActive ? 'translate-x-32 opacity-0 pointer-events-none' : 'translate-x-0 opacity-100'
+        }`}
+      >
         <button
           type="button"
           onClick={onToggleTheme}
@@ -84,10 +91,12 @@ export default function Nav({ active, onGo, is3d, canToggle, onToggle, dark, onT
         )}
       </div>
 
-      {/* desktop lebar: pil di atas */}
+      {/* desktop lebar: pil di atas meluncur dari atas */}
       <nav
         aria-label="Navigasi utama"
-        className={`${pill} fixed left-1/2 top-5 z-50 hidden -translate-x-1/2 items-center gap-0.5 p-1.5 xl:flex`}
+        className={`${pill} fixed left-1/2 top-5 z-50 hidden -translate-x-1/2 items-center gap-0.5 p-1.5 transition-all duration-700 delay-100 ease-out xl:flex ${
+          introActive ? '-translate-y-24 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
+        }`}
       >
         {SECTIONS.map((s, i) => (
           <button
@@ -103,10 +112,12 @@ export default function Nav({ active, onGo, is3d, canToggle, onToggle, dark, onT
         ))}
       </nav>
 
-      {/* mobile & tablet: bilah bawah dengan target sentuh standar >=44px */}
+      {/* mobile & tablet: bilah bawah meluncur dari bawah */}
       <nav
         aria-label="Navigasi utama"
-        className={`${pill} fixed inset-x-3 bottom-3 z-50 flex items-center gap-1.5 overflow-x-auto p-1.5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden xl:hidden`}
+        className={`${pill} fixed inset-x-3 bottom-3 z-50 flex items-center gap-1.5 overflow-x-auto p-1.5 transition-all duration-700 delay-100 ease-out [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden xl:hidden ${
+          introActive ? 'translate-y-24 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
+        }`}
       >
         {SECTIONS.map((s, i) => (
           <button

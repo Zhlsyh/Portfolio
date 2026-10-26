@@ -52,19 +52,41 @@ export default function CameraRig({
     swayY: number;
     initialized: boolean;
     introActive: boolean;
+    flyinStarted: boolean;
     introProgress: number;
     introDispatched: boolean;
   }>({
-    pos: new THREE.Vector3(22, 23, 24),
+    pos: new THREE.Vector3(26, 28, 30),
     tgt: new THREE.Vector3(0, 0.2, 0),
     ox: 0,
     swayX: 0,
     swayY: 0,
     initialized: false,
     introActive: true,
+    flyinStarted: false,
     introProgress: 0,
     introDispatched: false,
   });
+
+  useEffect(() => {
+    const onStartFlyin = () => {
+      if (cur.current.introActive) {
+        cur.current.flyinStarted = true;
+      }
+    };
+    const onSkipIntro = () => {
+      cur.current.introActive = false;
+      cur.current.flyinStarted = true;
+      cur.current.introProgress = 1;
+      cur.current.introDispatched = true;
+    };
+    window.addEventListener('start-camera-flyin', onStartFlyin);
+    window.addEventListener('skip-intro', onSkipIntro);
+    return () => {
+      window.removeEventListener('start-camera-flyin', onStartFlyin);
+      window.removeEventListener('skip-intro', onSkipIntro);
+    };
+  }, []);
 
   useFrame((state, dt) => {
     const { camera, size, pointer } = state;
@@ -110,13 +132,15 @@ export default function CameraRig({
         c.tgt.copy(_tgt);
         c.ox = wantOx;
         c.introActive = false;
+        c.flyinStarted = true;
         c.introProgress = 1;
         c.introDispatched = true;
       } else {
-        c.pos.set(22, 23, 24);
+        c.pos.set(26, 28, 30);
         c.tgt.set(0, 0.2, 0);
         c.ox = 0;
         c.introActive = true;
+        c.flyinStarted = false;
         c.introProgress = 0;
         c.introDispatched = false;
       }
@@ -127,12 +151,13 @@ export default function CameraRig({
       // Jika pengguna langsung scroll sebelum intro selesai, langsung alihkan ke kendali scroll
       if (progress.current > 0.05) {
         c.introActive = false;
+        c.flyinStarted = true;
         c.introProgress = 1;
-      } else {
-        c.introProgress = Math.min(1, c.introProgress + safeDt / 2.0);
+      } else if (c.flyinStarted) {
+        c.introProgress = Math.min(1, c.introProgress + safeDt / 1.7);
         const p = ease(c.introProgress);
 
-        _introPos.set(22, 23, 24).lerp(_wantPos, p);
+        _introPos.set(26, 28, 30).lerp(_wantPos, p);
         _introTgt.set(0, 0.2, 0).lerp(_tgt, p);
         const curWantOx = wantOx * p;
 
@@ -158,6 +183,11 @@ export default function CameraRig({
         if (c.introProgress >= 1) {
           c.introActive = false;
         }
+      } else {
+        // Sebelum fly-in dimulai (masih di fase sapaan awal): kamera tenang di atas awan
+        c.pos.set(26, 28, 30);
+        c.tgt.set(0, 0.2, 0);
+        c.ox = 0;
       }
     }
 
