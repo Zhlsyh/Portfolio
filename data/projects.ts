@@ -228,7 +228,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     id: 'eng-5',
     category: 'engineering',
     title: 'Catu Daya Stabil 9V IC 7809',
-    image: '',
+    image: '/photos/power-supply/power-supply-2.webp',
     tags: ['Hardware', 'Regulator IC 7809', 'Power Supply'],
     description: 'Perancangan dan fabrikasi rangkaian catu daya (power supply) teregulasi menggunakan IC 7809 dengan keluaran tegangan stabil 9V DC untuk memasok daya rangkaian elektronik dan mikrokontroler.',
     specs: [
@@ -236,13 +236,20 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
       { label: 'Proteksi', value: 'Filter Kapasitor & Dioda' },
       { label: 'Arus Maksimal', value: '1 Ampere' },
       { label: 'Fungsi', value: 'Power Supply Mikrokontroler' }
+    ],
+    gallery: [
+      { id: 'eng-5-1', url: '/photos/power-supply/power-supply-1.webp', title: 'Catu daya dalam casing dengan display tegangan' },
+      { id: 'eng-5-2', url: '/photos/power-supply/power-supply-2.webp', title: 'Pengujian output tegangan catu daya' },
+      { id: 'eng-5-3', url: '/photos/power-supply/power-supply-3.webp', title: 'Perakitan trafo dan rangkaian regulator' },
+      { id: 'eng-5-4', url: '/photos/power-supply/power-supply-4.webp', title: 'Layout PCB catu daya' },
+      { id: 'eng-5-5', url: '/photos/power-supply/power-supply-5.webp', title: 'Skematik rangkaian catu daya' }
     ]
   },
   'eng-6': {
     id: 'eng-6',
     category: 'engineering',
     title: 'Robot Mobil Pendeteksi Objek dan Warna',
-    image: '',
+    image: '/photos/robot-deteksi-warna/robot-deteksi-warna-5.webp',
     tags: ['Raspberry Pi', 'Computer Vision', 'OpenCV', 'Object Detection'],
     description: 'Mengembangkan sistem deteksi objek dan warna secara real-time menggunakan kamera berbasis Raspberry Pi dan library OpenCV. Robot bergerak otonom berdasarkan hasil analisis visual dari kamera.',
     specs: [
@@ -251,12 +258,22 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
       { label: 'Fitur', value: 'Deteksi Objek & Warna Real-time' },
       { label: 'Tahun', value: '2026' },
     ],
+    gallery: [
+      { id: 'eng-6-1', url: '/photos/robot-deteksi-warna/robot-deteksi-warna-1.webp', title: 'Deteksi objek real-time pada layar Raspberry Pi' },
+      { id: 'eng-6-2', url: '/photos/robot-deteksi-warna/robot-deteksi-warna-2.webp', title: 'Hasil masking warna dengan OpenCV' },
+      { id: 'eng-6-3', url: '/photos/robot-deteksi-warna/robot-deteksi-warna-3.webp', title: 'Pengujian robot dengan objek warna' },
+      { id: 'eng-6-4', url: '/photos/robot-deteksi-warna/robot-deteksi-warna-4.webp', title: 'Robot mobil dan setup pemrograman' },
+      { id: 'eng-6-5', url: '/photos/robot-deteksi-warna/robot-deteksi-warna-5.webp', title: 'Robot mobil dengan kamera' },
+      { id: 'eng-6-6', url: '/photos/robot-deteksi-warna/robot-deteksi-warna-6.webp', title: 'Program deteksi warna dan tampilan kamera' },
+      { id: 'eng-6-7', url: '/photos/robot-deteksi-warna/robot-deteksi-warna-7.webp', title: 'Tim pengembang bersama robot' },
+      { id: 'eng-6-8', url: '/photos/robot-deteksi-warna/robot-deteksi-warna-8.webp', title: 'Uji deteksi objek hijau pada robot' }
+    ]
   },
   'eng-7': {
     id: 'eng-7',
     category: 'engineering',
     title: 'Mesin Cuci Tangan Otomatis Touchless',
-    image: '',
+    image: '/photos/cuci-tangan-touchless/cuci-tangan-touchless-3.webp',
     tags: ['Arduino Uno', 'Sensor Infrared', 'Touchless', 'Otomasi'],
     description: 'Merancang sistem touchless berbasis Arduino Uno dan sensor infrared untuk mengalirkan sabun/air secara otomatis tanpa sentuhan. Dirancang untuk higienis dan efisiensi pemakaian air.',
     specs: [
@@ -265,12 +282,20 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
       { label: 'Mekanisme', value: 'Touchless Soap & Water Dispenser' },
       { label: 'Tahun', value: '2024' },
     ],
+    gallery: [
+      { id: 'eng-7-1', url: '/photos/cuci-tangan-touchless/cuci-tangan-touchless-1.webp', title: 'Skematik rangkaian Arduino, relay, dan sensor infrared' },
+      { id: 'eng-7-2', url: '/photos/cuci-tangan-touchless/cuci-tangan-touchless-2.webp', title: 'Uji coba rangkaian dan wadah sabun' },
+      { id: 'eng-7-3', url: '/photos/cuci-tangan-touchless/cuci-tangan-touchless-3.webp', title: 'Purwarupa mesin cuci tangan touchless' },
+      { id: 'eng-7-4', url: '/photos/cuci-tangan-touchless/cuci-tangan-touchless-4.webp', title: 'Bagian dalam: pompa, wadah sabun, dan indikator' },
+      { id: 'eng-7-5', url: '/photos/cuci-tangan-touchless/cuci-tangan-touchless-5.webp', title: 'Tim pengembang proyek' },
+      { id: 'eng-7-6', url: '/photos/cuci-tangan-touchless/cuci-tangan-touchless-6.webp', title: 'Pengujian rangkaian Arduino Uno dan relay' }
+    ]
   },
   'eng-8': {
     id: 'eng-8',
     category: 'engineering',
     title: 'Robot Line Follower & Robot Avoiding Obstacle',
-    image: '',
+    image: '/photos/line-follower/line-follower-4.webp',
     tags: ['Arduino Uno', 'OP-Amp', 'Line Follower', 'Obstacle Avoidance', 'Robotika'],
     description: 'Merakit dan memprogram robot line follower berbasis komparator OP-Amp dan robot avoiding obstacle berbasis Arduino Uno dengan sensor ultrasonik untuk navigasi otonom menghindari rintangan halangan.',
     specs: [
@@ -279,12 +304,22 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
       { label: 'Sistem Penggerak', value: 'Dual DC Gear Motor & Driver H-Bridge' },
       { label: 'Tahun', value: '2025' },
     ],
+    gallery: [
+      { id: 'lf-1', url: '/photos/line-follower/line-follower-1.webp', title: 'Robot line follower tampak atas' },
+      { id: 'lf-2', url: '/photos/line-follower/line-follower-2.webp', title: 'Robot line follower dengan motor gearbox' },
+      { id: 'lf-3', url: '/photos/line-follower/line-follower-3.webp', title: 'Uji coba line follower pada lintasan' },
+      { id: 'lf-4', url: '/photos/line-follower/line-follower-4.webp', title: 'Line follower mengikuti jalur hitam' },
+      { id: 'lf-5', url: '/photos/line-follower/line-follower-5.webp', title: 'Rangkaian komparator OP-Amp dan indikator LED' },
+      { id: 'avoid-1', url: '/photos/avoiding-obstacle/avoiding-obstacle-1.webp', title: 'Robot avoiding obstacle dengan sensor ultrasonik' },
+      { id: 'avoid-2', url: '/photos/avoiding-obstacle/avoiding-obstacle-2.webp', title: 'Perakitan sasis dan driver motor' },
+      { id: 'avoid-3', url: '/photos/avoiding-obstacle/avoiding-obstacle-3.webp', title: 'Pemasangan komponen dan pengujian' }
+    ]
   },
   'eng-9': {
     id: 'eng-9',
     category: 'engineering',
     title: 'Papan Skor Sepak Bola Digital 2 Tim',
-    image: '',
+    image: '/photos/papan-skor/papan-skor-1.webp',
     tags: ['Seven Segment', 'Digital Counter', 'Elektronika Digital', 'Hardware'],
     description: 'Merancang dan membuat papan skor digital untuk 2 tim sepak bola menggunakan tampilan seven segment berukuran besar dan rangkaian pencacah digital yang andal.',
     specs: [
@@ -292,6 +327,12 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
       { label: 'Kontrol Skor', value: 'Push-button Increment & Reset' },
       { label: 'Tahun', value: '2024' },
     ],
+    gallery: [
+      { id: 'eng-9-1', url: '/photos/papan-skor/papan-skor-1.webp', title: 'Papan skor seven segment menyala' },
+      { id: 'eng-9-2', url: '/photos/papan-skor/papan-skor-2.webp', title: 'PCB hasil etching' },
+      { id: 'eng-9-3', url: '/photos/papan-skor/papan-skor-3.webp', title: 'Proses transfer layout PCB' },
+      { id: 'eng-9-4', url: '/photos/papan-skor/papan-skor-4.webp', title: 'Skematik dan layout PCB' }
+    ]
   },
   'creative-medio': {
     id: 'creative-medio',
