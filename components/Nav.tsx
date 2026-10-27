@@ -1,3 +1,6 @@
+import { usePrefs } from '@/lib/prefs';
+import { SECTION_LABELS } from '@/data/i18n';
+
 export const SECTIONS = [
   { id: 'home', label: 'Home', short: 'Home', color: '#ff7a45' },
   { id: 'workbench', label: 'Workbench', short: 'Bench', color: '#7fd1ae' },
@@ -41,18 +44,32 @@ function MoonIcon() {
 }
 
 export default function Nav({ active, onGo, is3d, canToggle, onToggle, dark, onToggleTheme }: NavProps) {
+  const { t, lang, setLang } = usePrefs();
+  const labels = SECTION_LABELS[lang];
   return (
     <>
       {/* merek */}
       <button
         type="button"
         onClick={() => onGo('home')}
-        aria-label="Kembali ke atas"
+        aria-label={t.backTop}
         className={`${pill} fixed left-3 top-3 z-50 flex items-center gap-2 py-1.5 pl-1.5 pr-1.5 md:left-6 md:top-5 xl:pr-4`}
       >
-        <span className="grid h-9 w-9 place-items-center rounded-full border-2 border-[#2b2230] bg-tangerine font-display text-sm font-extrabold text-on-accent">
-          Z·S
+        <span className="relative grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-full border-2 border-[#2b2230] bg-sun">
+          {/* avatar piksel: bangun di siang, tidur di malam */}
+          <img
+            src={dark ? '/avatar/helmi-head-sleep.png' : '/avatar/helmi-head-awake.png'}
+            alt=""
+            width={33}
+            height={33}
+            className="h-[30px] w-[30px] [image-rendering:pixelated]"
+          />
         </span>
+        {dark && (
+          <span className="brand-zzz pointer-events-none absolute -right-1 -top-2 font-display text-[0.7rem] font-extrabold text-sun" aria-hidden>
+            z
+          </span>
+        )}
         <span className="hidden font-display text-sm font-bold xl:inline">Zulhelmi Syahtiar</span>
       </button>
 
@@ -60,10 +77,21 @@ export default function Nav({ active, onGo, is3d, canToggle, onToggle, dark, onT
       <div className="fixed right-3 top-3 z-50 flex items-center gap-2 md:right-6 md:top-5">
         <button
           type="button"
+          onClick={() => setLang(lang === 'id' ? 'en' : 'id')}
+          aria-label={t.langLabel}
+          title={lang === 'id' ? 'English' : 'Bahasa Indonesia'}
+          className={`${pill} flex h-11 items-center gap-1 px-3 text-xs font-extrabold`}
+        >
+          <span className={lang === 'id' ? '' : 'opacity-45'}>ID</span>
+          <span className="opacity-40" aria-hidden>/</span>
+          <span className={lang === 'en' ? '' : 'opacity-45'}>EN</span>
+        </button>
+        <button
+          type="button"
           onClick={onToggleTheme}
           aria-pressed={dark}
-          aria-label={dark ? 'Ganti ke mode siang' : 'Ganti ke mode malam'}
-          title={dark ? 'Mode siang' : 'Mode malam'}
+          aria-label={dark ? t.toDay : t.toNight}
+          title={dark ? t.dayTitle : t.nightTitle}
           className={`${pill} grid h-11 w-11 place-items-center transition-colors ${dark ? 'text-sun' : 'text-tangerine'}`}
         >
           {dark ? <MoonIcon /> : <SunIcon />}
@@ -79,14 +107,14 @@ export default function Nav({ active, onGo, is3d, canToggle, onToggle, dark, onT
               className={`h-2.5 w-2.5 rounded-full border border-edge ${is3d ? 'bg-mint' : 'bg-transparent'}`}
               aria-hidden
             />
-            <span>{is3d ? '3D aktif' : 'Mode ringan'}</span>
+            <span>{is3d ? t.on3d : t.lite}</span>
           </button>
         )}
       </div>
 
       {/* desktop lebar: pil di atas */}
       <nav
-        aria-label="Navigasi utama"
+        aria-label={t.navLabel}
         className={`${pill} fixed left-1/2 top-5 z-50 hidden -translate-x-1/2 items-center gap-0.5 p-1.5 xl:flex`}
       >
         {SECTIONS.map((s, i) => (
@@ -98,14 +126,14 @@ export default function Nav({ active, onGo, is3d, canToggle, onToggle, dark, onT
             className={`whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-bold transition-colors hover:bg-surface ${active === i ? 'text-on-accent' : ''}`}
             style={active === i ? { background: s.color } : undefined}
           >
-            {s.label}
+            {labels[i].label}
           </button>
         ))}
       </nav>
 
       {/* mobile & tablet: bilah bawah dengan target sentuh standar >=44px */}
       <nav
-        aria-label="Navigasi utama"
+        aria-label={t.navLabel}
         className={`${pill} fixed inset-x-3 bottom-3 z-50 flex items-center gap-1.5 overflow-x-auto p-1.5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden xl:hidden`}
       >
         {SECTIONS.map((s, i) => (
@@ -117,7 +145,7 @@ export default function Nav({ active, onGo, is3d, canToggle, onToggle, dark, onT
             className={`min-h-[44px] shrink-0 whitespace-nowrap rounded-full px-3.5 py-2 text-xs font-bold transition-colors ${active === i ? 'text-on-accent' : 'text-ink-soft hover:bg-surface'}`}
             style={active === i ? { background: s.color } : undefined}
           >
-            {s.label}
+            {labels[i].label}
           </button>
         ))}
       </nav>

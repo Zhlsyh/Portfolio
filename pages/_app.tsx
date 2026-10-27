@@ -1,6 +1,11 @@
 import type { AppProps } from 'next/app';
+import { PrefsProvider } from '@/lib/prefs';
 import '@/styles/globals.css';
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <PrefsProvider>
+      <Component {...pageProps} />
+    </PrefsProvider>
+  );
 }

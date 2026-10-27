@@ -1,21 +1,24 @@
 import { useEffect, useRef } from 'react';
 import { PROJECTS_DATA } from '@/data/projects';
 import SafeImg from './SafeImg';
+import { usePrefs } from '@/lib/prefs';
+import { localizeProject } from '@/data/localize';
 
 export type Project = (typeof PROJECTS_DATA)[string];
 
-const CATEGORY_LABEL: Record<string, string> = {
-  engineering: 'Engineering',
-  photography: 'Fotografi',
-  design: 'Desain',
-};
-
-export default function ProjectModal({ project, onClose }: { project: Project | null; onClose: () => void }) {
+export default function ProjectModal({ project: raw, onClose }: { project: Project | null; onClose: () => void }) {
+  const { t, lang } = usePrefs();
+  const project = raw ? localizeProject(raw, lang) : null;
+  const categoryLabel: Record<string, string> = {
+    engineering: t.catEngineering,
+    photography: t.catPhotography,
+    design: t.catDesign,
+  };
   const closeRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!project) return;
+    if (!raw) return;
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     closeRef.current?.focus();
@@ -48,7 +51,7 @@ export default function ProjectModal({ project, onClose }: { project: Project | 
       document.body.style.overflow = prevOverflow;
       window.removeEventListener('keydown', onKey);
     };
-  }, [project, onClose]);
+  }, [raw, onClose]);
 
   if (!project) return null;
   const gallery = (project.gallery ?? []).slice(0, 18);
@@ -76,7 +79,7 @@ export default function ProjectModal({ project, onClose }: { project: Project | 
             ref={closeRef}
             type="button"
             onClick={onClose}
-            aria-label="Tutup modal"
+            aria-label={t.closeModal}
             className="grid h-10 w-10 place-items-center rounded-full border-2 border-[#2b2230] bg-sun text-lg font-extrabold text-on-accent shadow-[0_2px_0_#2b2230]"
           >
             ×
@@ -89,12 +92,12 @@ export default function ProjectModal({ project, onClose }: { project: Project | 
 
         <div className="space-y-5 p-5 md:p-7">
           <div className="space-y-3">
-            <span className="chip !text-on-accent" style={{ background: '#7fd1ae', borderColor: '#2b2230' }}>{CATEGORY_LABEL[project.category] ?? project.category}</span>
+            <span className="chip !text-on-accent" style={{ background: '#7fd1ae', borderColor: '#2b2230' }}>{categoryLabel[project.category] ?? project.category}</span>
             <h2 className="text-2xl md:text-3xl">{project.title}</h2>
             <div className="flex flex-wrap gap-1.5">
-              {project.tags.map((t) => (
-                <span key={t} className="chip">
-                  {t}
+              {project.tags.map((tag) => (
+                <span key={tag} className="chip">
+                  {tag}
                 </span>
               ))}
             </div>
@@ -115,13 +118,13 @@ export default function ProjectModal({ project, onClose }: { project: Project | 
 
           {project.docLink && (
             <a href={project.docLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-              Buka tautan proyek <span aria-hidden>↗</span>
+              {t.openProject} <span aria-hidden>↗</span>
             </a>
           )}
 
           {gallery.length > 0 && (
             <div className="space-y-3">
-              <h3 className="text-lg">Galeri</h3>
+              <h3 className="text-lg">{t.gallery}</h3>
               <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5">
                 {gallery.map((g) => (
                   <li key={g.id} className="aspect-square overflow-hidden rounded-xl border border-[var(--glass-border)] bg-cream">
@@ -130,7 +133,7 @@ export default function ProjectModal({ project, onClose }: { project: Project | 
                 ))}
               </ul>
               {hasMoreGallery && project.docLink && (
-                <p className="text-sm text-ink-soft">Foto selengkapnya ada di tautan proyek di atas.</p>
+                <p className="text-sm text-ink-soft">{t.moreAtLink}</p>
               )}
             </div>
           )}

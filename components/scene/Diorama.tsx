@@ -36,9 +36,13 @@ function GroundShadow() {
 export default function Diorama({
   onSelect,
   progress,
+  dark,
+  lang,
 }: {
   onSelect: (id: string) => void;
   progress: MutableRefObject<number>;
+  dark: boolean;
+  lang: 'id' | 'en';
 }) {
   return (
     <group>
@@ -58,7 +62,7 @@ export default function Diorama({
       <Box size={[TILE, 0.1, TILE]} pos={[-OFF, 0.05, OFF]} color="#ffd0dc" radius={0.1} cast={false} />
 
       <group position={[0, 0.1, 0]}>
-        <Center progress={progress} />
+        <Center progress={progress} dark={dark} lang={lang} />
       </group>
       <Zone id="workbench" position={[-OFF, 0.1, -OFF]} onSelect={onSelect}>
         <Workbench />

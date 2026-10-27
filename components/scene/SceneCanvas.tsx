@@ -11,11 +11,13 @@ function SceneCanvas({
   onSelect,
   onReady,
   dark,
+  lang,
 }: {
   progress: MutableRefObject<number>;
   onSelect: (id: string) => void;
   onReady: () => void;
   dark: boolean;
+  lang: 'id' | 'en';
 }) {
   const [maxDpr, setMaxDpr] = useState(
     typeof window !== 'undefined' && window.innerWidth < 768 ? 1.5 : 2,
@@ -37,7 +39,7 @@ function SceneCanvas({
       <PerformanceMonitor onDecline={() => setMaxDpr(1)} />
       <Lighting dark={dark} />
       <Suspense fallback={null}>
-        <Diorama onSelect={onSelect} progress={progress} />
+        <Diorama onSelect={onSelect} progress={progress} dark={dark} lang={lang} />
       </Suspense>
       <CameraRig progress={progress} />
     </Canvas>

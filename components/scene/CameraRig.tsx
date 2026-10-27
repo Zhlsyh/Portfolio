@@ -15,13 +15,13 @@ interface Key {
 // Urutan mengikuti section: home, workbench, photo, design, journey, bonus, skills, contact.
 const KEYS: Key[] = [
   { pos: [13.5, 11.5, 14.5], tgt: [0, 0.4, 0], ox: -0.16 }, // home
-  { pos: [5.4, 10.8, 5.5], tgt: [-3.1, 1.3, -3.0], ox: -0.2 }, // workbench
-  { pos: [13.6, 10.7, 0.5], tgt: [3.1, 1.3, -3.0], ox: 0.2 }, // photo
+  { pos: [5.4, 10.8, 5.5], tgt: [-2.3, 1.1, -2.1], ox: -0.2 }, // workbench (maskot ber-helm ikut terlihat)
+  { pos: [13.6, 10.7, 0.5], tgt: [2.4, 1.2, -2.2], ox: 0.2 }, // photo (maskot ber-kamera ikut terlihat)
   { pos: [11.6, 10.5, 11.5], tgt: [3.1, 1.0, 3.0], ox: -0.2 }, // design
   { pos: [-7, 8.8, 11], tgt: [0, 0.7, 0], ox: 0.2 }, // journey
-  { pos: [-3.2, 5.6, 8.4], tgt: [0.9, 0.7, 0.8], ox: -0.2 }, // bonus (pemutar piringan hitam)
+  { pos: [-3.2, 5.8, 8.6], tgt: [0.45, 0.8, 0.5], ox: -0.2 }, // bonus (pemutar piringan hitam + maskot ber-headphone)
   { pos: [15, 13.5, 15], tgt: [0, 0.2, 0], ox: -0.2 }, // skills
-  { pos: [1.4, 10.4, 13.6], tgt: [-3.1, 0.9, 3.1], ox: 0.2 }, // contact
+  { pos: [1.4, 10.4, 13.6], tgt: [-1.8, 0.9, 2.0], ox: 0.2 }, // contact (kotak surat + maskot ber-amplop)
 ];
 
 // Quintic smootherstep: derivative 0 di kedua ujung (start & stop bebas hentakan)

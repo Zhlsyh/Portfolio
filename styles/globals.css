@@ -419,3 +419,51 @@ details.org > summary::-webkit-details-marker {
 details.org[open] .org-caret {
   transform: rotate(180deg);
 }
+
+/* Zzz kecil di logo saat malam */
+.brand-zzz {
+  animation: zzz-float 2.6s ease-in-out infinite;
+}
+@keyframes zzz-float {
+  0%, 100% { opacity: 0.35; transform: translate(0, 2px) scale(0.85); }
+  50% { opacity: 1; transform: translate(2px, -3px) scale(1.1); }
+}
+
+/* Balon ucapan maskot (HTML di atas kanvas 3D) */
+.mascot-bubble {
+  pointer-events: none;
+  width: max-content;
+  max-width: 13rem;
+  text-align: center;
+  position: relative;
+  padding: 0.45rem 0.8rem;
+  border-radius: 0.9rem;
+  border: 2px solid #2b2230;
+  background: #fffaf0;
+  color: #2b2230;
+  font-family: var(--font-display, 'Bricolage Grotesque', ui-rounded, system-ui, sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.25;
+  box-shadow: 0 3px 0 #2b2230;
+  animation: bubble-pop 0.28s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+.mascot-bubble::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 11px;
+  height: 11px;
+  background: #fffaf0;
+  border-right: 2px solid #2b2230;
+  border-bottom: 2px solid #2b2230;
+  transform: translateX(-50%) rotate(45deg);
+}
+@keyframes bubble-pop {
+  from { opacity: 0; transform: translateY(6px) scale(0.85); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-zzz, .mascot-bubble { animation: none; }
+}

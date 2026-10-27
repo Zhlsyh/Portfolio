@@ -4,8 +4,8 @@ import { CAPABILITIES, CERTIFICATIONS, CONTACT, EXPERIENCE, SITE } from '@/data/
 import { EDUCATION, HOBBIES, ORGANIZATIONS, SPOTIFY } from '@/data/journey';
 import type { Project } from './ProjectModal';
 import SafeImg from './SafeImg';
-
-const CV_URL = '/cv/CV_Zulhelmi_Syahtiar_Umum.pdf';
+import { usePrefs } from '@/lib/prefs';
+import { localizeProject } from '@/data/localize';
 
 const AlternateCtx = createContext(true);
 
@@ -37,6 +37,8 @@ function Heading({ eyebrow, color, title, children }: { eyebrow: string; color: 
 }
 
 function ProjectCard({ project, onOpen }: { project: Project; onOpen: (p: Project) => void }) {
+  const { lang } = usePrefs();
+  const view = localizeProject(project, lang);
   return (
     <button
       type="button"
@@ -47,11 +49,11 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: (p: Projec
         <SafeImg src={project.image} alt="" className="h-full w-full object-cover" />
       </div>
       <div className="flex flex-1 flex-col gap-2 p-3">
-        <p className="line-clamp-3 font-display text-[0.95rem] font-bold leading-tight">{project.title}</p>
+        <p className="line-clamp-3 font-display text-[0.95rem] font-bold leading-tight">{view.title}</p>
         <div className="mt-auto flex flex-wrap gap-1">
-          {project.tags.slice(0, 2).map((t) => (
-            <span key={t} className="chip !px-2 !py-0 !text-[0.7rem]">
-              {t}
+          {view.tags.slice(0, 2).map((tag) => (
+            <span key={tag} className="chip !px-2 !py-0 !text-[0.7rem]">
+              {tag}
             </span>
           ))}
         </div>
@@ -61,6 +63,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: (p: Projec
 }
 
 function Grid({ items, onOpen, limit }: { items: Project[]; onOpen: (p: Project) => void; limit?: number }) {
+  const { t } = usePrefs();
   const [all, setAll] = useState(false);
   const shown = limit && !all ? items.slice(0, limit) : items;
   return (
@@ -74,7 +77,7 @@ function Grid({ items, onOpen, limit }: { items: Project[]; onOpen: (p: Project)
       </ul>
       {limit && items.length > limit && (
         <button type="button" className="btn" onClick={() => setAll((v) => !v)} aria-expanded={all}>
-          {all ? 'Tampilkan lebih sedikit' : `Lihat semua (${items.length})`}
+          {all ? t.showLess : `${t.showAll} (${items.length})`}
         </button>
       )}
     </div>
@@ -82,6 +85,7 @@ function Grid({ items, onOpen, limit }: { items: Project[]; onOpen: (p: Project)
 }
 
 function CopyEmail({ email }: { email: string }) {
+  const { t } = usePrefs();
   const [done, setDone] = useState(false);
   return (
     <button
@@ -93,11 +97,11 @@ function CopyEmail({ email }: { email: string }) {
           setDone(true);
           setTimeout(() => setDone(false), 1800);
         } catch {
-          window.prompt('Salin email:', email);
+          window.prompt(t.copyPrompt, email);
         }
       }}
     >
-      {done ? 'Tersalin ✓' : 'Salin email'}
+      {done ? t.copied : t.copyEmail}
     </button>
   );
 }
@@ -112,6 +116,7 @@ interface Props {
 }
 
 export default function Sections({ onOpen, onGo, alternate }: Props) {
+  const { t, tx, tp, audience, setAudience, cvHref, lang } = usePrefs();
   const { eng, photo, design } = useMemo(() => {
     const all = Object.values(PROJECTS_DATA).filter((p) => !p.id.startsWith('org-'));
     const rank = (id: string) => {
@@ -138,32 +143,59 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
         {/* HOME */}
         <Section id="home">
           <div className="glass space-y-5 p-5 md:p-8">
-            <span className="eyebrow bg-sun">Fresh graduate · D3 Elektronika Industri PNJ</span>
+            <span className="eyebrow bg-sun">{t.heroEyebrow}</span>
             <h1 className="text-[2.6rem] sm:text-6xl md:text-[4.2rem]">
               Zulhelmi
               <br />
               <span>Syahtiar</span>
             </h1>
-            <p className="text-lg font-medium">
-              Embedded &amp; IoT engineer yang juga memotret dan mendesain. Merancang sistem kontrol cerdas dan IoT dengan kendali presisi, didukung dokumentasi visual yang terarah.
-            </p>
-            <p className="text-[0.95rem] text-ink-soft">
-              Magang proteksi tenaga listrik di PT PLN, proyek ESP32 dan sistem kendali PID/Fuzzy, serta freelance
-              fotografi dan desain grafis sejak 2023.
-            </p>
+            <p className="text-lg font-medium">{t.heroLead}</p>
+            <p className="text-[0.95rem] text-ink-soft">{t.heroSub}</p>
+
+            <div className="space-y-2 pt-1">
+              <p className="text-sm font-semibold text-ink-soft" id="path-label">
+                {t.pathLabel}
+              </p>
+              <div className="flex flex-wrap gap-2" role="group" aria-labelledby="path-label">
+                {(
+                  [
+                    { key: 'tech', label: t.pathTech, go: 'workbench', color: '#7fd1ae' },
+                    { key: 'creative', label: t.pathCreative, go: 'photo', color: '#ffd24a' },
+                  ] as const
+                ).map((o) => {
+                  const on = audience === o.key;
+                  return (
+                    <button
+                      key={o.key}
+                      type="button"
+                      aria-pressed={on}
+                      className="btn !px-4 !py-2 !text-sm"
+                      style={on ? { background: o.color, color: 'var(--on-accent)' } : undefined}
+                      onClick={() => {
+                        setAudience(o.key);
+                        onGo(o.go);
+                      }}
+                    >
+                      {o.label} <span aria-hidden>→</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <div className="flex flex-wrap gap-3 pt-1">
               <button type="button" className="btn btn-primary" onClick={() => onGo('workbench')}>
-                Keliling studio <span aria-hidden>↓</span>
+                {t.tour} <span aria-hidden>↓</span>
               </button>
-              <a className="btn" href={CV_URL} target="_blank" rel="noopener noreferrer">
-                Unduh CV
+              <a className="btn" href={cvHref(audience)} target="_blank" rel="noopener noreferrer">
+                {audience === 'tech' ? t.cvTech : audience === 'creative' ? t.cvCreative : t.cvGeneral}
               </a>
             </div>
             <p className="hidden items-center gap-2 pt-1 text-sm text-ink-soft md:flex">
               <span className="hint-bounce inline-block" aria-hidden>
                 ↓
               </span>
-              Scroll atau klik objek 3D untuk berpindah pojok
+              {t.hint}
             </p>
           </div>
         </Section>
@@ -171,26 +203,26 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
         {/* WORKBENCH */}
         <Section id="workbench">
           <div className="glass space-y-6 p-5 md:p-7">
-            <Heading eyebrow="Pojok 01 · Engineering" color="#7fd1ae" title="Workbench">
-              Tempat ESP32, motor, dan sensor dirakit sampai benar-benar jalan.
+            <Heading eyebrow={t.workbenchEyebrow} color="#7fd1ae" title="Workbench">
+              {t.workbenchIntro}
             </Heading>
 
             <article className="space-y-3 rounded-2xl border bg-tint-mint p-4" style={{ borderColor: 'var(--glass-border)' }}>
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="chip">{pln.tag}</span>
-                <span className="text-sm font-semibold">{pln.period}</span>
+                <span className="chip">{tx(pln.tag)}</span>
+                <span className="text-sm font-semibold">{tp(pln.period)}</span>
               </div>
-              <h3 className="text-xl">{pln.title}</h3>
+              <h3 className="text-xl">{tx(pln.title)}</h3>
               <p className="text-sm font-semibold">{pln.org}</p>
               <ul className="list-disc space-y-1 pl-5 text-sm text-ink-soft">
                 {pln.points.slice(0, 3).map((p) => (
-                  <li key={p}>{p}</li>
+                  <li key={p}>{tx(p)}</li>
                 ))}
               </ul>
               <div className="flex flex-wrap gap-1.5">
                 {pln.skills.map((s) => (
                   <span key={s} className="chip">
-                    {s}
+                    {tx(s)}
                   </span>
                 ))}
               </div>
@@ -203,21 +235,21 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
         {/* PHOTO */}
         <Section id="photo" side="right">
           <div className="glass space-y-6 p-5 md:p-7">
-            <Heading eyebrow="Pojok 02 · Fotografi" color="#ffd24a" title="Photo Corner">
-              Foto kelulusan, dokumentasi acara, dan hasil photo hunting. Dari pengarahan gaya sampai editing.
+            <Heading eyebrow={t.photoEyebrow} color="#ffd24a" title="Photo Corner">
+              {t.photoIntro}
             </Heading>
             <ul className="space-y-1.5 text-sm text-ink-soft">
               {freelance.points.slice(0, 2).map((p) => (
                 <li key={p} className="flex gap-2">
                   <span aria-hidden>●</span>
-                  {p}
+                  {tx(p)}
                 </li>
               ))}
             </ul>
             <div className="flex flex-wrap gap-1.5">
               {freelance.skills.map((s) => (
                 <span key={s} className="chip">
-                  {s}
+                  {tx(s)}
                 </span>
               ))}
             </div>
@@ -228,8 +260,8 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
         {/* DESIGN */}
         <Section id="design">
           <div className="glass space-y-6 p-5 md:p-7">
-            <Heading eyebrow="Pojok 03 · Desain" color="#6ec1e4" title="Design Desk">
-              Poster, feeds, merchandise, dan identitas visual untuk organisasi, acara, dan brand sendiri.
+            <Heading eyebrow={t.designEyebrow} color="#6ec1e4" title="Design Desk">
+              {t.designIntro}
             </Heading>
             <Grid items={design} onOpen={onOpen} />
           </div>
@@ -238,33 +270,33 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
         {/* PERJALANAN: pendidikan + organisasi */}
         <Section id="journey" side="right">
           <div className="glass space-y-7 p-5 md:p-7">
-            <Heading eyebrow="Rekam Jejak" color="#ff9eb5" title="Pendidikan & organisasi">
-              Dari bangku SMA MIPA sampai D3 Elektronika Industri, plus kepanitiaan yang mengasah sisi kreatif.
+            <Heading eyebrow={t.journeyEyebrow} color="#ff9eb5" title={t.journeyTitle}>
+              {t.journeyIntro}
             </Heading>
 
             <div className="space-y-3">
-              <h3 className="text-xl">Pendidikan</h3>
+              <h3 className="text-xl">{t.education}</h3>
               <ul className="space-y-3">
                 {EDUCATION.map((e) => (
                   <li key={e.school} className="glass-card space-y-2 p-4">
                     <div className="flex flex-wrap items-baseline justify-between gap-x-3">
                       <p className="font-display text-lg font-bold leading-tight">{e.school}</p>
-                      <span className="text-sm font-semibold">{e.period}</span>
+                      <span className="text-sm font-semibold">{tp(e.period)}</span>
                     </div>
                     <p className="text-sm text-ink-soft">
-                      {e.program} · {e.place}
+                      {tx(e.program)} · {tx(e.place)}
                     </p>
-                    {e.badge && <span className="chip bg-sun !text-on-accent" style={{ background: '#ffd24a', borderColor: '#2b2230' }}>{e.badge}</span>}
+                    {e.badge && <span className="chip bg-sun !text-on-accent" style={{ background: '#ffd24a', borderColor: '#2b2230' }}>{tx(e.badge)}</span>}
                     {e.points.length > 0 && (
                       <ul className="list-disc space-y-1 pl-5 text-sm text-ink-soft">
                         {e.points.map((p) => (
-                          <li key={p}>{p}</li>
+                          <li key={p}>{tx(p)}</li>
                         ))}
                       </ul>
                     )}
                     {e.projectId && (
                       <button type="button" className="btn !px-4 !py-2 !text-sm" onClick={() => openById(e.projectId)}>
-                        Lihat proyek tugas akhir
+                        {t.finalProject}
                       </button>
                     )}
                   </li>
@@ -273,7 +305,7 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-xl">Organisasi &amp; kepanitiaan</h3>
+              <h3 className="text-xl">{t.orgs}</h3>
               <ul className="space-y-2.5">
                 {ORGANIZATIONS.map((o, i) => (
                   <li key={o.id}>
@@ -283,9 +315,9 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
                           <SafeImg src={o.logo} alt="" className="h-full w-full object-contain" />
                         </span>
                         <span className="min-w-0 flex-1">
-                          <span className="block font-display text-[0.95rem] font-bold leading-tight">{o.name}</span>
+                          <span className="block font-display text-[0.95rem] font-bold leading-tight">{tx(o.name)}</span>
                           <span className="block text-sm text-ink-soft">
-                            {o.role} · {o.period}
+                            {tx(o.role)} · {tp(o.period)}
                           </span>
                         </span>
                         <span className="org-caret shrink-0 transition-transform" aria-hidden>
@@ -293,14 +325,14 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
                         </span>
                       </summary>
                       <div className="space-y-2 border-t border-[var(--glass-border)] p-3 text-sm">
-                        <p className="text-ink-soft">{o.about}</p>
+                        <p className="text-ink-soft">{tx(o.about)}</p>
                         <ul className="list-disc space-y-0.5 pl-5">
                           {o.points.map((p) => (
-                            <li key={p}>{p}</li>
+                            <li key={p}>{tx(p)}</li>
                           ))}
                         </ul>
                         <button type="button" className="chip hover:bg-sun hover:!text-on-accent" onClick={() => openById(o.id)}>
-                          Lihat dokumentasi ↗
+                          {t.viewDocs}
                         </button>
                       </div>
                     </details>
@@ -314,8 +346,8 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
         {/* BONUS: hobi + musik */}
         <Section id="bonus">
           <div className="glass space-y-7 p-5 md:p-7">
-            <Heading eyebrow="Aktivitas Personal" color="#c8a8ff" title="Hobi & musik">
-              Dua hobi yang akhirnya jadi pekerjaan sampingan, dan playlist yang menemani prosesnya.
+            <Heading eyebrow={t.bonusEyebrow} color="#c8a8ff" title={t.bonusTitle}>
+              {t.bonusIntro}
             </Heading>
 
             <ul className="space-y-4">
@@ -325,11 +357,11 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
                     <span className="h-3.5 w-3.5 rounded-full border-2 border-[#2b2230]" style={{ background: h.color }} aria-hidden />
                     <h3 className="text-2xl">{h.title}</h3>
                   </div>
-                  <p className="text-sm text-ink-soft">{h.text}</p>
+                  <p className="text-sm text-ink-soft">{tx(h.text)}</p>
                   <div className="flex flex-wrap gap-1.5">
-                    {h.tags.map((t) => (
-                      <span key={t} className="chip">
-                        {t}
+                    {h.tags.map((tag) => (
+                      <span key={tag} className="chip">
+                        {tx(tag)}
                       </span>
                     ))}
                   </div>
@@ -340,7 +372,7 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
                           key={src}
                           className={`overflow-hidden rounded-xl bg-cream ${idx === 0 ? 'col-span-2 aspect-[3/2]' : 'aspect-[3/4]'}`}
                         >
-                          <SafeImg src={src} alt={`Hasil foto ${idx + 1}`} className="h-full w-full object-cover" />
+                          <SafeImg src={src} alt={`${t.photoResult} ${idx + 1}`} className="h-full w-full object-cover" />
                         </div>
                       ))}
                     </div>
@@ -357,10 +389,10 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
             </ul>
 
             <div className="space-y-3">
-              <h3 className="text-xl">Lagu favorit</h3>
+              <h3 className="text-xl">{t.favSongs}</h3>
               {SPOTIFY.embedPath ? (
                 <iframe
-                  title="Pemutar Spotify"
+                  title={t.spotifyPlayer}
                   src={`https://open.spotify.com/embed/${SPOTIFY.embedPath}?utm_source=generator`}
                   width="100%"
                   height="152"
@@ -385,8 +417,8 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
                   </svg>
                 </span>
                 <span className="min-w-0">
-                  <span className="block font-display text-lg font-bold leading-tight">{SPOTIFY.displayName} di Spotify</span>
-                  <span className="block text-sm text-ink-soft">Buka profil untuk lihat apa yang sedang saya dengarkan ↗</span>
+                  <span className="block font-display text-lg font-bold leading-tight">{SPOTIFY.displayName} {t.onSpotify}</span>
+                  <span className="block text-sm text-ink-soft">{t.spotifyOpen}</span>
                 </span>
               </a>
             </div>
@@ -396,17 +428,17 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
         {/* SKILLS */}
         <Section id="skills" side="left">
           <div className="glass space-y-6 p-5 md:p-7">
-            <Heading eyebrow="Kapabilitas" color="#7fd1ae" title="Keahlian & sertifikasi">
-              Ringkasan tools dan bukti belajar yang saya terapkan dalam perkuliahan, magang industri, dan proyek mandiri.
+            <Heading eyebrow={t.skillsEyebrow} color="#7fd1ae" title={t.skillsTitle}>
+              {t.skillsIntro}
             </Heading>
             <div className="space-y-4">
               {CAPABILITIES.map((c) => (
                 <div key={c.title} className="space-y-1.5">
-                  <h3 className="text-base">{c.title}</h3>
+                  <h3 className="text-base">{tx(c.title)}</h3>
                   <div className="flex flex-wrap gap-1.5">
                     {c.items.map((i) => (
                       <span key={i.name} className="chip">
-                        {i.name}
+                        {tx(i.name)}
                       </span>
                     ))}
                   </div>
@@ -414,13 +446,13 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
               ))}
             </div>
             <div className="space-y-3">
-              <h3 className="text-xl">Sertifikasi</h3>
+              <h3 className="text-xl">{t.certs}</h3>
               <ul className="grid grid-cols-[minmax(0,1fr)] gap-3">
                 {CERTIFICATIONS.map((c) => (
                   <li key={c.title} className="glass-card bg-tint-pink p-3">
                     <div className="flex items-baseline justify-between gap-2">
-                      <p className="font-display font-bold leading-tight">{c.title}</p>
-                      <span className="shrink-0 text-xs font-semibold">{c.period}</span>
+                      <p className="font-display font-bold leading-tight">{tx(c.title)}</p>
+                      <span className="shrink-0 text-xs font-semibold">{tp(c.period)}</span>
                     </div>
                     <p className="text-sm text-ink-soft">{c.issuer}</p>
                     <p className="mt-1 break-all font-mono text-[0.7rem] text-ink-soft">{c.regNo}</p>
@@ -434,12 +466,12 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
         {/* CONTACT */}
         <Section id="contact" side="right">
           <div className="glass space-y-5 p-5 md:p-7">
-            <Heading eyebrow="Pojok 04 · Kontak" color="#ff9eb5" title="Say hi!">
-              {CONTACT.description}
+            <Heading eyebrow={t.contactEyebrow} color="#ff9eb5" title="Say hi!">
+              {tx(CONTACT.description)}
             </Heading>
             <div className="flex flex-wrap gap-3">
               <a className="btn btn-primary" href={`mailto:${CONTACT.email}`}>
-                Kirim email
+                {t.sendEmail}
               </a>
               <CopyEmail email={CONTACT.email} />
               <a
@@ -450,9 +482,31 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
               >
                 WhatsApp
               </a>
-              <a className="btn" href={CV_URL} target="_blank" rel="noopener noreferrer">
-                Unduh CV
-              </a>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm font-semibold text-ink-soft" id="cv-label">
+                {t.cvPick}
+              </p>
+              <ul className="flex flex-wrap gap-2" aria-labelledby="cv-label">
+                {(
+                  [
+                    { key: 'general', label: t.cvGeneralShort },
+                    { key: 'tech', label: t.cvTechShort },
+                    { key: 'creative', label: t.cvCreativeShort },
+                  ] as const
+                ).map((c) => (
+                  <li key={c.key}>
+                    <a
+                      className="btn !px-4 !py-2 !text-sm"
+                      href={cvHref(c.key)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {c.label} · {lang.toUpperCase()}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
             <ul className="flex flex-wrap gap-2">
               {CONTACT.socials.map((s) => (
@@ -464,12 +518,12 @@ export default function Sections({ onOpen, onGo, alternate }: Props) {
               ))}
             </ul>
             <p className="text-sm text-ink-soft">
-              {CONTACT.email} · {CONTACT.location}
+              {CONTACT.email} · {tx(CONTACT.location)}
             </p>
           </div>
           <p className="mt-6 text-center text-xs text-ink-soft md:text-right">
             <span className="glass !rounded-full inline-block px-3 py-1">
-              © 2026 Zulhelmi Syahtiar · dibuat dengan Next.js &amp; Three.js
+              © 2026 Zulhelmi Syahtiar · {t.builtWith}
             </span>
           </p>
         </Section>

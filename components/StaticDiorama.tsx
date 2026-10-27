@@ -40,13 +40,13 @@ function IsoBox({
   );
 }
 
-export default function StaticDiorama() {
+export default function StaticDiorama({ dark = false, alt }: { dark?: boolean; alt: string }) {
   return (
     <svg
       viewBox="-230 -150 460 340"
       className="h-full w-full"
       role="img"
-      aria-label="Ilustrasi diorama studio: meja elektronik, pojok foto, meja desain, dan kotak surat"
+      aria-label={alt}
     >
       <g transform="translate(0,40)">
         <IsoBox x={-3} y={-3} w={6} d={6} h={14} z={-14} color="#f1dfbf" />
@@ -69,12 +69,16 @@ export default function StaticDiorama() {
         {/* contact */}
         <IsoBox x={-2.1} y={1.4} w={0.2} d={0.2} h={36} z={4} color="#b97f47" />
         <IsoBox x={-2.5} y={1.2} w={1.0} d={0.7} h={18} z={40} color="#6ec1e4" />
-        {/* maskot */}
+        {/* maskot: avatar piksel, tidur di malam hari */}
         <ellipse cx="0" cy="22" rx="22" ry="12" fill="#ff7a45" stroke="#2b2230" strokeWidth="2" />
-        <rect x="-14" y="-12" width="28" height="36" rx="14" fill="#ffd24a" stroke="#2b2230" strokeWidth="2" />
-        <path d="M-15 -4 a15 15 0 0 1 30 0 z" fill="#ff7a45" stroke="#2b2230" strokeWidth="2" />
-        <circle cx="-5" cy="6" r="2.2" fill="#2b2230" />
-        <circle cx="5" cy="6" r="2.2" fill="#2b2230" />
+        <image
+          href={dark ? '/avatar/helmi-sleep.png' : '/avatar/helmi-awake.png'}
+          x="-15"
+          y="-38"
+          width="30"
+          height="41"
+          style={{ imageRendering: 'pixelated' }}
+        />
       </g>
     </svg>
   );

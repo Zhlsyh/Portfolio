@@ -1,14 +1,21 @@
 import { useRef, type MutableRefObject } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import type { Lang } from '@/data/i18n';
 import { Ball, Box, C, Cyl, DISPLAY_FONT, useCanvasTexture } from './shared';
+import Mascot from './Mascot';
 
-/** Tengah diorama: maskot berhelm yang mengikuti kamera, plus papan nama. */
-export default function Center({ progress: _progress }: { progress?: MutableRefObject<number> } = {}) {
+/** Tengah diorama: maskot Helmi yang mengikuti kamera, papan nama, dan pemutar piringan hitam. */
+export default function Center({
+  progress,
+  dark,
+  lang,
+}: {
+  progress: MutableRefObject<number>;
+  dark: boolean;
+  lang: Lang;
+}) {
   const root = useRef<THREE.Group>(null!);
-  const mascot = useRef<THREE.Group>(null!);
-  const body = useRef<THREE.Group>(null!);
-  const jump = useRef(0);
   const vinyl = useRef<THREE.Group>(null!);
   const notes = useRef<THREE.Group[]>([]);
 
@@ -38,18 +45,6 @@ export default function Center({ progress: _progress }: { progress?: MutableRefO
       g.scale.setScalar(Math.sin(u * Math.PI) * 1.0 + 0.01);
       g.rotation.z = Math.sin(u * 5) * 0.4;
     });
-    const cam = state.camera.position;
-    const targetY = Math.atan2(cam.x - mascot.current.position.x, cam.z - mascot.current.position.z);
-    let diff = targetY - mascot.current.rotation.y;
-    diff = Math.atan2(Math.sin(diff), Math.cos(diff));
-    mascot.current.rotation.y += diff * Math.min(1, dt * 3);
-
-    jump.current = Math.max(0, jump.current - dt * 1.6);
-    const hop = Math.sin(Math.min(1, jump.current) * Math.PI) * 0.7 * Math.min(1, jump.current * 3);
-    const bob = Math.abs(Math.sin(t * 2.2)) * 0.06;
-    body.current.position.y = bob + hop;
-    const squash = 1 + Math.sin(t * 4.4) * 0.025;
-    body.current.scale.set(1 / squash, squash, 1 / squash);
   });
 
   return (
@@ -97,32 +92,7 @@ export default function Center({ progress: _progress }: { progress?: MutableRefO
       ))}
 
       {/* maskot */}
-      <group ref={mascot} position={[0, 0.12, 0.2]} onClick={(e) => { e.stopPropagation(); jump.current = 1; }}
-        onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = 'pointer'; }}
-        onPointerOut={() => { document.body.style.cursor = ''; }}>
-        <group ref={body}>
-          <mesh position={[0, 0.5, 0]} castShadow receiveShadow>
-            <capsuleGeometry args={[0.38, 0.36, 8, 20]} />
-            <meshStandardMaterial color={C.yellow} roughness={0.55} />
-          </mesh>
-          {/* mata */}
-          <Ball r={0.065} pos={[-0.15, 0.68, 0.34]} color={C.ink} scale={[1, 1.3, 0.6]} cast={false} />
-          <Ball r={0.065} pos={[0.15, 0.68, 0.34]} color={C.ink} scale={[1, 1.3, 0.6]} cast={false} />
-          <Ball r={0.05} pos={[-0.27, 0.56, 0.3]} color={C.pink} scale={[1, 0.7, 0.4]} cast={false} />
-          <Ball r={0.05} pos={[0.27, 0.56, 0.3]} color={C.pink} scale={[1, 0.7, 0.4]} cast={false} />
-          <Box size={[0.12, 0.03, 0.03]} pos={[0, 0.55, 0.375]} color={C.ink} cast={false} />
-          {/* helm safety */}
-          <mesh position={[0, 0.9, 0]} castShadow>
-            <sphereGeometry args={[0.34, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2]} />
-            <meshStandardMaterial color={C.orange} roughness={0.4} />
-          </mesh>
-          <Cyl r={0.4} h={0.04} pos={[0, 0.9, 0.02]} color="#e65f2b" />
-          <Box size={[0.1, 0.12, 0.5]} pos={[0, 1.2, 0]} color="#e65f2b" cast={false} />
-          {/* kaki */}
-          <Ball r={0.11} pos={[-0.16, 0.04, 0.05]} color="#e8b92f" scale={[1, 0.6, 1.3]} />
-          <Ball r={0.11} pos={[0.16, 0.04, 0.05]} color="#e8b92f" scale={[1, 0.6, 1.3]} />
-        </group>
-      </group>
+      <Mascot progress={progress} dark={dark} lang={lang} />
     </group>
   );
 }

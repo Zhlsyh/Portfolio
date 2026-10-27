@@ -7,6 +7,8 @@ import ProjectModal, { type Project } from '@/components/ProjectModal';
 import StaticDiorama from '@/components/StaticDiorama';
 import SkyBackdrop from '@/components/SkyBackdrop';
 import { useSectionProgress } from '@/hooks/useSectionProgress';
+import { usePrefs } from '@/lib/prefs';
+import { SECTION_LABELS } from '@/data/i18n';
 
 const SceneCanvas = dynamic(() => import('@/components/scene/SceneCanvas'), { ssr: false });
 
@@ -22,11 +24,11 @@ function hasWebGL() {
   }
 }
 
-const TITLE = 'Zulhelmi Syahtiar | Embedded & IoT Engineer, Fotografer, Desainer';
-const DESC =
-  'Portofolio Zulhelmi Syahtiar, lulusan D3 Elektronika Industri PNJ: proyek ESP32 dan sistem kendali, magang proteksi PLN, fotografi, dan desain grafis.';
+// Isi NEXT_PUBLIC_SITE_URL (mis. https://namadomain.com) saat build supaya og:image berupa URL absolut.
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? '').replace(/\/$/, '');
 
 export default function Home() {
+  const { t, lang } = usePrefs();
   const progress = useRef(0);
   const [active, setActive] = useState(0);
   const [mode, setMode] = useState<Mode>('pending');
@@ -89,6 +91,12 @@ export default function Home() {
     }
   };
 
+  // Favicon: avatar bangun di siang, tidur di malam (skrip di _document memasang nilai awalnya).
+  useEffect(() => {
+    const link = document.getElementById('app-icon') as HTMLLinkElement | null;
+    if (link) link.href = theme === 'dark' ? '/icons/icon-48-sleep.png' : '/icons/icon-48-awake.png';
+  }, [theme]);
+
   const handleReady = useCallback(() => setReady(true), []);
 
   const showScene = mode === '3d';
@@ -97,19 +105,21 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>{TITLE}</title>
+        <title>{t.title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="referrer" content="no-referrer" />
-        <meta name="description" content={DESC} />
+        <meta name="description" content={t.desc} />
         <meta name="author" content="Zulhelmi Syahtiar" />
         <meta name="theme-color" content={dark ? '#0a0f1f' : '#f6efe3'} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={TITLE} />
-        <meta property="og:description" content={DESC} />
-        <meta property="og:image" content="/profile.jpeg" />
-        <meta property="og:locale" content="id_ID" />
+        <meta property="og:title" content={t.title} />
+        <meta property="og:description" content={t.desc} />
+        <meta property="og:image" content={`${SITE_URL}/og.png`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content={lang === 'id' ? 'id_ID' : 'en_US'} />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="icon" type="image/jpeg" href="/profile.jpeg" />
+        <meta name="twitter:image" content={`${SITE_URL}/og.png`} />
       </Head>
 
       {/* langit desktop: tetap di belakang seluruh halaman */}
@@ -139,23 +149,23 @@ export default function Home() {
           }`}
         >
           <div className="static-dio h-full max-h-[34rem] w-full max-w-[36rem]">
-            <StaticDiorama />
+            <StaticDiorama dark={dark} alt={t.staticAlt} />
           </div>
         </div>
         {showScene && (
           <div className={`absolute inset-0 transition-opacity duration-700 ${ready ? 'opacity-100' : 'opacity-0'}`}>
-            <SceneCanvas progress={progress} onSelect={go} onReady={handleReady} dark={dark} />
+            <SceneCanvas progress={progress} onSelect={go} onReady={handleReady} dark={dark} lang={lang} />
           </div>
         )}
         <span className="glass absolute bottom-3 left-3 !rounded-full px-3 py-1 text-xs font-bold md:hidden">
-          {SECTIONS[active].label}
+          {SECTION_LABELS[lang][active].label}
         </span>
       </div>
 
       <Sections onOpen={setProject} onGo={go} alternate={showScene} />
       <ProjectModal project={project} onClose={() => setProject(null)} />
       <noscript>
-        <p style={{ padding: '1rem' }}>Situs ini memerlukan JavaScript untuk menampilkan diorama 3D dan daftar proyek.</p>
+        <p style={{ padding: '1rem' }}>{t.noscript}</p>
       </noscript>
     </>
   );
