@@ -1,6 +1,104 @@
-node_modules
-.next
-out
-.env*
-legacy/
+# ==========================================
+# Dependencies
+# ==========================================
+node_modules/
+/.pnpm-store
+
+# ==========================================
+# Next.js & Build Outputs
+# ==========================================
+.next/
+out/
+build/
+dist/
+.turbo/
+.vercel/
+
+# ==========================================
+# Logs & Debugging
+# ==========================================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ==========================================
+# Environment Variables & Secrets
+# ==========================================
+.env
+.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ==========================================
+# TypeScript & Cache
+# ==========================================
 *.tsbuildinfo
+.eslintcache
+.cache/
+
+# ==========================================
+# Testing & Code Coverage
+# ==========================================
+coverage/
+.nyc_output/
+
+# ==========================================
+# Operating System Files
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ==========================================
+# IDE & Code Editor Configurations
+# ==========================================
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+
+# ==========================================
+# Legacy, Scratch & Local Temp
+# ==========================================
+legacy/
+scratch/
+temp/
+tmp/
+
+# ==========================================
+# Raw Large Media & Archives
+# (Gunakan cloud storage / CDN untuk file ini)
+# ==========================================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.psd
+*.ai
+*.raw
+*.cr2
+*.nef
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# Folder foto mentah berukuran besar (~27MB) yang tidak dipakai di web
+public/Photo and design project/
+
+# Upload dinamis lokal (jika ada CMS / local upload)
+public/uploads/*
+!public/uploads/.gitkeep

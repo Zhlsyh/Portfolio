@@ -338,7 +338,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     id: 'creative-medio',
     category: 'design',
     title: 'Mediocreation – Brand Merchandise & Visual Media',
-    image: '',
+    image: '/photos/mediocreation/mediocreation-9.webp',
     tags: ['Brand Identity', 'Merchandise Design', 'Content Strategy', 'Personal Brand'],
     description: 'Tugas Kewirausahaan & Proyek Pribadi (Personal Brand): Merancang identitas visual brand, feeds Instagram, poster promosi, serta membuat konten foto dan video untuk Instagram Story dan Reels. Portofolio: @me.diocreation.',
     specs: [
@@ -347,6 +347,23 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
       { label: 'Media', value: 'Instagram (@me.diocreation)' },
       { label: 'Tahun', value: '2024 – Sekarang' },
     ],
+    gallery: [
+      { id: 'medio-1', url: '/photos/mediocreation/mediocreation-6.webp', title: 'Stiker "Anomali Pembaik"' },
+      { id: 'medio-2', url: '/photos/mediocreation/mediocreation-7.webp', title: 'Stiker "Antek – Anak Teknik"' },
+      { id: 'medio-3', url: '/photos/mediocreation/mediocreation-8.webp', title: 'Stiker "Anything U Want"' },
+      { id: 'medio-4', url: '/photos/mediocreation/mediocreation-10.webp', title: 'Stiker "MBG – Microcontroller Berfungsi, Gratis"' },
+      { id: 'medio-5', url: '/photos/mediocreation/mediocreation-11.webp', title: 'Stiker "Mix Signal"' },
+      { id: 'medio-6', url: '/photos/mediocreation/mediocreation-12.webp', title: 'Stiker "Professional Sleeper"' },
+      { id: 'medio-7', url: '/photos/mediocreation/mediocreation-13.webp', title: 'Stiker "Stay Grounded"' },
+      { id: 'medio-8', url: '/photos/mediocreation/mediocreation-14.webp', title: 'Stiker "Stay Positive"' },
+      { id: 'medio-9', url: '/photos/mediocreation/mediocreation-15.webp', title: 'Stiker "Trying to Be Better"' },
+      { id: 'medio-10', url: '/photos/mediocreation/mediocreation-16.webp', title: 'Desain kartu ucapan terima kasih' },
+      { id: 'medio-11', url: '/photos/mediocreation/mediocreation-4.webp', title: 'Poster Open Pre-Order Batch 4 (Acrylic Pin)' },
+      { id: 'medio-12', url: '/photos/mediocreation/mediocreation-3.webp', title: 'Poster Pre-Order: panduan pemesanan' },
+      { id: 'medio-13', url: '/photos/mediocreation/mediocreation-2.webp', title: 'Poster Pre-Order: hitung mundur 15 April' },
+      { id: 'medio-14', url: '/photos/mediocreation/mediocreation-1.webp', title: 'Brand wordmark Mediocreation' },
+      { id: 'medio-15', url: '/photos/mediocreation/mediocreation-5.webp', title: 'Artikel Chaotic Customization di Instagram' }
+    ]
   },
   'photo-1': {
     id: 'photo-1',
@@ -579,7 +596,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     id: 'des-1',
     category: 'design',
     title: 'Desain Banner Cetak Kelulusan Kustom',
-    image: '',
+    image: '/photos/banner-cetak/banner-cetak-3.webp',
     tags: ['Banner Cetak', 'Canva', 'Photoshop', 'Klien Freelance'],
     description: 'Pembuatan desain visual banner cetak khusus (custom banner) untuk acara selebrasi kelulusan akademik klien dengan komposisi warna kontras dan siap cetak.',
     specs: [
@@ -588,7 +605,11 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
       { label: 'Deliverable', value: 'File Siap Cetak Res Tinggi' },
       { label: 'Tahun Proyek', value: '2025 - 2026' }
     ],
-    gallery: []
+    gallery: [
+      { id: 'des1-1', url: '/photos/banner-cetak/banner-cetak-3.webp', title: 'Banner "Aksara B" – Warga Kumpul Bersama Keluarga B' },
+      { id: 'des1-2', url: '/photos/banner-cetak/banner-cetak-2.webp', title: 'Banner Industrial Electronics Engineering 2023 (EC B)' },
+      { id: 'des1-3', url: '/photos/banner-cetak/banner-cetak-1.webp', title: 'Banner Wisuda – tampilan pada kanal YouTube' }
+    ]
   },
   'des-4': {
     id: 'des-4',
