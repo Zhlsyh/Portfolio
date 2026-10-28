@@ -71,12 +71,14 @@ Desktop.ini
 *.swo
 
 # ==========================================
-# Legacy, Scratch & Local Temp
+# Legacy, Scratch, Local Temp & Audits
 # ==========================================
 legacy/
 scratch/
 temp/
 tmp/
+anti-slop/
+antislop/
 
 # ==========================================
 # Raw Large Media & Archives
@@ -96,9 +98,8 @@ tmp/
 *.avi
 *.mkv
 
-# Folder foto mentah berukuran besar (~27MB) yang tidak dipakai di web
-public/Photo and design project/
 
 # Upload dinamis lokal (jika ada CMS / local upload)
 public/uploads/*
+!public/uploads/README.md
 !public/uploads/.gitkeep
